@@ -2,123 +2,100 @@
 
 
     @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Report";
     }
 
-    <h2>Index</h2>
+    <h2>Report</h2>
 
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.SKILLSET)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OPPORTUNITY_GROUP_STATUS)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GROUP_POSITIONS_AVAILABLE)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MAX_TARGET_GRADE)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TARGET_NEW_HIRE_GRADE)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SITE)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DURATION)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TARGETED_CONSULTANTS)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CANDIDATE_CONFIRMED)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RATE_CARD_PER_HR)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EXPECTED_START_DATE)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ACTUAL_START_DATE)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ACTUAL_END_DATE)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LAST_EDITED_BY)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LAST_EDITED_DATE)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.LOCATION)
-            </th>
-            <th></th>
-        </tr>
+    <div class="table-responsive">
+        <table class="tablesmall table-condensed table table-bordered small">
+            <tr id="tableHeaders">
+                <th>Details
+                </th>
+                <th>@Html.DisplayNameFor(model => model.SKILLSET)</th>
+                <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_GROUP_STATUS)
+                </th>
+                <th>@Html.DisplayNameFor(model => model.GROUP_POSITIONS_AVAILABLE)
+                </th>
+                <th>@Html.DisplayNameFor(model => model.MAX_TARGET_GRADE)
+                </th>
+                <th>@Html.DisplayNameFor(model => model.TARGET_NEW_HIRE_GRADE)
+                </th>
+                <th>@Html.DisplayNameFor(model => model.SITE)
+                </th>
+                <th>@Html.DisplayNameFor(model => model.DURATION)
+                </th>
+                <th>@Html.DisplayNameFor(model => model.TARGETED_CONSULTANTS)
+                </th>
+                <th>@Html.DisplayNameFor(model => model.CANDIDATE_CONFIRMED)
+                </th>
+                <th>@Html.DisplayNameFor(model => model.RATE_CARD_PER_HR)
+                </th>
+                <th>@Html.DisplayNameFor(model => model.EXPECTED_START_DATE)
+                </th>
+                <th>@Html.DisplayNameFor(model => model.ACTUAL_START_DATE)
+                </th>
+                <th>@Html.DisplayNameFor(model => model.ACTUAL_END_DATE)
+                </th>
+                <th>@Html.DisplayNameFor(model => model.LAST_EDITED_BY)
+                </th>
+                <th>@Html.DisplayNameFor(model => model.LAST_EDITED_DATE)
+                </th>
+                <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.LOCATION)
+                </th>
+                <th></th>
+            </tr>
 
-        @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.SKILLSET)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OPPORTUNITY_GROUP_STATUS)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GROUP_POSITIONS_AVAILABLE)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MAX_TARGET_GRADE)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TARGET_NEW_HIRE_GRADE)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SITE)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DURATION)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TARGETED_CONSULTANTS)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CANDIDATE_CONFIRMED)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RATE_CARD_PER_HR)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EXPECTED_START_DATE)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ACTUAL_START_DATE)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ACTUAL_END_DATE)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LAST_EDITED_BY)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LAST_EDITED_DATE)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OPPORTUNITY_CATALOG.LOCATION)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.GROUP_ID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.GROUP_ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.GROUP_ID })
-            </td>
-        </tr>
-        }
+            @foreach (var item in Model) {
+            <tr id="tableRows">
+                <td>
+                    <button type='button' class='btn btn-light' data-toggle='modal' data-target="#">
+                        <i class="fas fa-user-plus fa-xs"></i>
+                    </button>
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.SKILLSET)
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.OPPORTUNITY_GROUP_STATUS)
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.GROUP_POSITIONS_AVAILABLE)
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.MAX_TARGET_GRADE)
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.TARGET_NEW_HIRE_GRADE)
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.SITE)
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.DURATION)
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.TARGETED_CONSULTANTS)
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.CANDIDATE_CONFIRMED)
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.RATE_CARD_PER_HR)
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.EXPECTED_START_DATE)
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.ACTUAL_START_DATE)
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.ACTUAL_END_DATE)
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.LAST_EDITED_BY)
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.LAST_EDITED_DATE)
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.OPPORTUNITY_CATALOG.LOCATION)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.GROUP_ID }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.GROUP_ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.GROUP_ID })
+                </td>
+            </tr>
+            }
 
-    </table>
+        </table>
+
+    </div> <!-- Table Responsive -->

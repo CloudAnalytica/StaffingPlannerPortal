@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,14 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-    <style>
-        background-color: #eee;
-    </style>
+
+
 </head>
+<style>
+    body {
+        background-color: #eee;
+    }
+</style>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -20,14 +25,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav navbar-right">
+
                     <li>@Html.ActionLink("Client", "Index", "Clients")</li>
                     <li>@Html.ActionLink("Project", "Index", "Projects")</li>
                     <li>@Html.ActionLink("Opportunity", "Create", "Projects")</li>
-                    <li>@Html.ActionLink("Report", "Report", "Home")</li>
+                    <li>@Html.ActionLink("Reports", "Report", "Home")</li>
                     <li>
                         <a href="@Url.Action("Index", "UserInfoes")">
                             <span>
@@ -36,9 +42,9 @@
                         </a>
                     </li>
                     <li>
-                        <div class="container">
-                            <p class="text-muted">&copy; @DateTime.Now.Year - Sogeti</p>
-                        </div>
+                        <a href="@Url.Action("Login", "UserInfoes")">
+                            <span><i class="fas fa-sign-in-alt"></i> </span>
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -47,8 +53,10 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Sogeti</p>
+        <footer class="footer">
+            <div class="container">
+                <p class="text-muted">&copy; @DateTime.Now.Year - Sogeti</p>
+            </div>
         </footer>
     </div>
 
