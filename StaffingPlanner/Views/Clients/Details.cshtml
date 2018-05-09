@@ -1,0 +1,58 @@
+﻿@model StaffingPlanner.Models.CLIENT_DETAILS
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CLIENT_DETAILS</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CLIENT_NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLIENT_NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLIENT_SUB_BUSINESS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLIENT_SUB_BUSINESS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLIENT_STATUS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLIENT_STATUS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LAST_EDITED_BY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LAST_EDITED_BY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LAST_EDITED_DATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LAST_EDITED_DATE)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CLIENT_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

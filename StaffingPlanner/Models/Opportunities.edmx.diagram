@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="af277363e16b48a8bb88138b56ea3b47" Name="Diagram1">
+        <EntityTypeShape EntityType="OpportunitiesModel.CLIENT_DETAILS" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OpportunitiesModel.CONSULTANT" Width="1.5" PointX="7.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OpportunitiesModel.LOST_REASON" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OpportunitiesModel.OPPORTUNITY_CATALOG" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OpportunitiesModel.OPPORTUNITY_GROUP" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OpportunitiesModel.OPPORTUNITY_STATUS" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OpportunitiesModel.SIGNUP_INFO" Width="1.5" PointX="5" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OpportunitiesModel.sysdiagram" Width="1.5" PointX="7.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OpportunitiesModel.USER_PRIVILEGE" Width="1.5" PointX="2.75" PointY="9" IsExpanded="true" />
+        <AssociationConnector Association="OpportunitiesModel.FK_OPPORTUNITY_CATALOG_CLIENT_DETAILS" ManuallyRouted="false" />
+        <AssociationConnector Association="OpportunitiesModel.FK_OPPORTUNITY_CATALOG_OPPORTUNITY_STATUS" ManuallyRouted="false" />
+        <AssociationConnector Association="OpportunitiesModel.FK_OPPORTUNITY_GROUP_OPPORTUNITY_CATALOG" ManuallyRouted="false" />
+        <AssociationConnector Association="OpportunitiesModel.FK_SIGNUP_INFO_USER_PRIVILEGE" ManuallyRouted="false" />
+        <AssociationConnector Association="OpportunitiesModel.LOST_OPPORTUNITY" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
