@@ -1,0 +1,130 @@
+﻿@model StaffingPlanner.Models.OPPORTUNITY_CATALOG
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>OPPORTUNITY_CATALOG</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LOCATION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LOCATION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SPONSOR)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SPONSOR)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OPPORTUNITY_NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OPPORTUNITY_NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OPPORTUNITY_PRACTICE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OPPORTUNITY_PRACTICE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OPPORTUNITY_VALUE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OPPORTUNITY_VALUE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OPPORTUNITY_STATUS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OPPORTUNITY_STATUS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OPPORTUNITY_COMMENT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OPPORTUNITY_COMMENT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OPPORTUNITY_PRIORITY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OPPORTUNITY_PRIORITY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OPPORTUNITY_TYPE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OPPORTUNITY_TYPE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NUMBER_OF_REQUIRED_ROLES)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NUMBER_OF_REQUIRED_ROLES)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LAST_EDITED_BY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LAST_EDITED_BY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LAST_EDITED_DATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LAST_EDITED_DATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLIENT_DETAILS.CLIENT_NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLIENT_DETAILS.CLIENT_NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OPPORTUNITY_STATUS1.OPPORTUNITY_STATUS_NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OPPORTUNITY_STATUS1.OPPORTUNITY_STATUS_NAME)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OPPORTUNITY_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
