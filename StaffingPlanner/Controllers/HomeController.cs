@@ -12,7 +12,6 @@ namespace StaffingPlanner.Controllers
 {
 	public class HomeController : Controller
 	{
-
         private DEV_ClientOpportunitiesEntities db = new DEV_ClientOpportunitiesEntities();
         public ActionResult Index()
 		{

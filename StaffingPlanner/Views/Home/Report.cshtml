@@ -2,99 +2,115 @@
 
 
     @{
-    ViewBag.Title = "Report";
+        ViewBag.Title = "Report";
     }
 
     <h2>Report</h2>
 
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+
     <div class="table-responsive">
         <table class="tablesmall table-condensed table table-bordered small">
             <tr id="tableHeaders">
-                <th>Details
-                </th>
-                <th>@Html.DisplayNameFor(model => model.SKILLSET)</th>
-                <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_GROUP_STATUS)
-                </th>
-                <th>@Html.DisplayNameFor(model => model.GROUP_POSITIONS_AVAILABLE)
-                </th>
-                <th>@Html.DisplayNameFor(model => model.MAX_TARGET_GRADE)
-                </th>
-                <th>@Html.DisplayNameFor(model => model.TARGET_NEW_HIRE_GRADE)
-                </th>
-                <th>@Html.DisplayNameFor(model => model.SITE)
-                </th>
-                <th>@Html.DisplayNameFor(model => model.DURATION)
-                </th>
-                <th>@Html.DisplayNameFor(model => model.TARGETED_CONSULTANTS)
-                </th>
-                <th>@Html.DisplayNameFor(model => model.CANDIDATE_CONFIRMED)
-                </th>
-                <th>@Html.DisplayNameFor(model => model.RATE_CARD_PER_HR)
-                </th>
-                <th>@Html.DisplayNameFor(model => model.EXPECTED_START_DATE)
-                </th>
-                <th>@Html.DisplayNameFor(model => model.ACTUAL_START_DATE)
-                </th>
-                <th>@Html.DisplayNameFor(model => model.ACTUAL_END_DATE)
-                </th>
-                <th>@Html.DisplayNameFor(model => model.LAST_EDITED_BY)
-                </th>
-                <th>@Html.DisplayNameFor(model => model.LAST_EDITED_DATE)
-                </th>
-                <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.LOCATION)
-                </th>
-                <th></th>
+                <th>#</th>
+                <th>Details</th>
+                <th>Client Name</th>
+                <th>Sub-Business</th>
+                <th>Opportunity Name</th>
+                <th>Sponsor Name</th>
+                <th>Opportunity Value</th>
+                <th>Skillset</th>
             </tr>
+            @{ int counter = 1;
+                foreach (var item in Model)
+                {
 
-            @foreach (var item in Model) {
-            <tr id="tableRows">
-                <td>
-                    <button type='button' class='btn btn-light' data-toggle='modal' data-target="#">
-                        <i class="fas fa-user-plus fa-xs"></i>
-                    </button>
-                </td>
-                <td>@Html.DisplayFor(modelItem => item.SKILLSET)
-                </td>
-                <td>@Html.DisplayFor(modelItem => item.OPPORTUNITY_GROUP_STATUS)
-                </td>
-                <td>@Html.DisplayFor(modelItem => item.GROUP_POSITIONS_AVAILABLE)
-                </td>
-                <td>@Html.DisplayFor(modelItem => item.MAX_TARGET_GRADE)
-                </td>
-                <td>@Html.DisplayFor(modelItem => item.TARGET_NEW_HIRE_GRADE)
-                </td>
-                <td>@Html.DisplayFor(modelItem => item.SITE)
-                </td>
-                <td>@Html.DisplayFor(modelItem => item.DURATION)
-                </td>
-                <td>@Html.DisplayFor(modelItem => item.TARGETED_CONSULTANTS)
-                </td>
-                <td>@Html.DisplayFor(modelItem => item.CANDIDATE_CONFIRMED)
-                </td>
-                <td>@Html.DisplayFor(modelItem => item.RATE_CARD_PER_HR)
-                </td>
-                <td>@Html.DisplayFor(modelItem => item.EXPECTED_START_DATE)
-                </td>
-                <td>@Html.DisplayFor(modelItem => item.ACTUAL_START_DATE)
-                </td>
-                <td>@Html.DisplayFor(modelItem => item.ACTUAL_END_DATE)
-                </td>
-                <td>@Html.DisplayFor(modelItem => item.LAST_EDITED_BY)
-                </td>
-                <td>@Html.DisplayFor(modelItem => item.LAST_EDITED_DATE)
-                </td>
-                <td>@Html.DisplayFor(modelItem => item.OPPORTUNITY_CATALOG.LOCATION)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id=item.GROUP_ID }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.GROUP_ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.GROUP_ID })
-                </td>
-            </tr>
-            }
+                <tr id="tableRows">
+
+                    <td>@counter</td>
+                    <td>
+                        <button type='button' class='btn btn-light' data-toggle='modal' data-target="#@item.GROUP_ID">
+                            <i class="fas fa-user-plus fa-xs"></i>
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="@item.GROUP_ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title text-center text-uppercase text-danger" id="exampleModalLabel">@item.OPPORTUNITY_CATALOG.OPPORTUNITY_NAME</h3>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body text-info small">
+                                        <table class="table table-bordered table-hover">
+                                            <tr class="text-center">
+                                                <td>Opoprtunity Type</td>
+                                                <td>@item.OPPORTUNITY_CATALOG.OPPORTUNITY_TYPE</td>
+                                            </tr>
+                                            <tr class="text-center">
+                                                <td>Opportunity Status</td>
+                                                <td>@item.OPPORTUNITY_CATALOG.OPPORTUNITY_STATUS1.OPPORTUNITY_STATUS_NAME</td>
+                                            <tr class="text-center">
+                                                <td>Rate Card Per Hr</td>
+                                                <td>$@item.RATE_CARD_PER_HR</td>
+                                            </tr>
+                                            <tr class="text-center">
+                                                <td>Practice</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr class="text-center">
+                                                <td>Max Target Grade</td>
+                                                <td>@item.MAX_TARGET_GRADE</td>
+                                            </tr>
+                                            <tr class="text-center">
+                                                <td>Target Consultant</td>
+                                                <td>@item.TARGETED_CONSULTANTS</td>
+                                            </tr>
+                                            <tr class="text-center">
+                                                <td>Opportunity Location</td>
+                                                <td>@item.OPPORTUNITY_CATALOG.LOCATION</td>
+                                            </tr>
+                                            <tr class="text-center">
+                                                <td>Expected Start Date</td>
+                                                <td>@item.EXPECTED_START_DATE</td>
+                                            </tr>
+                                            <tr class="text-center">
+                                                <td>Actual Start Date</td>
+                                                <td>@item.ACTUAL_START_DATE</td>
+                                            </tr>
+                                            <tr class="text-center">
+                                                <td>Duration</td>
+                                                <td>@item.DURATION</td>
+                                            </tr>
+                                            <tr class="text-center">
+                                                <td>Priority</td>
+                                                <td>@item.OPPORTUNITY_CATALOG.OPPORTUNITY_PRIORITY</td>
+                                            </tr>
+                                            <tr class="text-center">
+                                                <td>Comment</td>
+                                                <td>@item.OPPORTUNITY_CATALOG.OPPORTUNITY_COMMENT</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>@item.OPPORTUNITY_CATALOG.CLIENT_DETAILS.CLIENT_NAME</td>
+                    <td>@item.OPPORTUNITY_CATALOG.CLIENT_DETAILS.CLIENT_SUB_BUSINESS</td>
+                    <td>@item.OPPORTUNITY_CATALOG.OPPORTUNITY_NAME</td>
+                    <td>@item.OPPORTUNITY_CATALOG.SPONSOR</td>
+                    <td>$@item.OPPORTUNITY_CATALOG.OPPORTUNITY_VALUE</td>
+                    <td>@item.SKILLSET</td>
+                </tr>
+                    
+                 counter = counter + 1; 
+                    
+                }
+           }
 
         </table>
 
