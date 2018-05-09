@@ -25,7 +25,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+                <a href="@Url.Action("Index", "Home")">
+                    <div class="navbar-brand"><i class="fas fa-home"></i> Home </div>
+                    
+                </a>
+
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
