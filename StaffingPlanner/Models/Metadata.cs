@@ -10,7 +10,6 @@ namespace StaffingPlanner.Models
 	{
 		[Key]
 		[Required]
-		[StringLength(50)]
 		[Display(Name = "Client ID")]
 		public int CLIENT_ID;
 

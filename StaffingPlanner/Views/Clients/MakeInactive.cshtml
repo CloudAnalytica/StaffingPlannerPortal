@@ -1,11 +1,12 @@
 ﻿@model StaffingPlanner.Models.CLIENT_DETAILS
 
 @{
-    ViewBag.Title = "Client Details";
+    ViewBag.Title = "Make Inactive";
 }
 
-<h2>Client Details</h2>
+<h2>Make Inactive</h2>
 
+<h3>Are you sure you want to make this client inactive?</h3>
 <div>
     <h4>Client Information</h4>
     <hr />
@@ -27,14 +28,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CLIENT_STATUS)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CLIENT_STATUS)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.LAST_EDITED_BY)
         </dt>
 
@@ -51,8 +44,13 @@
         </dd>
 
     </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Make Inactive" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CLIENT_ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
