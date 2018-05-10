@@ -5,65 +5,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Staffing Planner</title>
-
+    
     @Styles.Render("~/Content/css")
 
-    <!--@Scripts.Render("~/bundles/modernizr")-->
-
-
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-       
+    
     <!------ Include the above in your HEAD tag ---------->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
 
 </head>
-<!--
-<body>
-
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-                <a href="@Url.Action("Index", "Home")">
-                    <div class="navbar-brand"><i class="fas fa-home"></i> Home </div>
-
-                </a>
-
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-
-                    <li>@Html.ActionLink("Client", "Index", "Clients")</li>
-                    <li>@Html.ActionLink("Project", "Index", "Projects")</li>
-                    <li>@Html.ActionLink("Opportunity", "Create", "Projects")</li>
-                    <li>@Html.ActionLink("Reports", "Report", "Home")</li>
-                    <li>
-                        <a href="@Url.Action("Index", "UserInfoes")">
-                            <span>
-                                <i class="far fa-user"></i>
-                            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("Login", "UserInfoes")">
-                            <span><i class="fas fa-sign-in-alt"></i> </span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-
-        -->
 
 <body class="home">
     <div class="container-fluid display-table">
@@ -71,24 +24,21 @@
             <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
                 <div class="logo">
                     <a hef="home.html">
-                        <a hef="home.html">
-                            <img src="http://jskrishna.com/work/merkury/images/logo.png" alt="merkery_logo" class="hidden-xs hidden-sm">
-                            <img src="http://jskrishna.com/work/merkury/images/circle-logo.png" alt="merkery_logo" class="visible-xs visible-sm circle-logo">
-                        </a>
+                        <img src="http://jskrishna.com/work/merkury/images/logo.png" alt="example_logo" class="hidden-xs hidden-sm">
+                        <img src="http://jskrishna.com/work/merkury/images/circle-logo.png" alt="Example_logo" class="visible-xs visible-sm circle-logo">
                     </a>
                 </div>
                 <div class="navi">
                     <ul>
                         <li class="active"><a href="/"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Home</span></a></li>
                         <li><a href="/clients"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Clients</span></a></li>
-                        <li><a href="/projects"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Projects</span></a></li>
-                        <li><a href="/Projects/Create"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Add Opportunity</span></a></li>
+                        <li><a href="/projects"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Projects</span></a></li>
+                        <li><a href="/projects/create"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Add Opportunity</span></a></li>
                         <li><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Statistics</span></a></li>
                         <li><a href="/home/report"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Reports</span></a></li>
                     </ul>
                 </div>
             </div>
-
             <div class="col-md-10 col-sm-11 display-table-cell v-align">
                 <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
                 <div class="row">
@@ -142,45 +92,50 @@
                             </div>
                         </div>
                     </header>
-                </div>
-                <!-- Modal -->
-                <div id="add_project" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header login-header">
-                                <button type="button" class="close" data-dismiss="modal">×</button>
-                                <h4 class="modal-title">Add Project</h4>
-                            </div>
-                            <div class="modal-body">
-                                <input type="text" placeholder="Project Title" name="name">
-                                <input type="text" placeholder="Post of Post" name="mail">
-                                <input type="text" placeholder="Author" name="passsword">
-                                <textarea placeholder="Desicrption"></textarea>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="cancel" data-dismiss="modal">Close</button>
-                                <button type="button" class="add-project" data-dismiss="modal">Save</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="container body-content">
-                    @RenderBody()
+                    <div class="container body-content">
 
+                        @RenderBody()
+
+                    </div>
                 </div>
             </div>
         </div>
-        <hr />
-        <footer class="footer">
-            <div class="container">
-                <p class="text-muted">&copy; @DateTime.Now.Year - Sogeti</p>
-            </div>
-        </footer>
     </div>
-    
+
+    <!-- Modal -->
+    <div id="add_project" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header login-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title">Add Project</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="text" placeholder="Project Title" name="name">
+                    <input type="text" placeholder="Post of Post" name="mail">
+                    <input type="text" placeholder="Author" name="passsword">
+                    <textarea placeholder="Desicrption"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="cancel" data-dismiss="modal">Close</button>
+                    <button type="button" class="add-project" data-dismiss="modal">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <hr />
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted">&copy; @DateTime.Now.Year - Sogeti</p>
+        </div>
+    </footer>
+   
+    <!--
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/bootstrap")-->
     @RenderSection("scripts", required: false)
 </body>
 
