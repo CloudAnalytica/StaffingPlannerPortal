@@ -7,6 +7,7 @@
     <title>@ViewBag.Title - Staffing Planner</title>
 
     @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
 
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -21,7 +22,7 @@
 <body class="home">
     <div class="container-fluid display-table">
         <div class="row display-table-row">
-            <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
+            <div class="col-md-2 col-sm-2 hidden-xs display-table-cell v-align box" id="navigation">
                 <div class="logo">
                     <a hef="home.html">
                         <img src="http://jskrishna.com/work/merkury/images/logo.png" alt="example_logo" class="hidden-xs hidden-sm">
@@ -33,7 +34,7 @@
                         <li class="active"><a href="/"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Home</span></a></li>
                         <li><a href="/clients"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Clients</span></a></li>
                         <li><a href="/projects"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Projects</span></a></li>
-                        <li><a href="/projects/create"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Add Opportunity</span></a></li>
+                        <li><a href="/projects/create"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Opportunity</span></a></li>
                         <li><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Statistics</span></a></li>
                         <li><a href="/reports"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Reports</span></a></li>
                     </ul>
