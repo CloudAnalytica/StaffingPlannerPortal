@@ -28,6 +28,17 @@ namespace StaffingPlanner.Models
 	[MetadataType(typeof(OpportunityCatalogMetadata))]
 	public partial class OPPORTUNITY_CATALOG
 	{
+		[NotMapped]
+		public string PROJECT_NAME_IDENTIFIER { get { return getClientName(this.CLIENT_ID) + " - " + this.OPPORTUNITY_NAME; } }
+
+		private string getClientName(int id)
+		{
+			DEV_ClientOpportunitiesEntities db = new DEV_ClientOpportunitiesEntities();
+			var client = from c in db.CLIENT_DETAILS
+								where c.CLIENT_ID == id
+								select c.CLIENT_NAME;
+			return client.SingleOrDefault();
+		}
 	}
 
 	[MetadataType(typeof(OpportunityGroupMetadata))]
