@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="OpportunitiesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="OpportunitiesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CLIENT_DETAILS">
           <Key>
             <PropertyRef Name="CLIENT_ID" />
@@ -80,7 +80,7 @@ warning 6002: The table/view 'DEV_ClientOpportunities.dbo.LOST_OPPORTUNITY' does
           <Property Name="DURATION" Type="varchar" MaxLength="50" />
           <Property Name="TARGETED_CONSULTANTS" Type="varchar(max)" />
           <Property Name="CANDIDATE_CONFIRMED" Type="bit" />
-          <Property Name="RATE_CARD_PER_HR" Type="int" Nullable="false" />
+          <Property Name="RATE_CARD_PER_HR" Type="int" />
           <Property Name="EXPECTED_START_DATE" Type="date" />
           <Property Name="ACTUAL_START_DATE" Type="date" />
           <Property Name="ACTUAL_END_DATE" Type="date" />
@@ -198,8 +198,6 @@ warning 6002: The table/view 'DEV_ClientOpportunities.dbo.LOST_OPPORTUNITY' does
           </ReferentialConstraint>
         </Association>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
-        <Function Name="practiceManager_viewProjectsWithOpportunityStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="salesPersons_viewProjectsWithOpportunityStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -271,8 +269,7 @@ warning 6002: The table/view 'DEV_ClientOpportunities.dbo.LOST_OPPORTUNITY' does
             <End Role="SIGNUP_INFO" EntitySet="SIGNUP_INFO" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OpportunitiesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -347,7 +344,7 @@ warning 6002: The table/view 'DEV_ClientOpportunities.dbo.LOST_OPPORTUNITY' does
           <Property Name="DURATION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TARGETED_CONSULTANTS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="CANDIDATE_CONFIRMED" Type="Boolean" />
-          <Property Name="RATE_CARD_PER_HR" Type="Int32" Nullable="false" />
+          <Property Name="RATE_CARD_PER_HR" Type="Int32" />
           <Property Name="EXPECTED_START_DATE" Type="DateTime" Precision="0" />
           <Property Name="ACTUAL_START_DATE" Type="DateTime" Precision="0" />
           <Property Name="ACTUAL_END_DATE" Type="DateTime" Precision="0" />
@@ -655,8 +652,6 @@ warning 6002: The table/view 'DEV_ClientOpportunities.dbo.LOST_OPPORTUNITY' does
               <ScalarProperty Name="OPPORTUNITY_ID" ColumnName="OPPORTUNITY_ID" />
             </EndProperty>
           </AssociationSetMapping>
-          <FunctionImportMapping FunctionImportName="practiceManager_viewProjectsWithOpportunityStatus" FunctionName="OpportunitiesModel.Store.practiceManager_viewProjectsWithOpportunityStatus" />
-          <FunctionImportMapping FunctionImportName="salesPersons_viewProjectsWithOpportunityStatus" FunctionName="OpportunitiesModel.Store.salesPersons_viewProjectsWithOpportunityStatus" />
           <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="OpportunitiesModel.Store.sp_alterdiagram" />
           <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="OpportunitiesModel.Store.sp_creatediagram" />
           <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="OpportunitiesModel.Store.sp_dropdiagram" />
