@@ -9,7 +9,7 @@
 
 
 <div class="table-responsive">
-	<table class="tablesmall table-condensed table table-bordered small">
+	<table class="table-condensed table-hover table-bordered small">
         <tr id="tableHeaders">
             <th>Details</th>
             <th>Account</th>
@@ -25,9 +25,11 @@
             <th>Max Target Grade</th>
             <th>Target Consultant</th>
             <th>Work Location</th>
-            <td>Start Date</td>
-            <td>Duration</td>
-            <td>Priority</td>
+            <th>Start Date</th>
+            <th>Duration</th>
+            <th>Priority</th>
+            <th># of Roles</th>
+            <th>AE</th>
         </tr>
 		@{ int counter = 1;
 			foreach (var item in Model)
@@ -82,6 +84,8 @@
             <td>@item.EXPECTED_START_DATE</td>
             <td>@item.DURATION</td>
             <td>@item.OPPORTUNITY_CATALOG.OPPORTUNITY_PRIORITY</td>
+            <td>@item.OPPORTUNITY_CATALOG.NUMBER_OF_REQUIRED_ROLES</td>
+            <td>@item.LAST_EDITED_BY</td>
         </tr>
 
 				counter = counter + 1;
