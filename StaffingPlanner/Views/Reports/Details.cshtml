@@ -1,0 +1,146 @@
+﻿@model StaffingPlanner.Models.OPPORTUNITY_GROUP
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>OPPORTUNITY_GROUP</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SKILLSET)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SKILLSET)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OPPORTUNITY_GROUP_STATUS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OPPORTUNITY_GROUP_STATUS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GROUP_POSITIONS_AVAILABLE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GROUP_POSITIONS_AVAILABLE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MAX_TARGET_GRADE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MAX_TARGET_GRADE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TARGET_NEW_HIRE_GRADE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TARGET_NEW_HIRE_GRADE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SITE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SITE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DURATION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DURATION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TARGETED_CONSULTANTS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TARGETED_CONSULTANTS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CANDIDATE_CONFIRMED)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CANDIDATE_CONFIRMED)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RATE_CARD_PER_HR)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RATE_CARD_PER_HR)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EXPECTED_START_DATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EXPECTED_START_DATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ACTUAL_START_DATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ACTUAL_START_DATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ACTUAL_END_DATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ACTUAL_END_DATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LAST_EDITED_BY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LAST_EDITED_BY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LAST_EDITED_DATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LAST_EDITED_DATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.LOCATION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OPPORTUNITY_CATALOG.LOCATION)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.GROUP_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
