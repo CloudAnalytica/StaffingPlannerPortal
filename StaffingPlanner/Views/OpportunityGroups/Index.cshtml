@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<StaffingPlanner.Models.OPPORTUNITY_GROUP>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Opportunity List";
 }
 
-<h2>Index</h2>
+<h2>Opportunity List</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -63,6 +63,8 @@
     </tr>
 
 @foreach (var item in Model) {
+	if (item.OPPORTUNITY_GROUP_STATUS == true)
+	{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.SKILLSET)
@@ -113,11 +115,12 @@
             @Html.DisplayFor(modelItem => item.OPPORTUNITY_CATALOG.LOCATION)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.GROUP_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.GROUP_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.GROUP_ID })
+            @Html.ActionLink("Edit", "Edit", new { id = item.GROUP_ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.GROUP_ID }) |
+            @Html.ActionLink("Delete", "MakeInactive", new { id = item.GROUP_ID })
         </td>
     </tr>
+	}
 }
 
 </table>

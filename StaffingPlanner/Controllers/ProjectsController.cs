@@ -17,7 +17,7 @@ namespace StaffingPlanner.Controllers
         // GET: Projects
         public ActionResult Index()
         {
-            var projectCatalog = db.OPPORTUNITY_CATALOG.Include(o => o.CLIENT_DETAILS).Include(o => o.OPPORTUNITY_STATUS1);
+			var projectCatalog = db.OPPORTUNITY_CATALOG.Include(o => o.CLIENT_DETAILS).Include(o => o.OPPORTUNITY_STATUS1);
             return View(projectCatalog.ToList());
         }
 
@@ -103,7 +103,7 @@ namespace StaffingPlanner.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CLIENT_ID = new SelectList(db.CLIENT_DETAILS, "CLIENT_ID", "CLIENT_NAME", projectCatalog.CLIENT_ID);
+            ViewBag.CLIENT_ID = new SelectList(db.CLIENT_DETAILS, "CLIENT_ID", "CLIENT_FULL_NAME", projectCatalog.CLIENT_ID);
             ViewBag.OPPORTUNITY_STATUS_ID = new SelectList(db.OPPORTUNITY_STATUS, "OPPORTUNITY_STATUS_ID", "OPPORTUNITY_STATUS_NAME", projectCatalog.OPPORTUNITY_STATUS_ID);
             return View(projectCatalog);
         }
