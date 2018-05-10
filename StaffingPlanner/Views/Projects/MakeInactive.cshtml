@@ -1,11 +1,12 @@
 ﻿@model StaffingPlanner.Models.OPPORTUNITY_CATALOG
 
 @{
-    ViewBag.Title = "Project Details";
+    ViewBag.Title = "Make Inactive";
 }
 
-<h2>Project Details</h2>
+<h2>Make Project Inactive</h2>
 
+<h3>Are you sure you want to make this project inactive?</h3>
 <div>
     <h4>Project Information</h4>
     <hr />
@@ -123,8 +124,13 @@
         </dd>
 
     </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Make Inactive" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.OPPORTUNITY_ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
