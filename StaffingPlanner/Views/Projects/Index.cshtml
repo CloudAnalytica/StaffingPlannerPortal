@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<StaffingPlanner.Models.OPPORTUNITY_CATALOG>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Project List";
 }
 
-<h2>Index</h2>
+<h2>Project List</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -25,9 +25,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.OPPORTUNITY_VALUE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OPPORTUNITY_STATUS)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.OPPORTUNITY_COMMENT)
@@ -57,6 +54,8 @@
     </tr>
 
 @foreach (var item in Model) {
+	if (item.OPPORTUNITY_STATUS == true)
+	{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.LOCATION)
@@ -72,9 +71,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.OPPORTUNITY_VALUE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OPPORTUNITY_STATUS)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.OPPORTUNITY_COMMENT)
@@ -101,11 +97,12 @@
             @Html.DisplayFor(modelItem => item.OPPORTUNITY_STATUS1.OPPORTUNITY_STATUS_NAME)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.OPPORTUNITY_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.OPPORTUNITY_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.OPPORTUNITY_ID })
+            @Html.ActionLink("Edit", "Edit", new { id = item.OPPORTUNITY_ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.OPPORTUNITY_ID }) |
+            @Html.ActionLink("Make Inactive", "MakeInactive", new { id = item.OPPORTUNITY_ID })
         </td>
     </tr>
+	}
 }
 
 </table>

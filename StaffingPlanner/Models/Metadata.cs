@@ -118,6 +118,7 @@ namespace StaffingPlanner.Models
 		public string OPPORTUNITY_PRACTICE;
 
 		[Display(Name = "Project Value")]
+		[RangeAttribute(typeof(decimal), "0.00", "1000000000.00", ErrorMessage = "Value must be between 0 and 1000000000.00")]
 		public Nullable<decimal> OPPORTUNITY_VALUE;
 
 		[Required]
@@ -137,6 +138,7 @@ namespace StaffingPlanner.Models
 		public string OPPORTUNITY_TYPE;
 
 		[Display(Name = "# of Required Roles")]
+		[RangeAttribute(typeof(int), "1", "100", ErrorMessage = "Must be a number between 1 and 100.")]
 		public Nullable<int> NUMBER_OF_REQUIRED_ROLES;
 
 		[Required]
