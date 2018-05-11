@@ -6,9 +6,12 @@
 
 <h2>Project List</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<a href="/projects/create">
+    <button type="button" class="btn btn-info navbar-btn">
+        <i class="fas fa-plus-square"></i>
+        <span> Create new</span>
+    </button>
+</a>
 <table class="table table-condensed table-hover table-bordered small">
     <tr>
         <th>
@@ -50,7 +53,9 @@
         <th>
             @Html.DisplayNameFor(model => model.OPPORTUNITY_STATUS1.OPPORTUNITY_STATUS_NAME)
         </th>
-        <th></th>
+        <th>Edit</th>
+        <th>Info</th>
+        <th>Delete</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -97,9 +102,25 @@
             @Html.DisplayFor(modelItem => item.OPPORTUNITY_STATUS1.OPPORTUNITY_STATUS_NAME)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.OPPORTUNITY_ID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.OPPORTUNITY_ID }) |
-            @Html.ActionLink("Delete", "MakeInactive", new { id = item.OPPORTUNITY_ID })
+            <a href="/projects/edit/@item.OPPORTUNITY_ID">
+                <button type="button" class="btn btn-primary">
+                    <i class="fas fa-edit fa-xs"></i>
+                </button>
+            </a>
+        </td>
+        <td>
+            <a href="/projects/details/@item.OPPORTUNITY_ID">
+                <button type="button" class="btn btn-success">
+                    <i class="fas fa-plus fa-xs"></i>
+                </button>
+            </a>
+        </td>
+        <td>
+            <a href="/projects/makeinactive/@item.OPPORTUNITY_ID">
+                <button type="button" class="btn btn-danger">
+                    <i class="fas fa-trash fa-xs"></i>
+                </button>
+            </a>
         </td>
     </tr>
 	}
