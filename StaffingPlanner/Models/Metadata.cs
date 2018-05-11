@@ -27,7 +27,7 @@ namespace StaffingPlanner.Models
 		public bool CLIENT_STATUS;
 
 		[Required]
-		[Display(Name = "Last Edited By")]
+		[Display(Name = "AE")]
 		[StringLength(50, MinimumLength = 1, ErrorMessage = "Name of person must not be longer that 50 characters in length.")]
 		public string LAST_EDITED_BY;
 
@@ -53,6 +53,7 @@ namespace StaffingPlanner.Models
 		public string CONSULTANT_PRACTICE;
 
 		[Display(Name = "Sogeti Start Date")]
+		[DataType(DataType.Date)]
 		public Nullable<System.DateTime> SOGETI_START_DATE;
 
 		[Required]
@@ -60,7 +61,7 @@ namespace StaffingPlanner.Models
 		public bool CONSULTANT_EMPLOYMENT_STATUS;
 
 		[Required]
-		[Display(Name = "Last Edited By")]
+		[Display(Name = "AE")]
 		[StringLength(50, MinimumLength = 1, ErrorMessage = "Name of person must not be longer that 50 characters in length.")]
 		public string LAST_EDITED_BY;
 
@@ -142,7 +143,7 @@ namespace StaffingPlanner.Models
 		public Nullable<int> NUMBER_OF_REQUIRED_ROLES;
 
 		[Required]
-		[Display(Name = "Last Edited By")]
+		[Display(Name = "AE")]
 		[StringLength(50, MinimumLength = 1, ErrorMessage = "Name of person must not be more than 50 characters in length.")]
 		public string LAST_EDITED_BY;
 
@@ -173,6 +174,7 @@ namespace StaffingPlanner.Models
 
 		[Required]
 		[Display(Name = "Positions Needed")]
+		[RangeAttribute(typeof(int), "1", "100", ErrorMessage = "Must be a number between 1 and 100.")]
 		public int GROUP_POSITIONS_AVAILABLE;
 
 		[Display(Name = "Max Hire Grade")]
@@ -200,19 +202,23 @@ namespace StaffingPlanner.Models
 
 		[Required]
 		[Display(Name = "Rate Card Per Hour")]
+		[RangeAttribute(typeof(int), "0", "1000000000", ErrorMessage = "Value must be between 0 and 1000000000")]
 		public int RATE_CARD_PER_HR;
 
 		[Display(Name = "Expected Start Date")]
+		[DataType(DataType.Date)]
 		public Nullable<System.DateTime> EXPECTED_START_DATE;
 
 		[Display(Name = "Actual Start Date")]
+		[DataType(DataType.Date)]
 		public Nullable<System.DateTime> ACTUAL_START_DATE;
 
 		[Display(Name = "End Date")]
+		[DataType(DataType.Date)]
 		public Nullable<System.DateTime> ACTUAL_END_DATE;
 
 		[Required]
-		[Display(Name = "Last Edited By")]
+		[Display(Name = "AE")]
 		[StringLength(50, MinimumLength = 1, ErrorMessage = "Name of person must not be more than 50 characters in length.")]
 		public string LAST_EDITED_BY;
 
