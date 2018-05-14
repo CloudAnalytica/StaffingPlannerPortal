@@ -21,8 +21,8 @@ namespace StaffingPlanner.Controllers
         // GET: Reports
         public ActionResult Index()
         {
-            var oPPORTUNITY_GROUP = db.OPPORTUNITY_GROUP.Include(o => o.OPPORTUNITY_CATALOG);
-            return View(oPPORTUNITY_GROUP.ToList());
+            var opportunity = db.OPPORTUNITY_GROUP.Include(o => o.OPPORTUNITY_CATALOG);
+            return View(opportunity.ToList());
         }
 
         // GET: Reports/Details/5
@@ -32,12 +32,12 @@ namespace StaffingPlanner.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OPPORTUNITY_GROUP oPPORTUNITY_GROUP = db.OPPORTUNITY_GROUP.Find(id);
-            if (oPPORTUNITY_GROUP == null)
+            OPPORTUNITY_GROUP opportunity = db.OPPORTUNITY_GROUP.Find(id);
+            if (opportunity == null)
             {
                 return HttpNotFound();
             }
-            return View(oPPORTUNITY_GROUP);
+            return View(opportunity);
         }
 
         // GET: Reports/Create
@@ -52,17 +52,17 @@ namespace StaffingPlanner.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GROUP_ID,OPPORTUNITY_ID,SKILLSET,OPPORTUNITY_GROUP_STATUS,GROUP_POSITIONS_AVAILABLE,MAX_TARGET_GRADE,TARGET_NEW_HIRE_GRADE,SITE,DURATION,TARGETED_CONSULTANTS,CANDIDATE_CONFIRMED,RATE_CARD_PER_HR,EXPECTED_START_DATE,ACTUAL_START_DATE,ACTUAL_END_DATE,LAST_EDITED_BY,LAST_EDITED_DATE")] OPPORTUNITY_GROUP oPPORTUNITY_GROUP)
+        public ActionResult Create([Bind(Include = "GROUP_ID,OPPORTUNITY_ID,SKILLSET,OPPORTUNITY_GROUP_STATUS,GROUP_POSITIONS_AVAILABLE,MAX_TARGET_GRADE,TARGET_NEW_HIRE_GRADE,SITE,DURATION,TARGETED_CONSULTANTS,CANDIDATE_CONFIRMED,RATE_CARD_PER_HR,EXPECTED_START_DATE,ACTUAL_START_DATE,ACTUAL_END_DATE,LAST_EDITED_BY,LAST_EDITED_DATE")] OPPORTUNITY_GROUP opportunity)
         {
             if (ModelState.IsValid)
             {
-                db.OPPORTUNITY_GROUP.Add(oPPORTUNITY_GROUP);
+                db.OPPORTUNITY_GROUP.Add(opportunity);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.OPPORTUNITY_ID = new SelectList(db.OPPORTUNITY_CATALOG, "OPPORTUNITY_ID", "LOCATION", oPPORTUNITY_GROUP.OPPORTUNITY_ID);
-            return View(oPPORTUNITY_GROUP);
+            ViewBag.OPPORTUNITY_ID = new SelectList(db.OPPORTUNITY_CATALOG, "OPPORTUNITY_ID", "LOCATION", opportunity.OPPORTUNITY_ID);
+            return View(opportunity);
         }
 
         // GET: Reports/Edit/5
@@ -72,13 +72,13 @@ namespace StaffingPlanner.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OPPORTUNITY_GROUP oPPORTUNITY_GROUP = db.OPPORTUNITY_GROUP.Find(id);
-            if (oPPORTUNITY_GROUP == null)
+            OPPORTUNITY_GROUP opportunity = db.OPPORTUNITY_GROUP.Find(id);
+            if (opportunity == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.OPPORTUNITY_ID = new SelectList(db.OPPORTUNITY_CATALOG, "OPPORTUNITY_ID", "LOCATION", oPPORTUNITY_GROUP.OPPORTUNITY_ID);
-            return View(oPPORTUNITY_GROUP);
+            ViewBag.OPPORTUNITY_ID = new SelectList(db.OPPORTUNITY_CATALOG, "OPPORTUNITY_ID", "LOCATION", opportunity.OPPORTUNITY_ID);
+            return View(opportunity);
         }
 
         // POST: Reports/Edit/5
@@ -86,16 +86,16 @@ namespace StaffingPlanner.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "GROUP_ID,OPPORTUNITY_ID,SKILLSET,OPPORTUNITY_GROUP_STATUS,GROUP_POSITIONS_AVAILABLE,MAX_TARGET_GRADE,TARGET_NEW_HIRE_GRADE,SITE,DURATION,TARGETED_CONSULTANTS,CANDIDATE_CONFIRMED,RATE_CARD_PER_HR,EXPECTED_START_DATE,ACTUAL_START_DATE,ACTUAL_END_DATE,LAST_EDITED_BY,LAST_EDITED_DATE")] OPPORTUNITY_GROUP oPPORTUNITY_GROUP)
+        public ActionResult Edit([Bind(Include = "GROUP_ID,OPPORTUNITY_ID,SKILLSET,OPPORTUNITY_GROUP_STATUS,GROUP_POSITIONS_AVAILABLE,MAX_TARGET_GRADE,TARGET_NEW_HIRE_GRADE,SITE,DURATION,TARGETED_CONSULTANTS,CANDIDATE_CONFIRMED,RATE_CARD_PER_HR,EXPECTED_START_DATE,ACTUAL_START_DATE,ACTUAL_END_DATE,LAST_EDITED_BY,LAST_EDITED_DATE")] OPPORTUNITY_GROUP opportunity)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(oPPORTUNITY_GROUP).State = EntityState.Modified;
+                db.Entry(opportunity).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.OPPORTUNITY_ID = new SelectList(db.OPPORTUNITY_CATALOG, "OPPORTUNITY_ID", "LOCATION", oPPORTUNITY_GROUP.OPPORTUNITY_ID);
-            return View(oPPORTUNITY_GROUP);
+            ViewBag.OPPORTUNITY_ID = new SelectList(db.OPPORTUNITY_CATALOG, "OPPORTUNITY_ID", "LOCATION", opportunity.OPPORTUNITY_ID);
+            return View(opportunity);
         }
 
 		//Uses collects the information from reports to add to the db. 
