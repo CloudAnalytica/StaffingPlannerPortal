@@ -74,9 +74,18 @@
         <td>
             @Html.DisplayFor(modelItem => item.OPPORTUNITY_PRACTICE)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OPPORTUNITY_VALUE)
-        </td>
+        <!-- alter the value to be million or thousand-->
+        @{ if (item.OPPORTUNITY_VALUE >= 1000000)
+            {
+                var value = item.OPPORTUNITY_VALUE / 1000000;
+                <td>$@value M</td>
+            }
+            else
+            {
+                var value = item.OPPORTUNITY_VALUE / 1000;
+                <td>$@value K</td>
+            }
+        }
         <td>
             @Html.DisplayFor(modelItem => item.OPPORTUNITY_COMMENT)
         </td>

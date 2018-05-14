@@ -34,9 +34,8 @@
             <th># of Roles</th>
             <th>AE</th>
         </tr>
-		@{ int counter = 1;
-			foreach (var item in Model)
-			{
+
+            @foreach (var item in Model){
 
         <tr id="tableRows">
             <td>
@@ -53,7 +52,8 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body text-info small">
+                            <div cl
+                                 s="modal-body text-info small">
                                 <table class="table table-bordered table-hover">
                                     <tr class="text-center">
                                         <td>Comment</td>
@@ -74,7 +74,19 @@
             <td>@item.OPPORTUNITY_CATALOG.CLIENT_DETAILS.CLIENT_SUB_BUSINESS</td>
             <td>@item.OPPORTUNITY_CATALOG.OPPORTUNITY_NAME</td>
             <td>@item.OPPORTUNITY_CATALOG.SPONSOR</td>
-            <td>$@item.OPPORTUNITY_CATALOG.OPPORTUNITY_VALUE</td>
+            <!-- alter the value to be million or thousand-->
+            @{ if (item.OPPORTUNITY_CATALOG.OPPORTUNITY_VALUE >= 1000000)
+                {
+                    var value = item.OPPORTUNITY_CATALOG.OPPORTUNITY_VALUE / 1000000;
+                    <td>$@value M</td>
+                }
+                else
+                {
+                    var value = item.OPPORTUNITY_CATALOG.OPPORTUNITY_VALUE / 1000;
+                    <td>$@value K</td>
+                }
+            }
+
             <td>@item.SKILLSET</td>
             <td>@item.OPPORTUNITY_CATALOG.OPPORTUNITY_TYPE</td>
             <td>@item.OPPORTUNITY_CATALOG.OPPORTUNITY_STATUS1.OPPORTUNITY_STATUS_NAME</td>
@@ -84,18 +96,28 @@
             <!--Empty field <td>@item.TARGETED_CONSULTANTS</td>-->
             <td>John</td>
             <td>@item.OPPORTUNITY_CATALOG.LOCATION</td>
-            <td>@item.EXPECTED_START_DATE</td>
+
+            <!--Truncate the datetime-->
+            @{
+                if (item.EXPECTED_START_DATE.HasValue)
+                {
+                    string date = item.EXPECTED_START_DATE.Value.ToString("MM/dd/yyyy");
+                    <td>@date</td>
+                }
+                else
+                {
+                    <td>@item.EXPECTED_START_DATE</td>
+                }
+            }
+            <!--
+       <td>@item.EXPECTED_START_DATE</td>
+    -->
             <td>@item.DURATION</td>
             <td>@item.OPPORTUNITY_CATALOG.OPPORTUNITY_PRIORITY</td>
             <td>@item.OPPORTUNITY_CATALOG.NUMBER_OF_REQUIRED_ROLES</td>
             <td>@item.LAST_EDITED_BY</td>
         </tr>
-
-				counter = counter + 1;
-
-			}
-		}
-
+			} 
 	</table>
 
 </div> <!-- Table Responsive -->
