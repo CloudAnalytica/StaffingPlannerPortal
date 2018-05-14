@@ -6,10 +6,14 @@
 
 <h2>Opportunity List</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+
+<a href="/opportunitygroups/create">
+    <button type="button" class="btn btn-info navbar-btn">
+        <i class="fas fa-plus-square"></i>
+        <span> Create new</span>
+    </button>
+</a>
+<table class="table-condensed table-hover table-bordered small">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.SKILLSET)
@@ -59,12 +63,15 @@
         <th>
             @Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.LOCATION)
         </th>
-        <th></th>
+        <th>Edit</th>
+        <th>Info</th>
+        <th>Delete</th>
     </tr>
 
-@foreach (var item in Model) {
-	if (item.OPPORTUNITY_GROUP_STATUS == true)
-	{
+    @foreach (var item in Model)
+    {
+        if (item.OPPORTUNITY_GROUP_STATUS == true)
+        {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.SKILLSET)
@@ -115,12 +122,28 @@
             @Html.DisplayFor(modelItem => item.OPPORTUNITY_CATALOG.LOCATION)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.GROUP_ID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.GROUP_ID }) |
-            @Html.ActionLink("Delete", "MakeInactive", new { id = item.GROUP_ID })
+            <a href="/opportunitygroups/edit/@item.GROUP_ID">
+                <button type="button" class="btn btn-primary">
+                    <i class="fas fa-edit fa-xs"></i>
+                </button>
+            </a>
+        </td>
+        <td>
+            <a href="/opportunitygroups/details/@item.GROUP_ID">
+                <button type="button" class="btn btn-success">
+                    <i class="fas fa-plus fa-xs"></i>
+                </button>
+            </a>
+        </td>
+        <td>
+            <a href="/opportunitygroups/makeinactive/@item.GROUP_ID">
+                <button type="button" class="btn btn-danger">
+                    <i class="fas fa-trash fa-xs"></i>
+                </button>
+            </a>
         </td>
     </tr>
-	}
-}
+        }
+    }
 
 </table>

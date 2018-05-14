@@ -125,12 +125,15 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <div class="col-md-offset-1 col-md-6">
+                <input type="submit" value="Delete" class="btn btn-danger" />
+                <a class="btn btn-default" href="/projects" role="button">Cancel</a>
+            </div>
         </div>
     }
 </div>
