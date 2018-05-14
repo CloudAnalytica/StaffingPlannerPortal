@@ -1,15 +1,17 @@
-﻿@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-
+﻿
+.navbar-brand>img {
+    height: 220%;
+    width: auto;
+    padding-bottom: 10px;
+}
 
 body { /* cdn font */
-    padding-top: 40px;
-    font-family: 'Poppins', sans-serif;
+    padding-top: 35px;
     background: #fafafa;
 }
 
 p { 
 
-    font-family: 'Poppins', sans-serif;
     font-size: 1.1em;
     font-weight: 300;
     line-height: 1.7em;
@@ -22,20 +24,15 @@ a, a:hover, a:focus {  /* un-hyperlinks*/
 }
 
 .navbar { /* top horizontal nav bar*/
-    padding: 0px 10px;
+    padding-bottom: 10px;
     background: black;
     color:  white;
     border: none;
     border-radius: 0;
-    margin-bottom: 40px;
+    margin-bottom: 0px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.navbar-btn { /* changes the styling of the toggle navbar button*/
-    box-shadow: none;
-    outline: none !important;
-    border: none;
-}
 
 .line { /* adds border between lines*/
     width: 100%;
@@ -62,7 +59,7 @@ i, span { /* spaces out the navbar links*/
     background: #7386D5;
     color: #fff;
     transition: all 0.3s;
-    padding-top: 10px;
+    padding-top: 0px;
 }
 
 #sidebar.active {
