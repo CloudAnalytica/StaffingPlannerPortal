@@ -7,7 +7,10 @@
 
 <h2>Report</h2>
 
-
+@using (Html.BeginForm("ExportToExcel", "Reports", FormMethod.Post))
+{
+<input type="submit" value="Export to Excel" class="btn btn-info navbar-btn" />
+}
 <div class="table-responsive">
 	<table class="table-condensed table-hover table-bordered small">
         <tr id="tableHeaders">
