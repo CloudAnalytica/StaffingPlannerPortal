@@ -21,7 +21,8 @@ a, a:hover, a:focus {  /* un-hyperlinks*/
 
 .navbar { /* top horizontal nav bar*/
     padding: 15px 10px;
-    background: #fff;
+    background: black;
+    color:  white;
     border: none;
     border-radius: 0;
     margin-bottom: 40px;

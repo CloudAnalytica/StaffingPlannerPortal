@@ -124,7 +124,10 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.OPPORTUNITY_ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<div class="form-group">
+    <div class="col-md-offset-1 col-md-4">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.OPPORTUNITY_ID }, new { @class = "btn btn-primary", @role = "button" })
+        <a class="btn btn-default" href="/projects" role="button">Cancel</a>
+    </div>
+</div>
