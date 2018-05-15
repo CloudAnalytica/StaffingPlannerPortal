@@ -37,19 +37,7 @@
             <th class="text-center">
                 @Html.DisplayNameFor(model => model.OPPORTUNITY_COMMENT)
             </th>
-            <th class="text-center">
-                @Html.DisplayNameFor(model => model.OPPORTUNITY_VALUE)
-            </th>
-
-            <th class="text-center">
-                @Html.DisplayNameFor(model => model.OPPORTUNITY_PRIORITY)
-            </th>
-            <th class="text-center">
-                @Html.DisplayNameFor(model => model.OPPORTUNITY_TYPE)
-            </th>
-            <th class="text-center">
-                @Html.DisplayNameFor(model => model.NUMBER_OF_REQUIRED_ROLES)
-            </th>
+            
 
 
             <th class="text-center">Edit</th>
@@ -88,29 +76,9 @@
             <td class="text-center">
                 @Html.DisplayFor(modelItem => item.OPPORTUNITY_COMMENT)
             </td>
-            <!-- alter the value to be million or thousand-->
-            @{ if (item.OPPORTUNITY_VALUE >= 1000000)
-                {
-                    var value = item.OPPORTUNITY_VALUE / 1000000;
-                    <td class="text-center">$@value M</td>
-                }
-                else
-                {
-                    var value = item.OPPORTUNITY_VALUE / 1000;
-                    <td class="text-center">$@value K</td>
-                }
-            }
 
-            <td class="text-center">
-                @Html.DisplayFor(modelItem => item.OPPORTUNITY_PRIORITY)
-            </td>
-            <td class="text-center">
-                @Html.DisplayFor(modelItem => item.OPPORTUNITY_TYPE)
-            </td>
-            <td class="text-center">
-                @Html.DisplayFor(modelItem => item.NUMBER_OF_REQUIRED_ROLES)
-            </td>
 
+            
 
 
             <td class="text-center">
