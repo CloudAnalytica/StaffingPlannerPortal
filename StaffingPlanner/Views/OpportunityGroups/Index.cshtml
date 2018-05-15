@@ -3,147 +3,138 @@
 @{
     ViewBag.Title = "Opportunity List";
 }
+<div class="container">
+    <h2>Opportunity List</h2>
 
-<h2>Opportunity List</h2>
 
+    <a href="/opportunitygroups/create">
+        <button type="button" class="btn btn-info navbar-btn">
+            <i class="fa fa-plus-square"></i>
+            <span> Create new</span>
+        </button>
+    </a>
+    <table class="table-condensed table-hover table-bordered small">
+        <tr>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.SKILLSET)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.OPPORTUNITY_GROUP_STATUS)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.GROUP_POSITIONS_AVAILABLE)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.MAX_TARGET_GRADE)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.TARGET_NEW_HIRE_GRADE)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.SITE)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.DURATION)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.TARGETED_CONSULTANTS)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.CANDIDATE_CONFIRMED)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.RATE_CARD_PER_HR)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.EXPECTED_START_DATE)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.ACTUAL_START_DATE)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.ACTUAL_END_DATE)
+            </th>
 
-<a href="/opportunitygroups/create">
-    <button type="button" class="btn btn-info navbar-btn">
-        <i class="fa fa-plus-square"></i>
-        <span> Create new</span>
-    </button>
-</a>
-<table class="table-condensed table-hover table-bordered small">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.SKILLSET)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OPPORTUNITY_GROUP_STATUS)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GROUP_POSITIONS_AVAILABLE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MAX_TARGET_GRADE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TARGET_NEW_HIRE_GRADE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SITE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DURATION)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TARGETED_CONSULTANTS)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CANDIDATE_CONFIRMED)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RATE_CARD_PER_HR)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EXPECTED_START_DATE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ACTUAL_START_DATE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ACTUAL_END_DATE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LAST_EDITED_BY)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LAST_EDITED_DATE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.LOCATION)
-        </th>
-        <th>Edit</th>
-        <th>Info</th>
-        <th>Delete</th>
-    </tr>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.LOCATION)
+            </th>
+            <th class="text-center">Edit</th>
+            <th class="text-center">Info</th>
+            <th class="text-center">Delete</th>
+        </tr>
 
-    @foreach (var item in Model)
-    {
-        if (item.OPPORTUNITY_GROUP_STATUS == true)
+        @foreach (var item in Model)
         {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.SKILLSET)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OPPORTUNITY_GROUP_STATUS)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GROUP_POSITIONS_AVAILABLE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MAX_TARGET_GRADE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TARGET_NEW_HIRE_GRADE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SITE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DURATION)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TARGETED_CONSULTANTS)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CANDIDATE_CONFIRMED)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RATE_CARD_PER_HR)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EXPECTED_START_DATE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ACTUAL_START_DATE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ACTUAL_END_DATE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LAST_EDITED_BY)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LAST_EDITED_DATE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OPPORTUNITY_CATALOG.LOCATION)
-        </td>
-        <td>
-            <a href="/opportunitygroups/edit/@item.GROUP_ID">
-                <button type="button" class="btn btn-primary">
-                    <i class="fa fa-edit fa-xs"></i>
-                </button>
-            </a>
-        </td>
-        <td>
-            <a href="/opportunitygroups/details/@item.GROUP_ID">
-                <button type="button" class="btn btn-success">
-                    <i class="fa fa-plus fa-xs"></i>
-                </button>
-            </a>
-        </td>
-        <td>
-            <a href="/opportunitygroups/makeinactive/@item.GROUP_ID">
-                <button type="button" class="btn btn-danger">
-                    <i class="fa fa-trash fa-xs"></i>
-                </button>
-            </a>
-        </td>
-    </tr>
-        }
-    }
+            if (item.OPPORTUNITY_GROUP_STATUS == true)
+            {
+                <tr>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.SKILLSET)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.OPPORTUNITY_GROUP_STATUS)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.GROUP_POSITIONS_AVAILABLE)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.MAX_TARGET_GRADE)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.TARGET_NEW_HIRE_GRADE)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.SITE)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.DURATION)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.TARGETED_CONSULTANTS)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.CANDIDATE_CONFIRMED)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.RATE_CARD_PER_HR)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.EXPECTED_START_DATE)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.ACTUAL_START_DATE)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.ACTUAL_END_DATE)
+                    </td>
 
-</table>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.OPPORTUNITY_CATALOG.LOCATION)
+                    </td>
+                    <td class="text-center">
+                        <a href="/opportunitygroups/edit/@item.GROUP_ID">
+                            <button type="button" class="btn btn-primary">
+                                <i class="fa fa-edit fa-xs"></i>
+                            </button>
+                        </a>
+                    </td>
+                    <td class="text-center">
+                        <a href="/opportunitygroups/details/@item.GROUP_ID">
+                            <button type="button" class="btn btn-success">
+                                <i class="fa fa-plus fa-xs"></i>
+                            </button>
+                        </a>
+                    </td>
+                    <td class="text-center">
+                        <a href="/opportunitygroups/makeinactive/@item.GROUP_ID">
+                            <button type="button" class="btn btn-danger">
+                                <i class="fa fa-trash fa-xs"></i>
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+</div>
