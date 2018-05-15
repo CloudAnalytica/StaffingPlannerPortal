@@ -64,13 +64,12 @@
 
             <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="container">
-
                     <a id="logo" href="/" class=" navbar-brand navbar-left"><img src="~/Images/logo.png" /></a>
-
-
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#"><i class="fa fa-user"></i></a></li>
+                            <li data-toggle='modal' data-target="#login-modal">
+                                <a href="#"><i class="fa fa-user "></a></i>
+                            </li>
                             <li><a href="#"><i class="fa fa-envelope"></i></a></li>
                             <li><a href="#"><i class="fa fa-sign-out"></i></a></li>
                         </ul>
@@ -83,42 +82,37 @@
 
         </div>
     </div>
-    <button type='button' class='btn btn-primary' data-toggle='modal' data-target="#login-modal">
-        <i class="glyphicon glyphicon-zoom-in"></i>
-    </button>
 
-    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title text-center" id="exampleModalLabel">Login to Your Account</h3>
-                </div>
+    <!-- LOGIN MODAL -->
+    <div class="modal fade " id="login-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
                 <div class="modal-body">
                     <div class="row">
                         <div class="well">
+                            <h3 class="modal-title text-center" id="exampleModalLabel">Login to Your Account</h3>
+                            <hr />
                             @using (Html.BeginForm())
                             {
                                 @Html.AntiForgeryToken()
-                                <div class="form-horizontal">
+                            <div class="form-horizontal">
 
-                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                    <div class="form-group">
-                                        <label for="email" class="control-label">Email</label>
-                                        <input type="email" class="form-control" id="email" name="email" title="Please enter your email" placeholder="example@gmail.com" />
-
-                                    </div>
-
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    <label for="email" class="control-label">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" title="Please enter your email" placeholder="example@gmail.com" />
 
                                 </div>
+                                <div class="form-group">
+                                    <label for="password" class="control-label">Password</label>
+                                    <input type="password" class="form-control" id="password" name="password"/>
+                                </div>
+                            </div>
                             }
+                            <button type="submit" class="btn btn-primary"> Submit</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary"> Submit</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                </div>
-            </div>
         </div>
     </div> <!--Modal-->
 
