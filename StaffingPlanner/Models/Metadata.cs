@@ -15,7 +15,7 @@ namespace StaffingPlanner.Models
 
 		[Required]
 		[Display(Name = "Account Name")]
-		[StringLength(50, MinimumLength = 2, ErrorMessage = "Must be between 2 and 50 characters.")]
+		[StringLength(50, MinimumLength = 2, ErrorMessage = "Must be between 2 - 50 characters.")]
 		public string CLIENT_NAME;
 
 		[Display(Name = "Sub-Business")]
@@ -28,7 +28,7 @@ namespace StaffingPlanner.Models
 
 		[Required]
 		[Display(Name = "AE")]
-		[StringLength(50, MinimumLength = 1, ErrorMessage = "Cannot be more than 50 characters.")]
+		[StringLength(50, MinimumLength = 4, ErrorMessage = "Must be between 4 - 50 characters.")]
 		public string LAST_EDITED_BY;
 
 		[Required]
@@ -62,7 +62,7 @@ namespace StaffingPlanner.Models
 
 		[Required]
 		[Display(Name = "AE")]
-		[StringLength(50, MinimumLength = 1, ErrorMessage = "Cannot be more than 50 characters.")]
+		[StringLength(50, MinimumLength = 4, ErrorMessage = "Must be between 4 - 50 characters.")]
 		public string LAST_EDITED_BY;
 
 		[Required]
@@ -144,7 +144,7 @@ namespace StaffingPlanner.Models
 
 		[Required]
 		[Display(Name = "AE")]
-		[StringLength(50, MinimumLength = 1, ErrorMessage = "Cannot be more than 50 characters.")]
+		[StringLength(50, MinimumLength = 4, ErrorMessage = "Must be between 4 - 50 characters.")]
 		public string LAST_EDITED_BY;
 
 		[Required]
@@ -219,7 +219,7 @@ namespace StaffingPlanner.Models
 
 		[Required]
 		[Display(Name = "AE")]
-		[StringLength(50, MinimumLength = 1, ErrorMessage = "Cannot be more than 50 characters.")]
+		[StringLength(50, MinimumLength = 4, ErrorMessage = "Must be between 4 - 50 characters.")]
 		public string LAST_EDITED_BY;
 
 		[Required]

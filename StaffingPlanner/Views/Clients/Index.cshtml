@@ -5,7 +5,7 @@
 }
 
 
-<div class="container">
+<div class="container-fluid">
     <h2>Account List</h2>
 
 
@@ -22,10 +22,13 @@
     <table class="table table-condensed table-hover table-bordered small">
         <tr>
             <th class="text-center">
-                Account
+                @Html.DisplayNameFor(model => model.CLIENT_NAME)
             </th>
             <th class="text-center">
                 @Html.DisplayNameFor(model => model.CLIENT_SUB_BUSINESS)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.LAST_EDITED_BY)
             </th>
             <th class="text-center">Edit</th>
             <th class="text-center">Info</th>
@@ -36,36 +39,38 @@
         {
             if (item.CLIENT_STATUS == true)
             {
-                <tr>
-                    <td align="center">
-                        @Html.DisplayFor(modelItem => item.CLIENT_NAME)
-                    </td>
-                    <td align="center">
-                        @Html.DisplayFor(modelItem => item.CLIENT_SUB_BUSINESS)
-                    </td>
-
-                    <td align="center">
-                        <a href="/clients/edit/@item.CLIENT_ID">
-                            <button type="button" class="btn btn-primary">
-                                <i class="fa fa-edit fa-xs"></i>
-                            </button>
-                        </a>
-                    </td>
-                    <td align="center">
-                        <a href="/clients/details/@item.CLIENT_ID">
-                            <button type="button" class="btn btn-success">
-                                <i class="fa fa-plus fa-xs"></i>
-                            </button>
-                        </a>
-                    </td>
-                    <td align="center">
-                        <a href="/clients/makeinactive/@item.CLIENT_ID">
-                            <button type="button" class="btn btn-danger">
-                                <i class="fa fa-trash fa-xs"></i>
-                            </button>
-                        </a>
-                    </td>
-                </tr>
+        <tr>
+            <td align="center">
+                @Html.DisplayFor(modelItem => item.CLIENT_NAME)
+            </td>
+            <td align="center">
+                @Html.DisplayFor(modelItem => item.CLIENT_SUB_BUSINESS)
+            </td>
+            <td align="center">
+                @Html.DisplayFor(modelItem => item.LAST_EDITED_BY)
+            </td>
+            <td align="center">
+                <a href="/clients/edit/@item.CLIENT_ID">
+                    <button type="button" class="btn btn-primary">
+                        <i class="fa fa-edit fa-xs"></i>
+                    </button>
+                </a>
+            </td>
+            <td align="center">
+                <a href="/clients/details/@item.CLIENT_ID">
+                    <button type="button" class="btn btn-success">
+                        <i class="fa fa-plus fa-xs"></i>
+                    </button>
+                </a>
+            </td>
+            <td align="center">
+                <a href="/clients/makeinactive/@item.CLIENT_ID">
+                    <button type="button" class="btn btn-danger">
+                        <i class="fa fa-trash fa-xs"></i>
+                    </button>
+                </a>
+            </td>
+        </tr>
             }
         }
 
