@@ -14,24 +14,33 @@
     </a>
     <table class="table table-condensed table-hover table-bordered small">
         <tr>
+            <th class="text-center">Details</th>
             <th class="text-center">
-                @Html.DisplayNameFor(model => model.LOCATION)
+                @Html.DisplayNameFor(model => model.CLIENT_DETAILS.CLIENT_NAME)
+            </th>
+
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.OPPORTUNITY_NAME)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.OPPORTUNITY_STATUS1.OPPORTUNITY_STATUS_NAME)
             </th>
             <th class="text-center">
                 @Html.DisplayNameFor(model => model.SPONSOR)
             </th>
             <th class="text-center">
-                @Html.DisplayNameFor(model => model.OPPORTUNITY_NAME)
+                @Html.DisplayNameFor(model => model.LOCATION)
             </th>
             <th class="text-center">
                 @Html.DisplayNameFor(model => model.OPPORTUNITY_PRACTICE)
             </th>
             <th class="text-center">
-                @Html.DisplayNameFor(model => model.OPPORTUNITY_VALUE)
-            </th>
-            <th class="text-center">
                 @Html.DisplayNameFor(model => model.OPPORTUNITY_COMMENT)
             </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.OPPORTUNITY_VALUE)
+            </th>
+
             <th class="text-center">
                 @Html.DisplayNameFor(model => model.OPPORTUNITY_PRIORITY)
             </th>
@@ -41,12 +50,8 @@
             <th class="text-center">
                 @Html.DisplayNameFor(model => model.NUMBER_OF_REQUIRED_ROLES)
             </th>
-            <th class="text-center">
-                @Html.DisplayNameFor(model => model.CLIENT_DETAILS.CLIENT_NAME)
-            </th>
-            <th class="text-center">
-                @Html.DisplayNameFor(model => model.OPPORTUNITY_STATUS1.OPPORTUNITY_STATUS_NAME)
-            </th>
+
+
             <th class="text-center">Edit</th>
             <th class="text-center">Info</th>
             <th class="text-center">Delete</th>
@@ -56,72 +61,80 @@
         {
             if (item.OPPORTUNITY_STATUS == true)
             {
-                <tr>
-                    <td class="text-center">
-                        @Html.DisplayFor(modelItem => item.LOCATION)
-                    </td>
-                    <td class="text-center">
-                        @Html.DisplayFor(modelItem => item.SPONSOR)
-                    </td>
-                    <td class="text-center">
-                        @Html.DisplayFor(modelItem => item.OPPORTUNITY_NAME)
-                    </td>
-                    <td class="text-center">
-                        @Html.DisplayFor(modelItem => item.OPPORTUNITY_PRACTICE)
-                    </td>
-                    <!-- alter the value to be million or thousand-->
-                    @{ if (item.OPPORTUNITY_VALUE >= 1000000)
-                        {
-                            var value = item.OPPORTUNITY_VALUE / 1000000;
-                            <td class="text-center">$@value M</td>
-                        }
-                        else
-                        {
-                            var value = item.OPPORTUNITY_VALUE / 1000;
-                            <td class="text-center">$@value K</td>
-                        }
-                    }
-                    <td class="text-center">
-                        @Html.DisplayFor(modelItem => item.OPPORTUNITY_COMMENT)
-                    </td>
-                    <td class="text-center">
-                        @Html.DisplayFor(modelItem => item.OPPORTUNITY_PRIORITY)
-                    </td>
-                    <td class="text-center">
-                        @Html.DisplayFor(modelItem => item.OPPORTUNITY_TYPE)
-                    </td>
-                    <td class="text-center">
-                        @Html.DisplayFor(modelItem => item.NUMBER_OF_REQUIRED_ROLES)
-                    </td>
+        <tr>
+            <td class="text-center">
+                <button type='button' class='btn btn-primary' data-toggle='modal' data-target="#">
+                    <i class="glyphicon glyphicon-zoom-in"></i>
+                </button>
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.CLIENT_DETAILS.CLIENT_NAME)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.OPPORTUNITY_NAME)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.OPPORTUNITY_STATUS1.OPPORTUNITY_STATUS_NAME)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.SPONSOR)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.LOCATION)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.OPPORTUNITY_PRACTICE)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.OPPORTUNITY_COMMENT)
+            </td>
+            <!-- alter the value to be million or thousand-->
+            @{ if (item.OPPORTUNITY_VALUE >= 1000000)
+                {
+                    var value = item.OPPORTUNITY_VALUE / 1000000;
+                    <td class="text-center">$@value M</td>
+                }
+                else
+                {
+                    var value = item.OPPORTUNITY_VALUE / 1000;
+                    <td class="text-center">$@value K</td>
+                }
+            }
 
-                    <td class="text-center">
-                        @Html.DisplayFor(modelItem => item.CLIENT_DETAILS.CLIENT_NAME)
-                    </td>
-                    <td class="text-center">
-                        @Html.DisplayFor(modelItem => item.OPPORTUNITY_STATUS1.OPPORTUNITY_STATUS_NAME)
-                    </td>
-                    <td class="text-center">
-                        <a href="/projects/edit/@item.OPPORTUNITY_ID">
-                            <button type="button" class="btn btn-primary">
-                                <i class="fa fa-edit fa-xs"></i>
-                            </button>
-                        </a>
-                    </td>
-                    <td class="text-center">
-                        <a href="/projects/details/@item.OPPORTUNITY_ID">
-                            <button type="button" class="btn btn-success">
-                                <i class="fa fa-plus fa-xs"></i>
-                            </button>
-                        </a>
-                    </td>
-                    <td class="text-center">
-                        <a href="/projects/makeinactive/@item.OPPORTUNITY_ID">
-                            <button type="button" class="btn btn-danger">
-                                <i class="fa fa-trash fa-xs"></i>
-                            </button>
-                        </a>
-                    </td>
-                </tr>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.OPPORTUNITY_PRIORITY)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.OPPORTUNITY_TYPE)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.NUMBER_OF_REQUIRED_ROLES)
+            </td>
+
+
+
+            <td class="text-center">
+                <a href="/projects/edit/@item.OPPORTUNITY_ID">
+                    <button type="button" class="btn btn-primary">
+                        <i class="fa fa-edit fa-xs"></i>
+                    </button>
+                </a>
+            </td>
+            <td class="text-center">
+                <a href="/projects/details/@item.OPPORTUNITY_ID">
+                    <button type="button" class="btn btn-success">
+                        <i class="fa fa-plus fa-xs"></i>
+                    </button>
+                </a>
+            </td>
+            <td class="text-center">
+                <a href="/projects/makeinactive/@item.OPPORTUNITY_ID">
+                    <button type="button" class="btn btn-danger">
+                        <i class="fa fa-trash fa-xs"></i>
+                    </button>
+                </a>
+            </td>
+        </tr>
             }
         }
 
