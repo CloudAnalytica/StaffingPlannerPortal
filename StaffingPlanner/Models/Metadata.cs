@@ -10,11 +10,11 @@ namespace StaffingPlanner.Models
 	{
 		[Key]
 		[Required]
-		[Display(Name = "Client ID")]
+		[Display(Name = "Account ID")]
 		public int CLIENT_ID;
 
 		[Required]
-		[Display(Name = "Client Name")]
+		[Display(Name = "Account Name")]
 		[StringLength(50, MinimumLength = 2, ErrorMessage = "Must be between 2 and 50 characters.")]
 		public string CLIENT_NAME;
 
@@ -91,7 +91,7 @@ namespace StaffingPlanner.Models
 		public int OPPORTUNITY_ID;
 
 		[Required]
-		[Display(Name = "Client ID")]
+		[Display(Name = "Account ID")]
 		public int CLIENT_ID;
 
 		[Required]
