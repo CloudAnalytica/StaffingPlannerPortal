@@ -10,16 +10,16 @@ namespace StaffingPlanner.Models
 	{
 		[Key]
 		[Required]
-		[Display(Name = "Client ID")]
+		[Display(Name = "Account ID")]
 		public int CLIENT_ID;
 
 		[Required]
-		[Display(Name = "Client Name")]
-		[StringLength(50, MinimumLength = 2, ErrorMessage = "Client name must be between 2 and 50 characters in length.")]
+		[Display(Name = "Account Name")]
+		[StringLength(50, MinimumLength = 2, ErrorMessage = "Must be between 2 - 50 characters.")]
 		public string CLIENT_NAME;
 
 		[Display(Name = "Sub-Business")]
-		[StringLength(50, MinimumLength = 0, ErrorMessage = "Sub-Business cannot be more than 50 characters in length.")]
+		[StringLength(50, MinimumLength = 0, ErrorMessage = "Cannot be more than 50 characters.")]
 		public string CLIENT_SUB_BUSINESS;
 
 		[Required]
@@ -28,7 +28,7 @@ namespace StaffingPlanner.Models
 
 		[Required]
 		[Display(Name = "AE")]
-		[StringLength(50, MinimumLength = 1, ErrorMessage = "Name of person must not be longer that 50 characters in length.")]
+		[StringLength(50, MinimumLength = 4, ErrorMessage = "Must be between 4 - 50 characters.")]
 		public string LAST_EDITED_BY;
 
 		[Required]
@@ -45,11 +45,11 @@ namespace StaffingPlanner.Models
 
 		[Required]
 		[Display(Name = "Consultant Name")]
-		[StringLength(50, MinimumLength = 1, ErrorMessage = "Consultant name cannot be more than 50 characters in length.")]
+		[StringLength(50, MinimumLength = 1, ErrorMessage = "Cannot be more than 50 characters.")]
 		public string CONSULTANT_NAME;
 
 		[Display(Name = "Practice")]
-		[StringLength(50, MinimumLength = 0, ErrorMessage = "Practice name cannot be more than 50 characters in length.")]
+		[StringLength(50, MinimumLength = 0, ErrorMessage = "Cannot be more than 50 characters.")]
 		public string CONSULTANT_PRACTICE;
 
 		[Display(Name = "Sogeti Start Date")]
@@ -62,7 +62,7 @@ namespace StaffingPlanner.Models
 
 		[Required]
 		[Display(Name = "AE")]
-		[StringLength(50, MinimumLength = 1, ErrorMessage = "Name of person must not be longer that 50 characters in length.")]
+		[StringLength(50, MinimumLength = 4, ErrorMessage = "Must be between 4 - 50 characters.")]
 		public string LAST_EDITED_BY;
 
 		[Required]
@@ -79,7 +79,7 @@ namespace StaffingPlanner.Models
 
 		[Required]
 		[Display(Name = "Reason")]
-		[StringLength(50, MinimumLength = 0, ErrorMessage = "Reason cannot be more than 50 characters in length.")]
+		[StringLength(50, MinimumLength = 0, ErrorMessage = "Cannot be more than 50 characters.")]
 		public string REASON;
 	}
 
@@ -91,7 +91,7 @@ namespace StaffingPlanner.Models
 		public int OPPORTUNITY_ID;
 
 		[Required]
-		[Display(Name = "Client ID")]
+		[Display(Name = "Account ID")]
 		public int CLIENT_ID;
 
 		[Required]
@@ -100,26 +100,26 @@ namespace StaffingPlanner.Models
 
 		[Required]
 		[Display(Name = "Location")]
-		[StringLength(50, MinimumLength = 1, ErrorMessage = "Location cannot be more than 50 characters in length.")]
+		[StringLength(50, MinimumLength = 1, ErrorMessage = "Cannot be more than 50 characters.")]
 		public string LOCATION;
 
 		[Required]
 		[Display(Name = "Sponsor")]
-		[StringLength(50, MinimumLength = 1, ErrorMessage = "Sponsor cannot be more than 50 characters in length.")]
+		[StringLength(50, MinimumLength = 1, ErrorMessage = "Cannot be more than 50 characters.")]
 		public string SPONSOR;
 
 		[Required]
 		[Display(Name = "Project Name")]
-		[StringLength(50, MinimumLength = 1, ErrorMessage = "Project Name cannot be more than 50 characters in length.")]
+		[StringLength(50, MinimumLength = 1, ErrorMessage = "Cannot be more than 50 characters.")]
 		public string OPPORTUNITY_NAME;
 
 		[Required]
 		[Display(Name = "Project Practice")]
-		[StringLength(50, MinimumLength = 1, ErrorMessage = "Project Name cannot be more than 50 characters in length.")]
+		[StringLength(50, MinimumLength = 1, ErrorMessage = "Cannot be more than 50 characters.")]
 		public string OPPORTUNITY_PRACTICE;
 
 		[Display(Name = "Project Value")]
-		[RangeAttribute(typeof(decimal), "0.00", "1000000000.00", ErrorMessage = "Value must be between 0 and 1000000000.00")]
+		[RangeAttribute(typeof(decimal), "0.00", "1000000000.00", ErrorMessage = "Value must be between 0 - 1000000000.00")]
 		public Nullable<decimal> OPPORTUNITY_VALUE;
 
 		[Required]
@@ -127,24 +127,24 @@ namespace StaffingPlanner.Models
 		public bool OPPORTUNITY_STATUS;
 
 		[Display(Name = "Comment")]
-		[StringLength(8000, MinimumLength = 0, ErrorMessage = "Comment cannot be more than 8000 characters in length.")]
+		[StringLength(8000, MinimumLength = 0, ErrorMessage = "Cannot be more than 8000 characters.")]
 		public string OPPORTUNITY_COMMENT;
 
 		[Display(Name = "Priority Level")]
-		[StringLength(50, MinimumLength = 0, ErrorMessage = "Priority Level cannot be more than 50 characters in length.")]
+		[StringLength(50, MinimumLength = 0, ErrorMessage = "Cannot be more than 50 characters.")]
 		public string OPPORTUNITY_PRIORITY;
 
 		[Display(Name = "Project Type")]
-		[StringLength(50, MinimumLength = 0, ErrorMessage = "Project Type cannot be more than 50 characters in length.")]
+		[StringLength(50, MinimumLength = 0, ErrorMessage = "Cannot be more than 50 characters.")]
 		public string OPPORTUNITY_TYPE;
 
 		[Display(Name = "# of Required Roles")]
-		[RangeAttribute(typeof(int), "1", "100", ErrorMessage = "Must be a number between 1 and 100.")]
+		[RangeAttribute(typeof(int), "1", "100", ErrorMessage = "Must be a number between 1-100.")]
 		public Nullable<int> NUMBER_OF_REQUIRED_ROLES;
 
 		[Required]
 		[Display(Name = "AE")]
-		[StringLength(50, MinimumLength = 1, ErrorMessage = "Name of person must not be more than 50 characters in length.")]
+		[StringLength(50, MinimumLength = 4, ErrorMessage = "Must be between 4 - 50 characters.")]
 		public string LAST_EDITED_BY;
 
 		[Required]
@@ -165,7 +165,7 @@ namespace StaffingPlanner.Models
 
 		[Required]
 		[Display(Name = "Required Skills")]
-		[StringLength(50, MinimumLength = 1, ErrorMessage = "Skills must not be more than 50 characters in length.")]
+		[StringLength(50, MinimumLength = 1, ErrorMessage = "Cannot be more than 50 characters.")]
 		public string SKILLSET;
 
 		[Required]
@@ -174,27 +174,27 @@ namespace StaffingPlanner.Models
 
 		[Required]
 		[Display(Name = "Positions Needed")]
-		[RangeAttribute(typeof(int), "1", "100", ErrorMessage = "Must be a number between 1 and 100.")]
+		[RangeAttribute(typeof(int), "1", "100", ErrorMessage = "Must be a number between 1 - 100.")]
 		public int GROUP_POSITIONS_AVAILABLE;
 
 		[Display(Name = "Max Hire Grade")]
-		[StringLength(50, MinimumLength = 0, ErrorMessage = "Max Hire Grade must not be more than 50 characters in length.")]
+		[StringLength(50, MinimumLength = 0, ErrorMessage = "Cannot be more than 50 characters.")]
 		public string MAX_TARGET_GRADE;
 
 		[Display(Name = "Targeted Hire Grade")]
-		[StringLength(50, MinimumLength = 0, ErrorMessage = "Targeted Hire Grade must not be more than 50 characters in length.")]
+		[StringLength(50, MinimumLength = 0, ErrorMessage = "Cannot be more than 50 characters.")]
 		public string TARGET_NEW_HIRE_GRADE;
 
 		[Display(Name = "Site")]
-		[StringLength(50, MinimumLength = 0, ErrorMessage = "Site Name must not be more than 50 characters in length.")]
+		[StringLength(50, MinimumLength = 0, ErrorMessage = "Cannot be more than 50 characters.")]
 		public string SITE;
 
 		[Display(Name = "Duration")]
-		[StringLength(50, MinimumLength = 0, ErrorMessage = "Duration must not be more than 50 characters in length.")]
+		[StringLength(50, MinimumLength = 0, ErrorMessage = "Cannot be more than 50 characters.")]
 		public string DURATION;
 
 		[Display(Name = "Targeted Consultants")]
-		[StringLength(50, MinimumLength = 0, ErrorMessage = "Consultants list cannot be more than 8000 characters in length.")]
+		[StringLength(50, MinimumLength = 0, ErrorMessage = "Cannot be more than 8000 characters.")]
 		public string TARGETED_CONSULTANTS;
 
 		[Display(Name = "Candidate Confimed")]
@@ -202,7 +202,7 @@ namespace StaffingPlanner.Models
 
 		[Required]
 		[Display(Name = "Rate Card Per Hour")]
-		[RangeAttribute(typeof(int), "0", "1000000000", ErrorMessage = "Value must be between 0 and 1000000000")]
+		[RangeAttribute(typeof(int), "0", "1000000000", ErrorMessage = "Value must be between 0 - 1000000000")]
 		public int RATE_CARD_PER_HR;
 
 		[Display(Name = "Expected Start Date")]
@@ -219,7 +219,7 @@ namespace StaffingPlanner.Models
 
 		[Required]
 		[Display(Name = "AE")]
-		[StringLength(50, MinimumLength = 1, ErrorMessage = "Name of person must not be more than 50 characters in length.")]
+		[StringLength(50, MinimumLength = 4, ErrorMessage = "Must be between 4 - 50 characters.")]
 		public string LAST_EDITED_BY;
 
 		[Required]
@@ -236,7 +236,7 @@ namespace StaffingPlanner.Models
 
 		[Required]
 		[Display(Name = "Project Status")]
-		[StringLength(50, MinimumLength = 1, ErrorMessage = "Status cannot be more than 50 characters in length.")]
+		[StringLength(50, MinimumLength = 1, ErrorMessage = "Cannot be more than 50 characters.")]
 		public string OPPORTUNITY_STATUS_NAME;
 	}
 
@@ -253,27 +253,27 @@ namespace StaffingPlanner.Models
 
 		[Required]
 		[Display(Name = "Username")]
-		[StringLength(50, MinimumLength = 1, ErrorMessage = "Username cannot be more than 50 characters in length.")]
+		[StringLength(50, MinimumLength = 1, ErrorMessage = "Cannot be more than 50 characters.")]
 		public string USERNAME;
 
 		[Required]
 		[Display(Name = "Password")]
-		[StringLength(50, MinimumLength = 1, ErrorMessage = "Password cannot be more than 50 characters in length.")]
+		[StringLength(50, MinimumLength = 1, ErrorMessage = "Cannot be more than 50 characters.")]
 		public string USER_PASSWORD;
 
 		[Required]
 		[Display(Name = "Email")]
-		[StringLength(50, MinimumLength = 1, ErrorMessage = "Email cannot be more than 50 characters in length.")]
+		[StringLength(50, MinimumLength = 1, ErrorMessage = "Cannot be more than 50 characters.")]
 		public string EMAIL;
 
 		[Required]
 		[Display(Name = "First Name")]
-		[StringLength(50, MinimumLength = 1, ErrorMessage = "First name cannot be more than 50 characters in length.")]
+		[StringLength(50, MinimumLength = 1, ErrorMessage = "Cannot be more than 50 characters.")]
 		public string FIRSTNAME;
 
 		[Required]
 		[Display(Name = "Last Name")]
-		[StringLength(50, MinimumLength = 1, ErrorMessage = "Last name cannot be more than 50 characters in length.")]
+		[StringLength(50, MinimumLength = 1, ErrorMessage = "Cannot be more than 50 characters.")]
 		public string LASTNAME;
 
 		[Required]
@@ -294,7 +294,7 @@ namespace StaffingPlanner.Models
 
 		[Required]
 		[Display(Name = "User Privilege Name")]
-		[StringLength(50, MinimumLength = 1, ErrorMessage = "User Privilege name cannot be more than 50 characters in length.")]
+		[StringLength(50, MinimumLength = 1, ErrorMessage = "Cannot be more than 50 characters.")]
 		public string USER_PRIVILEGE_NAME;
 	}
 

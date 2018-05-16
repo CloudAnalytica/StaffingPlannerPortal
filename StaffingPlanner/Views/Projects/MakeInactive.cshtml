@@ -3,134 +3,138 @@
 @{
     ViewBag.Title = "Delete";
 }
+<div class="container">
+    <h2>Delete Project</h2>
 
-<h2>Delete Project</h2>
+    <h3>Are you sure you want to delete this project?</h3>
+    <div>
+        <h4>Project Information</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.LOCATION)
+            </dt>
 
-<h3>Are you sure you want to delete this project?</h3>
-<div>
-    <h4>Project Information</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.LOCATION)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LOCATION)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.LOCATION)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.SPONSOR)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SPONSOR)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.SPONSOR)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.SPONSOR)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.OPPORTUNITY_NAME)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.OPPORTUNITY_NAME)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.OPPORTUNITY_NAME)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.OPPORTUNITY_NAME)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.OPPORTUNITY_PRACTICE)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.OPPORTUNITY_PRACTICE)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.OPPORTUNITY_PRACTICE)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.OPPORTUNITY_PRACTICE)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.OPPORTUNITY_VALUE)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.OPPORTUNITY_VALUE)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.OPPORTUNITY_VALUE)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.OPPORTUNITY_VALUE)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.OPPORTUNITY_STATUS)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.OPPORTUNITY_STATUS)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.OPPORTUNITY_STATUS)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.OPPORTUNITY_STATUS)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.OPPORTUNITY_COMMENT)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.OPPORTUNITY_COMMENT)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.OPPORTUNITY_COMMENT)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.OPPORTUNITY_COMMENT)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.OPPORTUNITY_PRIORITY)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.OPPORTUNITY_PRIORITY)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.OPPORTUNITY_PRIORITY)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.OPPORTUNITY_PRIORITY)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.OPPORTUNITY_TYPE)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.OPPORTUNITY_TYPE)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.OPPORTUNITY_TYPE)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.OPPORTUNITY_TYPE)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.NUMBER_OF_REQUIRED_ROLES)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NUMBER_OF_REQUIRED_ROLES)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.NUMBER_OF_REQUIRED_ROLES)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.NUMBER_OF_REQUIRED_ROLES)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.LAST_EDITED_BY)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LAST_EDITED_BY)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LAST_EDITED_BY)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.LAST_EDITED_BY)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.LAST_EDITED_DATE)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LAST_EDITED_DATE)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LAST_EDITED_DATE)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.LAST_EDITED_DATE)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CLIENT_DETAILS.CLIENT_NAME)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CLIENT_DETAILS.CLIENT_NAME)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CLIENT_DETAILS.CLIENT_NAME)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CLIENT_DETAILS.CLIENT_NAME)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.OPPORTUNITY_STATUS1.OPPORTUNITY_STATUS_NAME)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.OPPORTUNITY_STATUS1.OPPORTUNITY_STATUS_NAME)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.OPPORTUNITY_STATUS1.OPPORTUNITY_STATUS_NAME)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.OPPORTUNITY_STATUS1.OPPORTUNITY_STATUS_NAME)
-        </dd>
+        </dl>
 
-    </dl>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
+            <div class="form-actions no-color">
+                <div class="col-md-offset-1 col-md-6">
+                    <input type="submit" value="Delete" class="btn btn-danger" />
+                    <a class="btn btn-default" href="/projects" role="button">Cancel</a>
+                </div>
+            </div>
+        }
+    </div>
 </div>

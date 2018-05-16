@@ -3,144 +3,148 @@
 @{
     ViewBag.Title = "Opportunity Details";
 }
+<div class="container">
+    <h2>Opportunity Details</h2>
 
-<h2>Opportunity Details</h2>
+    <div>
 
-<div>
-    <h4>Opportunity Information</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.SKILLSET)
-        </dt>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.SKILLSET)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.SKILLSET)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.SKILLSET)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.OPPORTUNITY_GROUP_STATUS)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.OPPORTUNITY_GROUP_STATUS)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.OPPORTUNITY_GROUP_STATUS)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.OPPORTUNITY_GROUP_STATUS)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.GROUP_POSITIONS_AVAILABLE)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.GROUP_POSITIONS_AVAILABLE)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.GROUP_POSITIONS_AVAILABLE)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.GROUP_POSITIONS_AVAILABLE)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MAX_TARGET_GRADE)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.MAX_TARGET_GRADE)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.MAX_TARGET_GRADE)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.MAX_TARGET_GRADE)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TARGET_NEW_HIRE_GRADE)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.TARGET_NEW_HIRE_GRADE)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TARGET_NEW_HIRE_GRADE)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.TARGET_NEW_HIRE_GRADE)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SITE)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.SITE)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.SITE)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.SITE)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DURATION)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.DURATION)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DURATION)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.DURATION)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TARGETED_CONSULTANTS)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.TARGETED_CONSULTANTS)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TARGETED_CONSULTANTS)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.TARGETED_CONSULTANTS)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CANDIDATE_CONFIRMED)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.CANDIDATE_CONFIRMED)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CANDIDATE_CONFIRMED)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.CANDIDATE_CONFIRMED)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RATE_CARD_PER_HR)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.RATE_CARD_PER_HR)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.RATE_CARD_PER_HR)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.RATE_CARD_PER_HR)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EXPECTED_START_DATE)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.EXPECTED_START_DATE)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.EXPECTED_START_DATE)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.EXPECTED_START_DATE)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ACTUAL_START_DATE)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.ACTUAL_START_DATE)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ACTUAL_START_DATE)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.ACTUAL_START_DATE)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ACTUAL_END_DATE)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.ACTUAL_END_DATE)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ACTUAL_END_DATE)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.ACTUAL_END_DATE)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LAST_EDITED_BY)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.LAST_EDITED_BY)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LAST_EDITED_BY)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.LAST_EDITED_BY)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LAST_EDITED_DATE)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.LAST_EDITED_DATE)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LAST_EDITED_DATE)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.LAST_EDITED_DATE)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.LOCATION)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.LOCATION)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.OPPORTUNITY_CATALOG.LOCATION)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.OPPORTUNITY_CATALOG.LOCATION)
+            </dd>
 
-    </dl>
+        </dl>
+    </div>
+
+    <div class="form-horizontal">
+        <div class="col-md-offset-1 col-md-8">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.GROUP_ID }, new { @class = "btn btn-primary", @role = "button" })
+            <a class="btn btn-default" href="/opportunitygroups" role="button">Cancel</a>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.GROUP_ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

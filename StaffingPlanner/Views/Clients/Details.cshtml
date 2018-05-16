@@ -1,58 +1,62 @@
 ﻿@model StaffingPlanner.Models.CLIENT_DETAILS
 
 @{
-    ViewBag.Title = "Client Details";
+    ViewBag.Title = "Account Details";
 }
+<div class="container">
+    <h2>Account Details</h2>
 
-<h2>Client Details</h2>
+    <div>
+    
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.CLIENT_NAME)
+            </dt>
 
-<div>
-    <h4>Client Information</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CLIENT_NAME)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CLIENT_NAME)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CLIENT_NAME)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CLIENT_SUB_BUSINESS)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CLIENT_SUB_BUSINESS)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CLIENT_SUB_BUSINESS)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CLIENT_SUB_BUSINESS)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CLIENT_STATUS)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CLIENT_STATUS)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CLIENT_STATUS)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CLIENT_STATUS)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.LAST_EDITED_BY)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LAST_EDITED_BY)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LAST_EDITED_BY)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.LAST_EDITED_BY)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.LAST_EDITED_DATE)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LAST_EDITED_DATE)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LAST_EDITED_DATE)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.LAST_EDITED_DATE)
-        </dd>
+        </dl>
+    </div>
+    <div class="form-horizontal">
+        <div class="col-md-offset-1 col-md-8">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.CLIENT_ID }, new { @class = "btn btn-primary", @role = "button" })
+            <a class="btn btn-default" href="/clients" role="button">Cancel</a>
+        </div>
+    </div>
 
-    </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CLIENT_ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

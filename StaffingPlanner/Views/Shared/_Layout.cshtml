@@ -6,21 +6,17 @@
     <title>@ViewBag.Title - Staffing Planner</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-</head>
+    </head>
 <body>
     <div class="wrapper">
         <!-- Sidebar Holder -->
         <nav id="sidebar">
-            <div class="sidebar-header">
-                <h3>Staffing Opportunities</h3>
-                <strong>SO</strong>
-            </div>
+
 
             <ul class="list-unstyled components">
                 <li class="active">
                     <a href="/">
-                        <i class="fas fa-home"></i>
+                        <i class="fa fa-home"></i>
                         Home
                     </a>
                 </li>
@@ -50,7 +46,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fas fa-chart-bar"></i>
+                        <i class="fa fa-bar-chart"></i>
                         Statistics
                     </a>
                 </li>
@@ -61,46 +57,93 @@
                     </a>
                 </li>
             </ul>
-            <!--
-            <ul class="list-unstyled CTAs">
-                <li><a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a></li>
-                <li><a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a></li>
-            </ul>
-        -->
         </nav>
 
         <!-- Page Content Holder -->
         <div id="content">
 
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-
-                    <div class="navbar-header">
-                        <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
-                            <i class="fas fa-list"></i>
-                            <span>Toggle Sidebar</span>
-                        </button>
-                    </div>
-
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                    <a id="logo" href="/" class=" navbar-brand navbar-left"><img src="~/Images/logo.png" /></a>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
-                            <!--
-                            <li><a href="#">Page</a></li>
-                            <li><a href="#">Page</a></li>
-                            <li><a href="#">Page</a></li>
-                            <li><a href="#">Page</a></li>-->
-                        </ul>
+                            @{
+                                if (Session["UserID"] != null)
+                                {
+
+                                    <li data-toggle='modal' data-target="#loggedin-modal">
+                                        <a href="#"><i class="fa fa-user "> @Session["FirstName"].ToString()</i></a>
+                                    </li>
+                                    <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+                                    <li><a href="/home/Logout"><i class="fa fa-sign-out"></i></a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="#"><i class="fa fa-user "></i></a></li>
+                                    <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+                                    <li data-toggle='modal' data-target="#login-modal">
+                                        <a href="#"><i class="fa fa-sign-in"></i></a>
+                                    </li>
+                                }
+                            }
+
+                                </ul>
                     </div>
                 </div>
             </nav>
 
 
-            @RenderBody()          
+            @RenderBody()
 
-            </div>
+        </div>
     </div>
 
+    <!-- LOGIN MODAL -->
+    <div class="modal fade " id="login-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="well">
+                        <h3 class="modal-title text-center" id="exampleModalLabel">Login to Your Account</h3>
+                        <hr />
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="form-horizontal">
 
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    <label for="email" class="control-label">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" title="Please enter your email" placeholder="example@gmail.com" />
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="user_password" class="control-label">Password</label>
+                                    <input type="password" class="form-control" id="user_password" name="user_password" />
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary" value="Index">Login</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        }
+                        <a href="/users/create"><div class="text-muted">Reigister</div></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!--Modal-->
+    <!-- LOGIN MODAL -->
+    <div class="modal fade " id="loggedin-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-header">
+                <h3 class="modal-title text-center" id="exampleModalLabel">Hello @{ if (Session["UserID"] != null) { Session["FirstName"].ToString(); } }</h3>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div> <!--Modal-->
 
     <div class="container body-content">
         <div class="line"></div>

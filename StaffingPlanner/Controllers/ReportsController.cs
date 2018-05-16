@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 using StaffingPlanner.Models;
+using ClosedXML.Excel;
 
 namespace StaffingPlanner.Controllers
 {
@@ -17,8 +21,8 @@ namespace StaffingPlanner.Controllers
         // GET: Reports
         public ActionResult Index()
         {
-            var oPPORTUNITY_GROUP = db.OPPORTUNITY_GROUP.Include(o => o.OPPORTUNITY_CATALOG);
-            return View(oPPORTUNITY_GROUP.ToList());
+            var opportunity = db.OPPORTUNITY_GROUP.Include(o => o.OPPORTUNITY_CATALOG);
+            return View(opportunity.ToList());
         }
 
         // GET: Reports/Details/5
@@ -28,12 +32,12 @@ namespace StaffingPlanner.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OPPORTUNITY_GROUP oPPORTUNITY_GROUP = db.OPPORTUNITY_GROUP.Find(id);
-            if (oPPORTUNITY_GROUP == null)
+            OPPORTUNITY_GROUP opportunity = db.OPPORTUNITY_GROUP.Find(id);
+            if (opportunity == null)
             {
                 return HttpNotFound();
             }
-            return View(oPPORTUNITY_GROUP);
+            return View(opportunity);
         }
 
         // GET: Reports/Create
@@ -48,17 +52,17 @@ namespace StaffingPlanner.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GROUP_ID,OPPORTUNITY_ID,SKILLSET,OPPORTUNITY_GROUP_STATUS,GROUP_POSITIONS_AVAILABLE,MAX_TARGET_GRADE,TARGET_NEW_HIRE_GRADE,SITE,DURATION,TARGETED_CONSULTANTS,CANDIDATE_CONFIRMED,RATE_CARD_PER_HR,EXPECTED_START_DATE,ACTUAL_START_DATE,ACTUAL_END_DATE,LAST_EDITED_BY,LAST_EDITED_DATE")] OPPORTUNITY_GROUP oPPORTUNITY_GROUP)
+        public ActionResult Create([Bind(Include = "GROUP_ID,OPPORTUNITY_ID,SKILLSET,OPPORTUNITY_GROUP_STATUS,GROUP_POSITIONS_AVAILABLE,MAX_TARGET_GRADE,TARGET_NEW_HIRE_GRADE,SITE,DURATION,TARGETED_CONSULTANTS,CANDIDATE_CONFIRMED,RATE_CARD_PER_HR,EXPECTED_START_DATE,ACTUAL_START_DATE,ACTUAL_END_DATE,LAST_EDITED_BY,LAST_EDITED_DATE")] OPPORTUNITY_GROUP opportunity)
         {
             if (ModelState.IsValid)
             {
-                db.OPPORTUNITY_GROUP.Add(oPPORTUNITY_GROUP);
+                db.OPPORTUNITY_GROUP.Add(opportunity);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.OPPORTUNITY_ID = new SelectList(db.OPPORTUNITY_CATALOG, "OPPORTUNITY_ID", "LOCATION", oPPORTUNITY_GROUP.OPPORTUNITY_ID);
-            return View(oPPORTUNITY_GROUP);
+            ViewBag.OPPORTUNITY_ID = new SelectList(db.OPPORTUNITY_CATALOG, "OPPORTUNITY_ID", "LOCATION", opportunity.OPPORTUNITY_ID);
+            return View(opportunity);
         }
 
         // GET: Reports/Edit/5
@@ -68,13 +72,13 @@ namespace StaffingPlanner.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OPPORTUNITY_GROUP oPPORTUNITY_GROUP = db.OPPORTUNITY_GROUP.Find(id);
-            if (oPPORTUNITY_GROUP == null)
+            OPPORTUNITY_GROUP opportunity = db.OPPORTUNITY_GROUP.Find(id);
+            if (opportunity == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.OPPORTUNITY_ID = new SelectList(db.OPPORTUNITY_CATALOG, "OPPORTUNITY_ID", "LOCATION", oPPORTUNITY_GROUP.OPPORTUNITY_ID);
-            return View(oPPORTUNITY_GROUP);
+            ViewBag.OPPORTUNITY_ID = new SelectList(db.OPPORTUNITY_CATALOG, "OPPORTUNITY_ID", "LOCATION", opportunity.OPPORTUNITY_ID);
+            return View(opportunity);
         }
 
         // POST: Reports/Edit/5
@@ -82,45 +86,97 @@ namespace StaffingPlanner.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "GROUP_ID,OPPORTUNITY_ID,SKILLSET,OPPORTUNITY_GROUP_STATUS,GROUP_POSITIONS_AVAILABLE,MAX_TARGET_GRADE,TARGET_NEW_HIRE_GRADE,SITE,DURATION,TARGETED_CONSULTANTS,CANDIDATE_CONFIRMED,RATE_CARD_PER_HR,EXPECTED_START_DATE,ACTUAL_START_DATE,ACTUAL_END_DATE,LAST_EDITED_BY,LAST_EDITED_DATE")] OPPORTUNITY_GROUP oPPORTUNITY_GROUP)
+        public ActionResult Edit([Bind(Include = "GROUP_ID,OPPORTUNITY_ID,SKILLSET,OPPORTUNITY_GROUP_STATUS,GROUP_POSITIONS_AVAILABLE,MAX_TARGET_GRADE,TARGET_NEW_HIRE_GRADE,SITE,DURATION,TARGETED_CONSULTANTS,CANDIDATE_CONFIRMED,RATE_CARD_PER_HR,EXPECTED_START_DATE,ACTUAL_START_DATE,ACTUAL_END_DATE,LAST_EDITED_BY,LAST_EDITED_DATE")] OPPORTUNITY_GROUP opportunity)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(oPPORTUNITY_GROUP).State = EntityState.Modified;
+                db.Entry(opportunity).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.OPPORTUNITY_ID = new SelectList(db.OPPORTUNITY_CATALOG, "OPPORTUNITY_ID", "LOCATION", oPPORTUNITY_GROUP.OPPORTUNITY_ID);
-            return View(oPPORTUNITY_GROUP);
+            ViewBag.OPPORTUNITY_ID = new SelectList(db.OPPORTUNITY_CATALOG, "OPPORTUNITY_ID", "LOCATION", opportunity.OPPORTUNITY_ID);
+            return View(opportunity);
         }
 
-        // GET: Reports/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            OPPORTUNITY_GROUP oPPORTUNITY_GROUP = db.OPPORTUNITY_GROUP.Find(id);
-            if (oPPORTUNITY_GROUP == null)
-            {
-                return HttpNotFound();
-            }
-            return View(oPPORTUNITY_GROUP);
-        }
+		//Uses collects the information from reports to add to the db. 
+		public IList<ReportExportModel> GetReportList()
+		{
+			DEV_ClientOpportunitiesEntities db = new DEV_ClientOpportunitiesEntities();
+			var reportList = (from opp in db.OPPORTUNITY_GROUP
+							  join proj in db.OPPORTUNITY_CATALOG on opp.OPPORTUNITY_ID equals proj.OPPORTUNITY_ID
+							  join status in db.OPPORTUNITY_STATUS on proj.OPPORTUNITY_STATUS_ID equals status.OPPORTUNITY_STATUS_ID
+							  join client in db.CLIENT_DETAILS on proj.CLIENT_ID equals client.CLIENT_ID
+							  where proj.OPPORTUNITY_STATUS == true
+							  select new ReportExportModel
+							  {
+								  Account = client.CLIENT_NAME,
+								  Subbusiness = client.CLIENT_SUB_BUSINESS,
+								  ProjectName = proj.OPPORTUNITY_NAME,
+								  Sponsor = proj.SPONSOR,
+								  ProjectValue = (double)proj.OPPORTUNITY_VALUE,
+								  Skillset = opp.SKILLSET,
+								  ProjectType = proj.OPPORTUNITY_TYPE,
+								  ProjectStatus = status.OPPORTUNITY_STATUS_NAME,
+								  RateCardHr = opp.RATE_CARD_PER_HR,
+								  Practice = proj.OPPORTUNITY_PRACTICE,
+								  MaxTargetGrade = opp.MAX_TARGET_GRADE,
+								  TargetConsultant = opp.TARGET_NEW_HIRE_GRADE,
+								  WorkLocation = proj.LOCATION,
+								  StartDate = opp.EXPECTED_START_DATE.ToString(),
+								  Duration = opp.DURATION,
+								  Priority = proj.OPPORTUNITY_PRIORITY,
+								  NumberOfRoles = (int)proj.NUMBER_OF_REQUIRED_ROLES,
+								  AccountExecutive = opp.LAST_EDITED_BY,
+								  LastEditedBy = opp.LAST_EDITED_DATE.ToString()
+							  }).ToList();
+			return reportList;
+		}
 
-        // POST: Reports/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            OPPORTUNITY_GROUP oPPORTUNITY_GROUP = db.OPPORTUNITY_GROUP.Find(id);
-            db.OPPORTUNITY_GROUP.Remove(oPPORTUNITY_GROUP);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+		//Exports an excel file version of the reports page to be downloaded by the user.
+		[HttpPost]
+		public FileResult ExportToExcel()
+		{
+			DataTable dt = new DataTable("Grid");
+			dt.Columns.AddRange(new DataColumn[18] {
+						new DataColumn("Account"),
+						new DataColumn("Sub-Business"),
+						new DataColumn("Project Name"),
+						new DataColumn("Sponsor"),
+						new DataColumn("Project Value"),
+						new DataColumn("Skillset"),
+						new DataColumn("Project Type"),
+						new DataColumn("Project Status"),
+						new DataColumn("Rate Card/Hr"),
+						new DataColumn("Practice"),
+						new DataColumn("Max Target Grade"),
+						new DataColumn("Target Consultant"),
+						new DataColumn("Work Location"),
+						new DataColumn("Start Date"),
+						new DataColumn("Duration"),
+						new DataColumn("Priority"),
+						new DataColumn("# of Roles"),
+						new DataColumn("AE") });
+			var reportList = GetReportList();
 
-        protected override void Dispose(bool disposing)
+			foreach (var report in reportList)
+			{
+				dt.Rows.Add(report.Account, report.Subbusiness, report.ProjectName, report.Sponsor, report.ProjectValue, report.Skillset,
+					report.ProjectType, report.ProjectStatus, report.RateCardHr, report.Practice, report.MaxTargetGrade, report.TargetConsultant,
+					report.WorkLocation, report.StartDate, report.Duration, report.Priority, report.NumberOfRoles, report.AccountExecutive);
+			}
+
+			using (XLWorkbook wb = new XLWorkbook())
+			{
+				wb.Worksheets.Add(dt);
+				using (MemoryStream stream = new MemoryStream())
+				{
+					wb.SaveAs(stream);
+					return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "OpportunityReport.xlsx");
+				}
+			}
+		}
+
+		protected override void Dispose(bool disposing)
         {
             if (disposing)
             {

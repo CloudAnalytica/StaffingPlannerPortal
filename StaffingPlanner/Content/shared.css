@@ -1,13 +1,17 @@
-﻿@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-
+﻿
+.navbar-brand>img {
+    height: 220%;
+    width: auto;
+    padding-bottom: 10px;
+}
 
 body { /* cdn font */
-    font-family: 'Poppins', sans-serif;
+    padding-top: 35px;
     background: #fafafa;
 }
 
 p { 
-    font-family: 'Poppins', sans-serif;
+
     font-size: 1.1em;
     font-weight: 300;
     line-height: 1.7em;
@@ -20,19 +24,15 @@ a, a:hover, a:focus {  /* un-hyperlinks*/
 }
 
 .navbar { /* top horizontal nav bar*/
-    padding: 15px 10px;
-    background: #fff;
+    padding-bottom: 10px;
+    background: black;
+    color:  white;
     border: none;
     border-radius: 0;
-    margin-bottom: 40px;
+    margin-bottom: 0px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.navbar-btn { /* changes the styling of the toggle navbar button*/
-    box-shadow: none;
-    outline: none !important;
-    border: none;
-}
 
 .line { /* adds border between lines*/
     width: 100%;
@@ -59,11 +59,12 @@ i, span { /* spaces out the navbar links*/
     background: #7386D5;
     color: #fff;
     transition: all 0.3s;
+    padding-top: 0px;
 }
 
 #sidebar.active {
-    min-width: 80px;
-    max-width: 80px;
+    min-width: 95px;
+    max-width: 95px;
     text-align: center;
 }
 
@@ -136,10 +137,7 @@ i, span { /* spaces out the navbar links*/
     margin-right: 10px;
 }
 
-#sidebar ul li.active > a, a[aria-expanded="true"] { /* changes background color of link that is active in side bar*/
-    color: #fff;
-    background: #6d7fcc;
-}
+
 
 a[data-toggle="collapse"] {
     position: relative;
@@ -257,4 +255,11 @@ a.article, a.article:hover {
     #sidebarCollapse span {
         display: none;
     }
+}
+
+
+/* this is used for buttons in create/edit pages*/
+#space {
+    margin-left: 412px;
+    
 }
