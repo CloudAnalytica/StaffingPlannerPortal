@@ -276,11 +276,11 @@ namespace StaffingPlanner.Models
 		[StringLength(50, MinimumLength = 1, ErrorMessage = "Cannot be more than 50 characters.")]
 		public string LASTNAME;
 
-		[Required]
+
 		[Display(Name = "Status")]
 		public Nullable<bool> USER_STATUS;
 
-		[Required]
+
 		[Display(Name = "Last Logon")]
 		public Nullable<System.DateTime> LAST_LOGON;
 	}

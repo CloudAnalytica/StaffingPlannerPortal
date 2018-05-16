@@ -232,7 +232,7 @@
       <DependentUpon>Opportunities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\UsersController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
