@@ -57,6 +57,7 @@ namespace StaffingPlanner.Views
             if (ModelState.IsValid)
             {
                 db.SIGNUP_INFO.Add(sIGNUP_INFO);
+                sIGNUP_INFO.USER_PRIVILEGE_ID = 6;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
