@@ -67,12 +67,27 @@
                     <a id="logo" href="/" class=" navbar-brand navbar-left"><img src="~/Images/logo.png" /></a>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
-                            <li data-toggle='modal' data-target="#login-modal">
-                                <a href="#"><i class="fa fa-user "></a></i>
-                            </li>
-                            <li><a href="#"><i class="fa fa-envelope"></i></a></li>
-                            <li><a href="#"><i class="fa fa-sign-out"></i></a></li>
-                        </ul>
+                            @{
+                                if (Session["UserID"] != null)
+                                {
+
+                                    <li data-toggle='modal' data-target="#loggedin-modal">
+                                        <a href="#"><i class="fa fa-user "> @Session["FirstName"].ToString()</i></a>
+                                    </li>
+                                    <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+                                    <li><a href="/home/Logout"><i class="fa fa-sign-out"></i></a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="#"><i class="fa fa-user "></i></a></li>
+                                    <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+                                    <li data-toggle='modal' data-target="#login-modal">
+                                        <a href="#"><i class="fa fa-sign-in"></i></a>
+                                    </li>
+                                }
+                            }
+
+                                </ul>
                     </div>
                 </div>
             </nav>
@@ -86,14 +101,14 @@
     <!-- LOGIN MODAL -->
     <div class="modal fade " id="login-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm" role="document">
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="well">
-                            <h3 class="modal-title text-center" id="exampleModalLabel">Login to Your Account</h3>
-                            <hr />
-                            @using (Html.BeginForm())
-                            {
-                                @Html.AntiForgeryToken()
+            <div class="modal-body">
+                <div class="row">
+                    <div class="well">
+                        <h3 class="modal-title text-center" id="exampleModalLabel">Login to Your Account</h3>
+                        <hr />
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
                             <div class="form-horizontal">
 
                                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -103,19 +118,32 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="password" class="control-label">Password</label>
-                                    <input type="password" class="form-control" id="password" name="password"/>
+                                    <label for="user_password" class="control-label">Password</label>
+                                    <input type="password" class="form-control" id="user_password" name="user_password" />
                                 </div>
                             </div>
-                            }
-                            <button type="submit" class="btn btn-primary"> Submit</button>
+                            <button type="submit" class="btn btn-primary" value="Index"> Submit</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        </div>
+                        }
+
                     </div>
                 </div>
+            </div>
         </div>
     </div> <!--Modal-->
+    <!-- LOGIN MODAL -->
+    <div class="modal fade " id="loggedin-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-header">
+                <h3 class="modal-title text-center" id="exampleModalLabel">Hello @{ if (Session["UserID"] != null) { Session["FirstName"].ToString(); } }</h3>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
 
+            </div>
+        </div>
+    </div> <!--Modal-->
 
     <div class="container body-content">
         <div class="line"></div>

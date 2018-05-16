@@ -2,7 +2,14 @@
     ViewBag.Title = "Home Page";
 }
 
-<h2>Hello user!</h2>
+@{
+    if (Session["UserID"] != null) {
+        <h2> Hello @Session["FirstName"].ToString()</h2>
+    }
+    else{
+        <h2> Hello user!</h2>
+    }
+    }
 <p>Welcome to the Opportunity Portal application.</p>
 
 
