@@ -10,9 +10,9 @@
         <EntityTypeShape EntityType="OpportunitiesModel.LOST_REASON" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OpportunitiesModel.OPPORTUNITY_CATALOG" Width="2.375" PointX="3" PointY="2.375" IsExpanded="true" />
         <EntityTypeShape EntityType="OpportunitiesModel.OPPORTUNITY_GROUP" Width="2.625" PointX="6.125" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="OpportunitiesModel.OPPORTUNITY_STATUS" Width="3.125" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OpportunitiesModel.OPPORTUNITY_STATUS" Width="3.125" PointX="0.75" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="OpportunitiesModel.SIGNUP_INFO" Width="1.5" PointX="5" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="OpportunitiesModel.sysdiagram" Width="1.5" PointX="7.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OpportunitiesModel.sysdiagram" Width="1.5" PointX="10.5" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OpportunitiesModel.USER_PRIVILEGE" Width="1.5" PointX="2.75" PointY="9" IsExpanded="true" />
         <AssociationConnector Association="OpportunitiesModel.FK_OPPORTUNITY_CATALOG_CLIENT_DETAILS" ManuallyRouted="false" />
         <AssociationConnector Association="OpportunitiesModel.FK_OPPORTUNITY_CATALOG_OPPORTUNITY_STATUS" ManuallyRouted="false" />
