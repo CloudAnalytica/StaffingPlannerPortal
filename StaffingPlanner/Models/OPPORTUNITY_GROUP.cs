@@ -25,12 +25,14 @@ namespace StaffingPlanner.Models
         public string DURATION { get; set; }
         public string TARGETED_CONSULTANTS { get; set; }
         public Nullable<bool> CANDIDATE_CONFIRMED { get; set; }
-        public int RATE_CARD_PER_HR { get; set; }
+        public Nullable<int> RATE_CARD_PER_HR { get; set; }
         public Nullable<System.DateTime> EXPECTED_START_DATE { get; set; }
         public Nullable<System.DateTime> ACTUAL_START_DATE { get; set; }
         public Nullable<System.DateTime> ACTUAL_END_DATE { get; set; }
         public string LAST_EDITED_BY { get; set; }
         public System.DateTime LAST_EDITED_DATE { get; set; }
+        public Nullable<decimal> OPPORTUNITY_VALUE { get; set; }
+        public string OPPORTUNITY_PRIORITY { get; set; }
     
         public virtual OPPORTUNITY_CATALOG OPPORTUNITY_CATALOG { get; set; }
     }

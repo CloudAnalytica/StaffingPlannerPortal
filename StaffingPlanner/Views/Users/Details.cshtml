@@ -1,0 +1,82 @@
+﻿@model StaffingPlanner.Models.SIGNUP_INFO
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SIGNUP_INFO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.USERNAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USERNAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.USER_PASSWORD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USER_PASSWORD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMAIL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMAIL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FIRSTNAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FIRSTNAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LASTNAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LASTNAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.USER_STATUS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USER_STATUS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LAST_LOGON)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LAST_LOGON)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.USER_PRIVILEGE.USER_PRIVILEGE_NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USER_PRIVILEGE.USER_PRIVILEGE_NAME)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.USER_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

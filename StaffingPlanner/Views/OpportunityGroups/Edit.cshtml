@@ -3,23 +3,23 @@
 @{
     ViewBag.Title = "Edit Opportunity";
 }
+<div class="container">
+    <h2>Edit An Opportunity</h2>
 
-<h2>Edit An Opportunity</h2>
 
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
     <div class="form-horizontal">
-        <h4>Opportunity Information</h4>
+
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.GROUP_ID)
 
         <div class="form-group">
             @Html.LabelFor(model => model.OPPORTUNITY_ID, "Project", htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-8">
+            <div class="col-md-2">
                 @Html.DropDownList("OPPORTUNITY_ID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.OPPORTUNITY_ID, "", new { @class = "text-danger" })
             </div>
@@ -27,7 +27,8 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.SKILLSET, htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-8">
+            <i class="fa fa-asterisk" style="color: red"></i>
+            <div class="col-md-2">
                 @Html.EditorFor(model => model.SKILLSET, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.SKILLSET, "", new { @class = "text-danger" })
             </div>
@@ -35,7 +36,8 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.GROUP_POSITIONS_AVAILABLE, htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-8">
+            <i class="fa fa-asterisk" style="color: red"></i>
+            <div class="col-md-2">
                 @Html.EditorFor(model => model.GROUP_POSITIONS_AVAILABLE, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.GROUP_POSITIONS_AVAILABLE, "", new { @class = "text-danger" })
             </div>
@@ -43,47 +45,47 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.MAX_TARGET_GRADE, htmlAttributes: new { @class = "control-label col-md-4" })
-			<div class="col-md-8">
-				@Html.DropDownListFor(model => model.MAX_TARGET_GRADE, new List<SelectListItem>
-					{
-					new SelectListItem{Text="A", Value="A" },
-					new SelectListItem{Text="B", Value="B" },
-					new SelectListItem{Text="C", Value="C" },
-					new SelectListItem{Text="D", Value="D" }
-					}, htmlAttributes: new { @class = "form-control" })
-				@Html.ValidationMessageFor(model => model.MAX_TARGET_GRADE, "", new { @class = "text-danger" })
-			</div>
+            <div class="col-md-2">
+                @Html.DropDownListFor(model => model.MAX_TARGET_GRADE, new List<SelectListItem>
+                    {
+                    new SelectListItem{Text="A", Value="A" },
+                    new SelectListItem{Text="B", Value="B" },
+                    new SelectListItem{Text="C", Value="C" },
+                    new SelectListItem{Text="D", Value="D" }
+                    }, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MAX_TARGET_GRADE, "", new { @class = "text-danger" })
+            </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.TARGET_NEW_HIRE_GRADE, htmlAttributes: new { @class = "control-label col-md-4" })
-			<div class="col-md-8">
-				@Html.DropDownListFor(model => model.TARGET_NEW_HIRE_GRADE, new List<SelectListItem>
-					{
-						new SelectListItem{Text="A", Value="A" },
-						new SelectListItem{Text="B", Value="B" },
-						new SelectListItem{Text="C", Value="C" },
-						new SelectListItem{Text="D", Value="D" }
-					}, htmlAttributes: new { @class = "form-control" })
-				@Html.ValidationMessageFor(model => model.TARGET_NEW_HIRE_GRADE, "", new { @class = "text-danger" })
-			</div>
+            <div class="col-md-2">
+                @Html.DropDownListFor(model => model.TARGET_NEW_HIRE_GRADE, new List<SelectListItem>
+                    {
+                        new SelectListItem{Text="A", Value="A" },
+                        new SelectListItem{Text="B", Value="B" },
+                        new SelectListItem{Text="C", Value="C" },
+                        new SelectListItem{Text="D", Value="D" }
+                    }, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TARGET_NEW_HIRE_GRADE, "", new { @class = "text-danger" })
+            </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.SITE, htmlAttributes: new { @class = "control-label col-md-4" })
-			<div class="col-md-8">
-				@Html.DropDownListFor(model => model.SITE, new List<SelectListItem>
-					{
-						new SelectListItem{Text="Onshore", Value="Onshore" },
-						new SelectListItem{Text="Offshore", Value="Offshore" }
-					}, htmlAttributes: new { @class = "form-control" })
-				@Html.ValidationMessageFor(model => model.SITE, "", new { @class = "text-danger" })
-			</div>
+            <div class="col-md-2">
+                @Html.DropDownListFor(model => model.SITE, new List<SelectListItem>
+                    {
+                        new SelectListItem{Text="Onshore", Value="Onshore" },
+                        new SelectListItem{Text="Offshore", Value="Offshore" }
+                    }, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SITE, "", new { @class = "text-danger" })
+            </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.DURATION, htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-8">
+            <div class="col-md-2">
                 @Html.EditorFor(model => model.DURATION, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.DURATION, "", new { @class = "text-danger" })
             </div>
@@ -91,7 +93,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.TARGETED_CONSULTANTS, htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-8">
+            <div class="col-md-2">
                 @Html.EditorFor(model => model.TARGETED_CONSULTANTS, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TARGETED_CONSULTANTS, "", new { @class = "text-danger" })
             </div>
@@ -99,7 +101,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.CANDIDATE_CONFIRMED, htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-8">
+            <div class="col-md-2">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.CANDIDATE_CONFIRMED, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.CANDIDATE_CONFIRMED, "", new { @class = "text-danger" })
@@ -109,7 +111,8 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.RATE_CARD_PER_HR, htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-8">
+            <i class="fa fa-asterisk" style="color: red"></i>
+            <div class="col-md-2">
                 @Html.EditorFor(model => model.RATE_CARD_PER_HR, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.RATE_CARD_PER_HR, "", new { @class = "text-danger" })
             </div>
@@ -117,7 +120,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.EXPECTED_START_DATE, htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-8">
+            <div class="col-md-2">
                 @Html.EditorFor(model => model.EXPECTED_START_DATE, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.EXPECTED_START_DATE, "", new { @class = "text-danger" })
             </div>
@@ -125,7 +128,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.ACTUAL_START_DATE, htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-8">
+            <div class="col-md-2">
                 @Html.EditorFor(model => model.ACTUAL_START_DATE, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ACTUAL_START_DATE, "", new { @class = "text-danger" })
             </div>
@@ -133,7 +136,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.ACTUAL_END_DATE, htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-8">
+            <div class="col-md-2">
                 @Html.EditorFor(model => model.ACTUAL_END_DATE, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ACTUAL_END_DATE, "", new { @class = "text-danger" })
             </div>
@@ -141,21 +144,27 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.LAST_EDITED_BY, htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-8">
+            <i class="fa fa-asterisk" style="color: red"></i>
+            <div class="col-md-2">
                 @Html.EditorFor(model => model.LAST_EDITED_BY, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.LAST_EDITED_BY, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-7 col-md-6">
+        <div  class="form-group">
+            <div id="space" class="col-md-offset-4 col-md-6">
                 <input type="submit" value="Save" class="btn btn-primary" />
                 <a class="btn btn-default" href="/opportunitygroups" role="button">Cancel</a>
             </div>
         </div>
+        <div class="form-group">
+            <div class="col-md-offset-5 col-md-6">
+                <i class="fa fa-asterisk" style="color: red"></i> = required
+            </div>
+        </div>
     </div>
-}
-
+    }
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
