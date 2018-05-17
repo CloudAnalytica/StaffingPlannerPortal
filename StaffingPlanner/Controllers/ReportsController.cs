@@ -117,7 +117,7 @@ namespace StaffingPlanner.Controllers
 								  Skillset = opp.SKILLSET,
 								  ProjectType = proj.OPPORTUNITY_TYPE,
 								  ProjectStatus = status.OPPORTUNITY_STATUS_NAME,
-								  RateCardHr = opp.RATE_CARD_PER_HR,
+								  RateCardHr = (int)opp.RATE_CARD_PER_HR,
 								  Practice = proj.OPPORTUNITY_PRACTICE,
 								  MaxTargetGrade = opp.MAX_TARGET_GRADE,
 								  TargetConsultant = opp.TARGET_NEW_HIRE_GRADE,

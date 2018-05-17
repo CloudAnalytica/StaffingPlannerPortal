@@ -38,9 +38,9 @@ namespace StaffingPlanner.Controllers
                         System.Diagnostics.Debug.WriteLine("User exists!");
                         Session["UserID"] = obj.USER_ID.ToString();
                         Session["FirstName"] = obj.FIRSTNAME.ToString();
+                        Session["LastName"] = obj.LASTNAME.ToString();
                         Session["Privilege"] = obj.USER_PRIVILEGE_ID.ToString();
                         return RedirectToAction("/");
-
                     }
                 }
             }

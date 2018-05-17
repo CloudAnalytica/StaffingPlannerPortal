@@ -48,11 +48,30 @@ namespace StaffingPlanner.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CLIENT_ID,CLIENT_NAME,CLIENT_SUB_BUSINESS,CLIENT_STATUS,LAST_EDITED_BY,LAST_EDITED_DATE")] CLIENT_DETAILS client)
         {
+
+
             if (ModelState.IsValid)
             {
+                System.Diagnostics.Debug.WriteLine("Model Valid");
                 db.CLIENT_DETAILS.Add(client);
 				client.CLIENT_STATUS = true;
 				client.LAST_EDITED_DATE = DateTime.Now;
+                if( Session["UserID"] != null)
+                {
+                    client.LAST_EDITED_BY = Session["FirstName"].ToString() + " " + Session["LastName"].ToString();
+                }
+                else
+                {
+                    client.LAST_EDITED_BY = "unknown";
+                }
+                System.Diagnostics.Debug.WriteLine("Post clientCreate");
+                System.Diagnostics.Debug.WriteLine("Client ID = " + client.CLIENT_ID.ToString());
+                System.Diagnostics.Debug.WriteLine("Client Name = " + client.CLIENT_NAME.ToString());
+                System.Diagnostics.Debug.WriteLine("Client subbusiness = " + client.CLIENT_SUB_BUSINESS.ToString());
+                System.Diagnostics.Debug.WriteLine("Client Status = " + client.CLIENT_STATUS.ToString());
+
+                System.Diagnostics.Debug.WriteLine(" last edited by = " + client.LAST_EDITED_BY.ToString());
+                System.Diagnostics.Debug.WriteLine("Client ID = " + client.LAST_EDITED_DATE.ToString());
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
