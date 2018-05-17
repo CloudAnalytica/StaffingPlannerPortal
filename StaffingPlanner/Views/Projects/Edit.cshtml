@@ -18,11 +18,19 @@
         @Html.HiddenFor(model => model.OPPORTUNITY_ID)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CLIENT_ID, "Client", htmlAttributes: new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.CLIENT_ID, "Account", htmlAttributes: new { @class = "control-label col-md-4" })
             <i class="fa fa-asterisk" style="color: red"></i>
             <div class="col-md-2">
                 @Html.DropDownList("CLIENT_ID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CLIENT_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.OPPORTUNITY_NAME, htmlAttributes: new { @class = "control-label col-md-4" })
+            <i class="fa fa-asterisk" style="color: red"></i>
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.OPPORTUNITY_NAME, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OPPORTUNITY_NAME, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -34,7 +42,14 @@
                 @Html.ValidationMessageFor(model => model.OPPORTUNITY_STATUS_ID, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        <div class="form-group">
+            @Html.LabelFor(model => model.SPONSOR, htmlAttributes: new { @class = "control-label col-md-4" })
+            <i class="fa fa-asterisk" style="color: red"></i>
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.SPONSOR, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SPONSOR, "", new { @class = "text-danger" })
+            </div>
+        </div>
         <div class="form-group">
             @Html.LabelFor(model => model.LOCATION, htmlAttributes: new { @class = "control-label col-md-4" })
             <i class="fa fa-asterisk" style="color: red"></i>
@@ -44,23 +59,8 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.SPONSOR, htmlAttributes: new { @class = "control-label col-md-4" })
-            <i class="fa fa-asterisk" style="color: red"></i>
-            <div class="col-md-2">
-                @Html.EditorFor(model => model.SPONSOR, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SPONSOR, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.OPPORTUNITY_NAME, htmlAttributes: new { @class = "control-label col-md-4" })
-            <i class="fa fa-asterisk" style="color: red"></i>
-            <div class="col-md-2">
-                @Html.EditorFor(model => model.OPPORTUNITY_NAME, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OPPORTUNITY_NAME, "", new { @class = "text-danger" })
-            </div>
-        </div>
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.OPPORTUNITY_PRACTICE, htmlAttributes: new { @class = "control-label col-md-4" })
@@ -72,14 +72,6 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.OPPORTUNITY_VALUE, htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-2">
-                @Html.EditorFor(model => model.OPPORTUNITY_VALUE, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OPPORTUNITY_VALUE, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.OPPORTUNITY_COMMENT, htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-2">
                 @Html.EditorFor(model => model.OPPORTUNITY_COMMENT, new { htmlAttributes = new { @class = "form-control" } })
@@ -87,47 +79,8 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.OPPORTUNITY_PRIORITY, htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-2">
-                @Html.DropDownListFor(model => model.OPPORTUNITY_PRIORITY, new List<SelectListItem>
-                    {
-                        new SelectListItem{Text="Low", Value="Low" },
-                        new SelectListItem{Text="Medium", Value="Medium" },
-                        new SelectListItem{Text="High", Value="High" }
-                    }, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.OPPORTUNITY_PRIORITY, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.OPPORTUNITY_TYPE, htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-2">
-                @Html.DropDownListFor(model => model.OPPORTUNITY_TYPE, new List<SelectListItem>
-                    {
-                        new SelectListItem{Text="T&M", Value="T&M" },
-                        new SelectListItem{Text="Fixed Capacity", Value="Fixed Capacity" },
-                    }, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.OPPORTUNITY_TYPE, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.NUMBER_OF_REQUIRED_ROLES, htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-2">
-                @Html.EditorFor(model => model.NUMBER_OF_REQUIRED_ROLES, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NUMBER_OF_REQUIRED_ROLES, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.LAST_EDITED_BY, htmlAttributes: new { @class = "control-label col-md-4" })
-            <i class="fa fa-asterisk" style="color: red"></i>
-            <div class="col-md-2">
-                @Html.EditorFor(model => model.LAST_EDITED_BY, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LAST_EDITED_BY, "", new { @class = "text-danger" })
-            </div>
-        </div>
         <div class="form-group">
             <div id="space" class="col-md-offset-4 col-md-6">
                 <input type="submit" value="Save" class="btn btn-primary" />
