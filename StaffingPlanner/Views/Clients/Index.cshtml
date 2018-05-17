@@ -1,39 +1,38 @@
 ﻿@model IEnumerable<StaffingPlanner.Models.CLIENT_DETAILS>
 
 @{
-    ViewBag.Title = "Client List";
+    ViewBag.Title = "Account List";
 }
 
-<h2>Client List</h2>
+
+<div class="container-fluid">
+    <h2>Account List</h2>
 
 
 
 
-<a href="/clients/create">
-    <button type="button" class="btn btn-info navbar-btn">
-        <i class="fas fa-plus-square"></i>
-        <span> Create new</span>
-    </button>
-</a>
+    <a href="/clients/create">
+        <button type="button" class="btn btn-info navbar-btn">
+            <i class="fa fa-plus-square"></i>
+            <span> Create new</span>
+        </button>
+    </a>
 
 
     <table class="table table-condensed table-hover table-bordered small">
         <tr>
-            <th>
-                Client
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.CLIENT_NAME)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.CLIENT_SUB_BUSINESS)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.LAST_EDITED_BY)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LAST_EDITED_DATE)
-            </th>
-            <th>Edit</th>
-            <th>Info</th>
-            <th>Delete</th>
+            <th class="text-center">Edit</th>
+            <th class="text-center">Info</th>
+            <th class="text-center">Delete</th>
         </tr>
 
         @foreach (var item in Model)
@@ -41,36 +40,33 @@
             if (item.CLIENT_STATUS == true)
             {
         <tr>
-            <td>
+            <td align="center">
                 @Html.DisplayFor(modelItem => item.CLIENT_NAME)
             </td>
-            <td>
+            <td align="center">
                 @Html.DisplayFor(modelItem => item.CLIENT_SUB_BUSINESS)
             </td>
-            <td>
+            <td align="center">
                 @Html.DisplayFor(modelItem => item.LAST_EDITED_BY)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LAST_EDITED_DATE)
-            </td>
-            <td>
+            <td align="center">
                 <a href="/clients/edit/@item.CLIENT_ID">
                     <button type="button" class="btn btn-primary">
-                        <i class="fas fa-edit fa-xs"></i>
+                        <i class="fa fa-edit fa-xs"></i>
                     </button>
                 </a>
             </td>
-            <td>
+            <td align="center">
                 <a href="/clients/details/@item.CLIENT_ID">
                     <button type="button" class="btn btn-success">
-                        <i class="fas fa-plus fa-xs"></i>
+                        <i class="fa fa-plus fa-xs"></i>
                     </button>
                 </a>
             </td>
-            <td>
+            <td align="center">
                 <a href="/clients/makeinactive/@item.CLIENT_ID">
                     <button type="button" class="btn btn-danger">
-                        <i class="fas fa-trash fa-xs"></i>
+                        <i class="fa fa-trash fa-xs"></i>
                     </button>
                 </a>
             </td>
@@ -79,3 +75,4 @@
         }
 
     </table>
+</div>

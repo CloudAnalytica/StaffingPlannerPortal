@@ -5,119 +5,123 @@
 	ViewBag.Title = "Report";
 }
 
-<h2>Report</h2>
+<div class="container">
+    <h2>Report</h2>
 
-@using (Html.BeginForm("ExportToExcel", "Reports", FormMethod.Post))
-{
-<input type="submit" value="Export to Excel" class="btn btn-info navbar-btn" />
-}
-<div class="table-responsive">
-	<table class="table-condensed table-hover table-bordered small">
-        <tr id="tableHeaders">
-            <th>Details</th>
-            <th>Account</th>
-            <th>SubBusiness</th>
-            <th>Project Name</th>
-            <th>Sponsor</th>
-            <th>Project Value</th>
-            <th>Skillset</th>
-            <th>Project Type</th>
-            <th>Project Status</th>
-            <th>RateCard/Hr</th>
-            <th>Practice</th>
-            <th>Max Target Grade</th>
-            <th>Target Consultant</th>
-            <th>Work Location</th>
-            <th>Start Date</th>
-            <th>Duration</th>
-            <th>Priority</th>
-            <th># of Roles</th>
-            <th>AE</th>
-        </tr>
+    @using (Html.BeginForm("ExportToExcel", "Reports", FormMethod.Post))
+    {
+        <button type="submit" class="btn btn-info navbar-btn">
+            <i class="fa fa-download"></i>
+            <span> Export to Excel</span>
+        </button>
+    }
+    <div class="table-responsive">
+        <table class="table-condensed table-hover table-bordered small">
+            <tr id="tableHeaders">
+                <th class="text-center">Details</th>
+                <th class="text-center">Account</th>
+                <th class="text-center">SubBusiness</th>
+                <th class="text-center">Project Name</th>
+                <th class="text-center">Sponsor</th>
+                <th class="text-center">Project Value</th>
+                <th class="text-center">Skillset</th>
+                <th class="text-center">Project Type</th>
+                <th class="text-center">Project Status</th>
+                <th class="text-center">RateCard/Hr</th>
+                <th class="text-center">Practice</th>
+                <th class="text-center">Max Target Grade</th>
+                <th class="text-center">Target Consultant</th>
+                <th class="text-center">Work Location</th>
+                <th class="text-center">Start Date</th>
+                <th class="text-center">Duration</th>
+                <th class="text-center">Priority</th>
+                <th class="text-center"># of Roles</th>
+                <th class="text-center">AE</th>
+            </tr>
 
-            @foreach (var item in Model){
+            @foreach (var item in Model)
+            {
 
-        <tr id="tableRows">
-            <td>
-                <button type='button' class='btn btn-primary' data-toggle='modal' data-target="#@item.GROUP_ID">
-                    <i class="glyphicon glyphicon-zoom-in"></i>
-                </button>
-                <!-- Modal -->
-                <div class="modal fade" id="@item.GROUP_ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h3 class="modal-title text-center text-uppercase text-danger" id="exampleModalLabel">@item.OPPORTUNITY_CATALOG.OPPORTUNITY_NAME</h3>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+                <tr id="tableRows">
+                    <td class="text-center">
+                        <button type='button' class='btn btn-primary' data-toggle='modal' data-target="#@item.GROUP_ID">
+                            <i class="glyphicon glyphicon-zoom-in"></i>
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="@item.GROUP_ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title text-center text-uppercase text-danger" id="exampleModalLabel">@item.OPPORTUNITY_CATALOG.OPPORTUNITY_NAME</h3>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div cl
+                                         s="modal-body text-info small">
+                                        <table class="table table-bordered table-hover">
+                                            <tr class="text-center">
+                                                <td>Comment</td>
+                                                <td>@item.OPPORTUNITY_CATALOG.OPPORTUNITY_COMMENT</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
                             </div>
-                            <div cl
-                                 s="modal-body text-info small">
-                                <table class="table table-bordered table-hover">
-                                    <tr class="text-center">
-                                        <td>Comment</td>
-                                        <td>@item.OPPORTUNITY_CATALOG.OPPORTUNITY_COMMENT</td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div> <!--Modal-->
-            </td>
+                        </div> <!--Modal-->
+                    </td>
 
 
-            <td>@item.OPPORTUNITY_CATALOG.CLIENT_DETAILS.CLIENT_NAME</td>
-            <td>@item.OPPORTUNITY_CATALOG.CLIENT_DETAILS.CLIENT_SUB_BUSINESS</td>
-            <td>@item.OPPORTUNITY_CATALOG.OPPORTUNITY_NAME</td>
-            <td>@item.OPPORTUNITY_CATALOG.SPONSOR</td>
-            <!-- alter the value to be million or thousand-->
-            @{ if (item.OPPORTUNITY_CATALOG.OPPORTUNITY_VALUE >= 1000000)
-                {
-                    var value = item.OPPORTUNITY_CATALOG.OPPORTUNITY_VALUE / 1000000;
-                    <td>$@value M</td>
-                }
-                else
-                {
-                    var value = item.OPPORTUNITY_CATALOG.OPPORTUNITY_VALUE / 1000;
-                    <td>$@value K</td>
-                }
+                    <td class="text-center">@item.OPPORTUNITY_CATALOG.CLIENT_DETAILS.CLIENT_NAME</td>
+                    <td class="text-center">@item.OPPORTUNITY_CATALOG.CLIENT_DETAILS.CLIENT_SUB_BUSINESS</td>
+                    <td class="text-center">@item.OPPORTUNITY_CATALOG.OPPORTUNITY_NAME</td>
+                    <td class="text-center">@item.OPPORTUNITY_CATALOG.SPONSOR</td>
+                    <!-- alter the value to be million or thousand-->
+                    @{ if (item.OPPORTUNITY_CATALOG.OPPORTUNITY_VALUE >= 1000000)
+                        {
+                            var value = item.OPPORTUNITY_CATALOG.OPPORTUNITY_VALUE / 1000000;
+                            <td class="text-center">$@value M</td>
+                        }
+                        else
+                        {
+                            var value = item.OPPORTUNITY_CATALOG.OPPORTUNITY_VALUE / 1000;
+                            <td class="text-center">$@value K</td>
+                        }
+                    }
+
+                    <td class="text-center">@item.SKILLSET</td>
+                    <td class="text-center">@item.OPPORTUNITY_CATALOG.OPPORTUNITY_TYPE</td>
+                    <td class="text-center">@item.OPPORTUNITY_CATALOG.OPPORTUNITY_STATUS1.OPPORTUNITY_STATUS_NAME</td>
+                    <td class="text-center">$@item.RATE_CARD_PER_HR</td>
+                    <td class="text-center">ACT</td>
+                    <td class="text-center">@item.MAX_TARGET_GRADE</td>
+                    <!--Empty field <td>@item.TARGETED_CONSULTANTS</td>-->
+                    <td class="text-center">John</td>
+                    <td class="text-center">@item.OPPORTUNITY_CATALOG.LOCATION</td>
+
+                    <!--Truncate the datetime-->
+                    @{
+                        if (item.EXPECTED_START_DATE.HasValue)
+                        {
+                            string date = item.EXPECTED_START_DATE.Value.ToString("MM/dd/yyyy");
+                            <td class="text-center">@date</td>
+                        }
+                        else
+                        {
+                            <td class="text-center">@item.EXPECTED_START_DATE</td>
+                        }
+                    }
+
+                    <td class="text-center">@item.DURATION</td>
+                    <td class="text-center">@item.OPPORTUNITY_CATALOG.OPPORTUNITY_PRIORITY</td>
+                    <td class="text-center">@item.OPPORTUNITY_CATALOG.NUMBER_OF_REQUIRED_ROLES</td>
+                    <td class="text-center">@item.LAST_EDITED_BY</td>
+                </tr>
             }
+        </table>
 
-            <td>@item.SKILLSET</td>
-            <td>@item.OPPORTUNITY_CATALOG.OPPORTUNITY_TYPE</td>
-            <td>@item.OPPORTUNITY_CATALOG.OPPORTUNITY_STATUS1.OPPORTUNITY_STATUS_NAME</td>
-            <td>$@item.RATE_CARD_PER_HR</td>
-            <td>ACT</td>
-            <td>@item.MAX_TARGET_GRADE</td>
-            <!--Empty field <td>@item.TARGETED_CONSULTANTS</td>-->
-            <td>John</td>
-            <td>@item.OPPORTUNITY_CATALOG.LOCATION</td>
-
-            <!--Truncate the datetime-->
-            @{
-                if (item.EXPECTED_START_DATE.HasValue)
-                {
-                    string date = item.EXPECTED_START_DATE.Value.ToString("MM/dd/yyyy");
-                    <td>@date</td>
-                }
-                else
-                {
-                    <td>@item.EXPECTED_START_DATE</td>
-                }
-            }
-            <!--
-       <td>@item.EXPECTED_START_DATE</td>
-    -->
-            <td>@item.DURATION</td>
-            <td>@item.OPPORTUNITY_CATALOG.OPPORTUNITY_PRIORITY</td>
-            <td>@item.OPPORTUNITY_CATALOG.NUMBER_OF_REQUIRED_ROLES</td>
-            <td>@item.LAST_EDITED_BY</td>
-        </tr>
-			} 
-	</table>
-
-</div> <!-- Table Responsive -->
+    </div> <!-- Table Responsive -->
+</div>
