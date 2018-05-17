@@ -86,6 +86,8 @@ warning 6002: The table/view 'DEV_ClientOpportunities.dbo.LOST_OPPORTUNITY' does
           <Property Name="ACTUAL_END_DATE" Type="date" />
           <Property Name="LAST_EDITED_BY" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="LAST_EDITED_DATE" Type="date" Nullable="false" />
+          <Property Name="OPPORTUNITY_VALUE" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="OPPORTUNITY_PRIORITY" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="OPPORTUNITY_STATUS">
           <Key>
@@ -351,6 +353,8 @@ warning 6002: The table/view 'DEV_ClientOpportunities.dbo.LOST_OPPORTUNITY' does
           <Property Name="LAST_EDITED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LAST_EDITED_DATE" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="OPPORTUNITY_CATALOG" Relationship="Self.FK_OPPORTUNITY_GROUP_OPPORTUNITY_CATALOG" FromRole="OPPORTUNITY_GROUP" ToRole="OPPORTUNITY_CATALOG" />
+          <Property Name="OPPORTUNITY_VALUE" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="OPPORTUNITY_PRIORITY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="OPPORTUNITY_STATUS">
           <Key>
@@ -582,6 +586,8 @@ warning 6002: The table/view 'DEV_ClientOpportunities.dbo.LOST_OPPORTUNITY' does
           <EntitySetMapping Name="OPPORTUNITY_GROUP">
             <EntityTypeMapping TypeName="OpportunitiesModel.OPPORTUNITY_GROUP">
               <MappingFragment StoreEntitySet="OPPORTUNITY_GROUP">
+                <ScalarProperty Name="OPPORTUNITY_PRIORITY" ColumnName="OPPORTUNITY_PRIORITY" />
+                <ScalarProperty Name="OPPORTUNITY_VALUE" ColumnName="OPPORTUNITY_VALUE" />
                 <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
                 <ScalarProperty Name="OPPORTUNITY_ID" ColumnName="OPPORTUNITY_ID" />
                 <ScalarProperty Name="SKILLSET" ColumnName="SKILLSET" />

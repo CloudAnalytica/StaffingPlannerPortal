@@ -20,7 +20,7 @@ namespace StaffingPlanner.Controllers
         // GET: Statistics
         public ActionResult Index()
         {
-            return View(LostOpportunityChartData());
+            return View();
         }
 
 		//public IEnumerable<LostOpportunityCount> LostOpportunities()
@@ -36,32 +36,74 @@ namespace StaffingPlanner.Controllers
 		//	return dataset.AsEnumerable();
 		//}
 
-		[System.Web.Mvc.HttpGet]
+		[HttpGet]
+		public ActionResult OpportunityStatusChartData()
+		{
+			List<object> chartData = new List<object>(3)
+			{
+				new object[] { "Status", "Count" },
+				new object[] { "Sold", 9 },
+				new object[] { "Lost Opportunity", 3 },
+				new object[] {"On-Hold", 6 },
+				new object[] {"Active", 4 }
+			};
+			return Json(chartData, JsonRequestBehavior.AllowGet);
+		}
+
+		[HttpGet]
+		public ActionResult PortfolioChartData()
+		{
+			List<object> chartData = new List<object>(3)
+			{
+				new object[] { "Sub-business", "Amount" },
+				new object[] { "Healthcare", 41 },
+				new object[] { "Power", 16 },
+				new object[] {"BHGE", 7 },
+				new object[] {"Lighting", 6 },
+				new object[] {"Life Sciences", 30 }
+			};
+			return Json(chartData, JsonRequestBehavior.AllowGet);
+		}
+
+		[HttpGet]
+		public ActionResult ProfitChartData()
+		{
+			List<object> chartData = new List<object>(3)
+			{
+				new object[] { "Quarter", "Amount" },
+				new object[] { "Q1", 1 },
+				new object[] { "Q2", 2.8 },
+				new object[] {"Q3", 4.1 },
+				new object[] {"Q4", 5.2 }
+			};
+			return Json(chartData, JsonRequestBehavior.AllowGet);
+		}
+
+		[HttpGet]
 		public ActionResult LostOpportunityChartData()
 		{
-			System.Diagnostics.Debug.WriteLine("Inside LostOppChartData Function");
+			//System.Diagnostics.Debug.WriteLine("Inside LostOppChartData Function");
 			//var res = from r in db.LOST_REASON
-			//			 select r;
+			//		  select r;
 			//IList<LOST_REASON> result = res.ToList();
-			//var chartData = new object[result.Count + 1];
-			//chartData[0] = new object[]{
-			//	"Reason",
-			//	"Count"
-			//};
-			//int j = 0;
+			//List<object> chartData = new List<object>();
+			//chartData.Add(new object[] { "Reason", "Count" });
 			//foreach (var i in result)
 			//{
-			//	j++;
-			//	chartData[j] = new object[] { i.REASON, 5 };
+			//	System.Diagnostics.Debug.WriteLine(i.REASON);
+			//	chartData.Add(new object[] { i.REASON, 5 });
 			//}
 			List<object> chartData = new List<object>(3)
 			{
 				new object[] { "Reason", "Count" },
-				new object[] { "One", 5 },
-				new object[] { "Two", 4 }
+				new object[] { "High Bill Rate", 10 },
+				new object[] { "Deadline Miss", 3 },
+				new object[] {"Recruitment Delay", 7 },
+				new object[] {"No Candidate", 2 },
+				new object[] {"No Help From Practice", 5 }
 			};
-			string output = new JavaScriptSerializer().Serialize(chartData);
-			System.Diagnostics.Debug.WriteLine("Moved past the serialization");
+			//string output = new JavaScriptSerializer().Serialize(chartData);
+			//System.Diagnostics.Debug.WriteLine("Moved past the serialization");
 			//List<LostReasonRow> data = new List<LostReasonRow>();
 			//data.Add(new LostReasonRow("Test", 4));
 			//data.Add(new LostReasonRow("Test Again", 5));
