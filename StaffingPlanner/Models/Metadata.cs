@@ -26,7 +26,7 @@ namespace StaffingPlanner.Models
 		[Display(Name = "Status")]
 		public bool CLIENT_STATUS;
 
-		[Required]
+		
 		[Display(Name = "AE")]
 		[StringLength(50, MinimumLength = 4, ErrorMessage = "Must be between 4 - 50 characters.")]
 		public string LAST_EDITED_BY;
@@ -60,7 +60,7 @@ namespace StaffingPlanner.Models
 		[Display(Name = "Status")]
 		public bool CONSULTANT_EMPLOYMENT_STATUS;
 
-		[Required]
+		
 		[Display(Name = "AE")]
 		[StringLength(50, MinimumLength = 4, ErrorMessage = "Must be between 4 - 50 characters.")]
 		public string LAST_EDITED_BY;
@@ -142,7 +142,7 @@ namespace StaffingPlanner.Models
 		[RangeAttribute(typeof(int), "1", "100", ErrorMessage = "Must be a number between 1-100.")]
 		public Nullable<int> NUMBER_OF_REQUIRED_ROLES;
 
-		[Required]
+		
 		[Display(Name = "AE")]
 		[StringLength(50, MinimumLength = 4, ErrorMessage = "Must be between 4 - 50 characters.")]
 		public string LAST_EDITED_BY;
@@ -217,7 +217,7 @@ namespace StaffingPlanner.Models
 		[DataType(DataType.Date)]
 		public Nullable<System.DateTime> ACTUAL_END_DATE;
 
-		[Required]
+		
 		[Display(Name = "AE")]
 		[StringLength(50, MinimumLength = 4, ErrorMessage = "Must be between 4 - 50 characters.")]
 		public string LAST_EDITED_BY;
