@@ -227,6 +227,15 @@
       <DependentUpon>Opportunities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\StatisticsDataModels.cs" />
+    <Compile Include="Models\STATS_LOST_OPPORTUNITY_Result.cs">
+      <DependentUpon>Opportunities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\STATS_OPPORTUNITY_STATUS_Result.cs">
+      <DependentUpon>Opportunities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\STATS_PORTFOLIO_Result.cs">
+      <DependentUpon>Opportunities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Opportunities.tt</DependentUpon>
     </Compile>
@@ -241,9 +250,11 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Scripts\datatables.min.js" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\shared.css" />
+    <Content Include="Content\datatables.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -298,10 +309,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\toggle.js" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Scripts\tables.js" />
+    <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -338,6 +347,7 @@
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Users\Login.cshtml" />
+    <Content Include="Views\Reports\Index2.cshtml" />
     <Content Include="Views\Statistics\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

@@ -149,5 +149,25 @@ namespace StaffingPlanner.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
+    
+        public virtual int createDevBackup()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("createDevBackup");
+        }
+    
+        public virtual ObjectResult<STATS_LOST_OPPORTUNITY_Result> STATS_LOST_OPPORTUNITY()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<STATS_LOST_OPPORTUNITY_Result>("STATS_LOST_OPPORTUNITY");
+        }
+    
+        public virtual ObjectResult<STATS_OPPORTUNITY_STATUS_Result> STATS_OPPORTUNITY_STATUS()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<STATS_OPPORTUNITY_STATUS_Result>("STATS_OPPORTUNITY_STATUS");
+        }
+    
+        public virtual ObjectResult<STATS_PORTFOLIO_Result> STATS_PORTFOLIO()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<STATS_PORTFOLIO_Result>("STATS_PORTFOLIO");
+        }
     }
 }

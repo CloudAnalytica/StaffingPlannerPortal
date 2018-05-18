@@ -110,7 +110,18 @@ namespace StaffingPlanner.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "OPPORTUNITY_ID,CLIENT_ID,OPPORTUNITY_STATUS_ID,LOCATION,SPONSOR,OPPORTUNITY_NAME,OPPORTUNITY_PRACTICE,OPPORTUNITY_VALUE,OPPORTUNITY_STATUS,OPPORTUNITY_COMMENT,OPPORTUNITY_PRIORITY,OPPORTUNITY_TYPE,NUMBER_OF_REQUIRED_ROLES,LAST_EDITED_BY,LAST_EDITED_DATE")] OPPORTUNITY_CATALOG projectCatalog)
         {
-            if (ModelState.IsValid)
+			System.Diagnostics.Debug.WriteLine("Post ProjectEdit");
+			if (Session["UserID"] != null)
+			{
+				projectCatalog.LAST_EDITED_BY = Session["FirstName"].ToString() + " " + Session["Lastname"].ToString();
+				System.Diagnostics.Debug.WriteLine("Last Edited By:" + projectCatalog.LAST_EDITED_BY);
+			}
+			else
+			{
+				projectCatalog.LAST_EDITED_BY = "Unknown";
+				System.Diagnostics.Debug.WriteLine("Last Edited By:" + projectCatalog.LAST_EDITED_BY);
+			}
+			if (ModelState.IsValid)
             {
 				projectCatalog.LAST_EDITED_DATE = DateTime.Now;
 				projectCatalog.OPPORTUNITY_STATUS = true;
