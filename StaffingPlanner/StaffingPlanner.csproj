@@ -227,6 +227,15 @@
       <DependentUpon>Opportunities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\StatisticsDataModels.cs" />
+    <Compile Include="Models\STATS_LOST_OPPORTUNITY_Result.cs">
+      <DependentUpon>Opportunities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\STATS_OPPORTUNITY_STATUS_Result.cs">
+      <DependentUpon>Opportunities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\STATS_PORTFOLIO_Result.cs">
+      <DependentUpon>Opportunities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Opportunities.tt</DependentUpon>
     </Compile>

@@ -199,6 +199,7 @@ warning 6002: The table/view 'DEV_ClientOpportunities.dbo.LOST_OPPORTUNITY' does
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="createDevBackup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -230,6 +231,9 @@ warning 6002: The table/view 'DEV_ClientOpportunities.dbo.LOST_OPPORTUNITY' does
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="STATS_LOST_OPPORTUNITY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="STATS_OPPORTUNITY_STATUS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="STATS_PORTFOLIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="OpportunitiesModelStoreContainer">
           <EntitySet Name="CLIENT_DETAILS" EntityType="Self.CLIENT_DETAILS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CONSULTANT" EntityType="Self.CONSULTANT" Schema="dbo" store:Type="Tables" />
@@ -511,6 +515,10 @@ warning 6002: The table/view 'DEV_ClientOpportunities.dbo.LOST_OPPORTUNITY' does
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="createDevBackup" />
+          <FunctionImport Name="STATS_LOST_OPPORTUNITY" ReturnType="Collection(OpportunitiesModel.STATS_LOST_OPPORTUNITY_Result)" />
+          <FunctionImport Name="STATS_OPPORTUNITY_STATUS" ReturnType="Collection(OpportunitiesModel.STATS_OPPORTUNITY_STATUS_Result)" />
+          <FunctionImport Name="STATS_PORTFOLIO" ReturnType="Collection(OpportunitiesModel.STATS_PORTFOLIO_Result)" />
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -522,6 +530,18 @@ warning 6002: The table/view 'DEV_ClientOpportunities.dbo.LOST_OPPORTUNITY' does
           <Property Type="Int32" Name="ID" Nullable="false" />
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="STATS_LOST_OPPORTUNITY_Result">
+          <Property Type="String" Name="reason" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="reason_count" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="STATS_OPPORTUNITY_STATUS_Result">
+          <Property Type="String" Name="OPPORTUNITY_STATUS_NAME" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="STATUS_COUNT" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="STATS_PORTFOLIO_Result">
+          <Property Type="String" Name="CLIENT" Nullable="false" MaxLength="101" />
+          <Property Type="Decimal" Name="VALUE" Nullable="true" Precision="38" Scale="0" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -682,6 +702,31 @@ warning 6002: The table/view 'DEV_ClientOpportunities.dbo.LOST_OPPORTUNITY' does
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="OpportunitiesModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="OpportunitiesModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="createDevBackup" FunctionName="OpportunitiesModel.Store.createDevBackup" />
+          <FunctionImportMapping FunctionImportName="STATS_LOST_OPPORTUNITY" FunctionName="OpportunitiesModel.Store.STATS_LOST_OPPORTUNITY">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OpportunitiesModel.STATS_LOST_OPPORTUNITY_Result">
+                <ScalarProperty Name="reason" ColumnName="reason" />
+                <ScalarProperty Name="reason_count" ColumnName="reason_count" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="STATS_OPPORTUNITY_STATUS" FunctionName="OpportunitiesModel.Store.STATS_OPPORTUNITY_STATUS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OpportunitiesModel.STATS_OPPORTUNITY_STATUS_Result">
+                <ScalarProperty Name="OPPORTUNITY_STATUS_NAME" ColumnName="OPPORTUNITY_STATUS_NAME" />
+                <ScalarProperty Name="STATUS_COUNT" ColumnName="STATUS_COUNT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="STATS_PORTFOLIO" FunctionName="OpportunitiesModel.Store.STATS_PORTFOLIO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OpportunitiesModel.STATS_PORTFOLIO_Result">
+                <ScalarProperty Name="CLIENT" ColumnName="CLIENT" />
+                <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
