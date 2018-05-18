@@ -149,8 +149,8 @@
 		}
 		var options = {
 			'title': 'Earnings in Millions',
-			'width': 600,
-			'height': 400
+			'width': 400,
+			'height': 300
 		};
 		var lineChart = new google.visualization.LineChart(document.getElementById('profits_div'));
 		lineChart.draw(profitData, options);
