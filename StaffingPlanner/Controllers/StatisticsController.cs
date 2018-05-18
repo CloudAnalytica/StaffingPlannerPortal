@@ -139,10 +139,10 @@ namespace StaffingPlanner.Controllers
 			List<object> chartData = new List<object>(3)
 			{
 				new object[] { "Quarter", "Amount" },
-				new object[] { "Q1", 1 },
-				new object[] { "Q2", 2.8 },
-				new object[] {"Q3", 4.1 },
-				new object[] {"Q4", 5.2 }
+				new object[] { "Q1", 0 },
+				new object[] { "Q2", 0 },
+				new object[] {"Q3", 0 },
+				new object[] {"Q4", 0 }
 			};
 			return Json(chartData, JsonRequestBehavior.AllowGet);
 		}
