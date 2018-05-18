@@ -1,0 +1,182 @@
+﻿@model IEnumerable<StaffingPlanner.Models.OPPORTUNITY_GROUP>
+
+@{
+    ViewBag.Title = "Index2";
+}
+
+<div class="">
+    <h2>Report</h2>
+
+    <table id="example" class=" table nowrap table-hover  table-condensed table-bordered small" ">
+        <thead>
+            <tr class=" small">
+                <th class="text-center">Details</th>
+                <th class="text-center">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.CLIENT_DETAILS.CLIENT_NAME)</th>
+                <th class="text-center">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.CLIENT_DETAILS.CLIENT_SUB_BUSINESS)</th>
+                <th class="text-center">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_NAME)</th>
+
+                <th class="text-center">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.SPONSOR)</th>
+                <th class="text-center">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_VALUE)</th>
+                <th class="text-center">@Html.DisplayNameFor(model => model.SKILLSET)</th>
+                <th class="text-center">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_TYPE)</th>
+                <th class="text-center">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_STATUS)</th>
+                <th class="text-center">@Html.DisplayNameFor(model => model.RATE_CARD_PER_HR)</th>
+                <th class="text-center">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_PRACTICE)</th>
+                <th class="text-center">@Html.DisplayNameFor(model => model.MAX_TARGET_GRADE)</th>
+                <th class="text-center">@Html.DisplayNameFor(model => model.TARGETED_CONSULTANTS)</th>
+                <th class="text-center">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.LOCATION)</th>
+                <th class="text-center">@Html.DisplayNameFor(model => model.ACTUAL_START_DATE)</th>
+                <th class="text-center">@Html.DisplayNameFor(model => model.DURATION)</th>
+                <th class="text-center">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_PRIORITY)</th>
+                <th class="text-center">@Html.DisplayNameFor(model => model.GROUP_POSITIONS_AVAILABLE)</th>
+                <th class="text-center">@Html.DisplayNameFor(model => model.LAST_EDITED_BY)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+                <tr class="small">
+                    <td class="text-center">
+                        <button type='button' class='btn btn-primary btn-xs' data-toggle='modal' data-target="#@item.GROUP_ID">
+                            <i class="fa fa-plus fa-sm"></i>
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="@item.GROUP_ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title text-center text-uppercase text-danger" id="exampleModalLabel">@item.OPPORTUNITY_CATALOG.OPPORTUNITY_NAME</h3>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div cl
+                                         s="modal-body text-info small">
+                                        <table class="table table-bordered table-hover">
+                                            <tr class="text-center">
+                                                <td>Comment</td>
+                                                <td>@item.OPPORTUNITY_CATALOG.OPPORTUNITY_COMMENT</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!--Modal-->
+                    </td>
+
+
+                    <td class="text-center">@item.OPPORTUNITY_CATALOG.CLIENT_DETAILS.CLIENT_NAME</td>
+                    <td class="text-center">@item.OPPORTUNITY_CATALOG.CLIENT_DETAILS.CLIENT_SUB_BUSINESS</td>
+                    <td class="text-center">@item.OPPORTUNITY_CATALOG.OPPORTUNITY_NAME</td>
+                    <td class="text-center">@item.OPPORTUNITY_CATALOG.SPONSOR</td>
+                    <!-- alter the value to be million or thousand-->
+                    @{ if (item.OPPORTUNITY_CATALOG.OPPORTUNITY_VALUE >= 1000000)
+                        {
+                            var value = item.OPPORTUNITY_CATALOG.OPPORTUNITY_VALUE / 1000000;
+                            <td class="text-center">$@value M</td>
+                        }
+                        else
+                        {
+                            var value = item.OPPORTUNITY_CATALOG.OPPORTUNITY_VALUE / 1000;
+                            <td class="text-center">$@value K</td>
+                        }
+                    }
+
+                    <td class="text-center">@item.SKILLSET</td>
+                    <td class="text-center">@item.OPPORTUNITY_CATALOG.OPPORTUNITY_TYPE</td>
+                    <td class="text-center">@item.OPPORTUNITY_CATALOG.OPPORTUNITY_STATUS1.OPPORTUNITY_STATUS_NAME</td>
+                    <td class="text-center">$@item.RATE_CARD_PER_HR</td>
+                    <td class="text-center">ACT</td>
+                    <td class="text-center">@item.MAX_TARGET_GRADE</td>
+                    <!--Empty field <td>@item.TARGETED_CONSULTANTS</td>-->
+                    <td class="text-center">John</td>
+                    <td class="text-center">@item.OPPORTUNITY_CATALOG.LOCATION</td>
+
+
+
+                    <!--Truncate the datetime-->
+                    @{
+                        if (item.EXPECTED_START_DATE.HasValue)
+                        {
+                            string date = item.EXPECTED_START_DATE.Value.ToString("MM/dd/yyyy");
+                            <td class="text-center">@date</td>
+                        }
+                        else
+                        {
+                            <td class="text-center">@item.EXPECTED_START_DATE</td>
+                        }
+                    }
+
+                    <td class="text-center">@item.DURATION</td>
+                    <td class="text-center">@item.OPPORTUNITY_CATALOG.OPPORTUNITY_PRIORITY</td>
+                    <td class="text-center">@item.OPPORTUNITY_CATALOG.NUMBER_OF_REQUIRED_ROLES</td>
+                    <td class="text-center">@item.LAST_EDITED_BY</td>
+                </tr>
+            }
+
+
+        </tbody>
+        <tfoot>
+            <tr class="small">
+                <th>Details</th>
+                <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.CLIENT_DETAILS.CLIENT_NAME)</th>
+                <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.CLIENT_DETAILS.CLIENT_SUB_BUSINESS)</th>
+                <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_NAME)</th>
+
+                <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.SPONSOR)</th>
+                <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_VALUE)</th>
+                <th>@Html.DisplayNameFor(model => model.SKILLSET)</th>
+                <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_TYPE)</th>
+                <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_STATUS)</th>
+                <th>@Html.DisplayNameFor(model => model.RATE_CARD_PER_HR)</th>
+                <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_PRACTICE)</th>
+                <th>@Html.DisplayNameFor(model => model.MAX_TARGET_GRADE)</th>
+                <th>@Html.DisplayNameFor(model => model.TARGETED_CONSULTANTS)</th>
+                <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.LOCATION)</th>
+                <th>@Html.DisplayNameFor(model => model.ACTUAL_START_DATE)</th>
+                <th>@Html.DisplayNameFor(model => model.DURATION)</th>
+                <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_PRIORITY)</th>
+                <th>@Html.DisplayNameFor(model => model.GROUP_POSITIONS_AVAILABLE)</th>
+                <th>@Html.DisplayNameFor(model => model.LAST_EDITED_BY)</th>
+            </tr>
+        </tfoot>
+    </table>
+
+
+    <div class="text-danger small">
+        Toggle column:
+        <a class="toggle-vis" data-column="0">Details</a> -
+        <a class="toggle-vis" data-column="1">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.CLIENT_DETAILS.CLIENT_NAME)</a> -
+        <a class="toggle-vis" data-column="2">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.CLIENT_DETAILS.CLIENT_SUB_BUSINESS)</a> -
+        <a class="toggle-vis" data-column="3">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_NAME)</a> -
+        <a class="toggle-vis" data-column="4">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.SPONSOR)</a> -
+        <a class="toggle-vis" data-column="5">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_VALUE)</a> -
+        <a class="toggle-vis" data-column="6">@Html.DisplayNameFor(model => model.SKILLSET)</a> -
+        <a class="toggle-vis" data-column="7">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_TYPE)</a> -
+        <a class="toggle-vis" data-column="8">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_STATUS)</a> -
+        <a class="toggle-vis" data-column="9">@Html.DisplayNameFor(model => model.RATE_CARD_PER_HR)</a> -
+        <a class="toggle-vis" data-column="10">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_PRACTICE)</a> -
+        <a class="toggle-vis" data-column="11">@Html.DisplayNameFor(model => model.MAX_TARGET_GRADE)</a> -
+        <a class="toggle-vis" data-column="12">@Html.DisplayNameFor(model => model.TARGETED_CONSULTANTS)</a> -
+        <a class="toggle-vis" data-column="13">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.LOCATION)</a> -
+        <a class="toggle-vis" data-column="14">@Html.DisplayNameFor(model => model.ACTUAL_START_DATE)</a> -
+        <a class="toggle-vis" data-column="15">@Html.DisplayNameFor(model => model.DURATION)</a> -
+        <a class="toggle-vis" data-column="16">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_PRIORITY)</a> -
+        <a class="toggle-vis" data-column="17">@Html.DisplayNameFor(model => model.GROUP_POSITIONS_AVAILABLE)</a> -
+        <a class="toggle-vis" data-column="18">@Html.DisplayNameFor(model => model.LAST_EDITED_BY)</a>
+
+
+    </div>
+
+    @using (Html.BeginForm("ExportToExcel", "Reports", FormMethod.Post))
+    {
+        <button type="submit" class="btn btn-info navbar-btn btn-sm">
+            <i class="fa fa-download"></i>
+            <span> Export to Excel</span>
+        </button>
+    }
+</div>
