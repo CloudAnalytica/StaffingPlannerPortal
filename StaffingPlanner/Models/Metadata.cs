@@ -173,11 +173,11 @@ namespace StaffingPlanner.Models
 		public bool OPPORTUNITY_GROUP_STATUS;
 
 		[Required]
-		[Display(Name = "Positions Needed")]
+		[Display(Name = "# Of Roles")]
 		[RangeAttribute(typeof(int), "1", "100", ErrorMessage = "Must be a number between 1 - 100.")]
 		public int GROUP_POSITIONS_AVAILABLE;
 
-		[Display(Name = "Max Hire Grade")]
+		[Display(Name = "Max Target Grade")]
 		[StringLength(50, MinimumLength = 0, ErrorMessage = "Cannot be more than 50 characters.")]
 		public string MAX_TARGET_GRADE;
 
@@ -201,7 +201,7 @@ namespace StaffingPlanner.Models
 		public Nullable<bool> CANDIDATE_CONFIRMED;
 
 		[Required]
-		[Display(Name = "Rate Card Per Hour")]
+		[Display(Name = "RateCard/Hr")]
 		[RangeAttribute(typeof(int), "0", "1000000000", ErrorMessage = "Value must be between 0 - 1000000000")]
 		public int RATE_CARD_PER_HR;
 
