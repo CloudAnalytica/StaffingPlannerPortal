@@ -21,11 +21,13 @@ namespace StaffingPlanner
 
 			bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
 					  "~/Scripts/bootstrap.js",
-                      "~/Scripts/toggle.js",
+                      "~/Scripts/datatables.min.js",
+                      "~/Scripts/tables.js",
 					  "~/Scripts/respond.js"));
 
 			bundles.Add(new StyleBundle("~/Content/css").Include(
                      "~/Content/bootstrap.min.css",
+                     "~/Content/datatables.css",
                      "~/Content/font-awesome.min.css",
                       "~/Content/shared.css"));
 		}
