@@ -58,10 +58,17 @@
         <div class="form-group">
             @Html.LabelFor(model => model.LOCATION, htmlAttributes: new { @class = "control-label col-md-4" })
             <i class="fa fa-asterisk" style="color: red"></i>
-            <div class="col-md-2">
-                @Html.EditorFor(model => model.LOCATION, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LOCATION, "", new { @class = "text-danger" })
-            </div>
+			<div class="col-md-2">
+				@*@Html.EditorFor(model => model.LOCATION, new { htmlAttributes = new { @class = "form-control" } })*@
+				@Html.DropDownListFor(model => model.LOCATION, new List<SelectListItem>
+				{
+					new SelectListItem{Text="Onshore", Value="Onshore" },
+					new SelectListItem{Text="Offshore", Value="Offshore" },
+					new SelectListItem{Text="On-site", Value="On-site" },
+					new SelectListItem{Text="Other", Value="Other" }
+				}, "--- Select a Location ---", htmlAttributes: new { @class = "form-control" })
+				@Html.ValidationMessageFor(model => model.LOCATION, "", new { @class = "text-danger" })
+			</div>
         </div>
 
 
@@ -80,8 +87,6 @@
                 @Html.ValidationMessageFor(model => model.OPPORTUNITY_COMMENT, "", new { @class = "text-danger" })
             </div>
         </div>
-
-
 
 
 

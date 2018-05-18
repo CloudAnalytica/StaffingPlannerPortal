@@ -52,13 +52,28 @@ namespace StaffingPlanner.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OPPORTUNITY_ID,CLIENT_ID,OPPORTUNITY_STATUS_ID,LOCATION,SPONSOR,OPPORTUNITY_NAME,OPPORTUNITY_PRACTICE,OPPORTUNITY_VALUE,OPPORTUNITY_STATUS,OPPORTUNITY_COMMENT,OPPORTUNITY_PRIORITY,OPPORTUNITY_TYPE,NUMBER_OF_REQUIRED_ROLES,LAST_EDITED_BY,LAST_EDITED_DATE")] OPPORTUNITY_CATALOG projectCatalog)
+        public ActionResult Create([Bind(Include = "OPPORTUNITY_ID,CLIENT_ID,OPPORTUNITY_STATUS_ID,LOCATION,SPONSOR,OPPORTUNITY_NAME,OPPORTUNITY_PRACTICE,OPPORTUNITY_STATUS,OPPORTUNITY_COMMENT")] OPPORTUNITY_CATALOG projectCatalog)
         {
+            System.Diagnostics.Debug.WriteLine("Post ProjectCreate");
+            if (Session["UserID"] != null)
+            {
+                projectCatalog.LAST_EDITED_BY = Session["FirstName"].ToString() + " " + Session["Lastname"].ToString();
+                System.Diagnostics.Debug.WriteLine("Last Edited By:" + projectCatalog.LAST_EDITED_BY);
+            }
+            else
+            {
+                projectCatalog.LAST_EDITED_BY = "Unknown";
+                System.Diagnostics.Debug.WriteLine("Last Edited By:" + projectCatalog.LAST_EDITED_BY);
+            }
+
             if (ModelState.IsValid)
             {
-				projectCatalog.OPPORTUNITY_STATUS = true;
+                System.Diagnostics.Debug.WriteLine("Valid model");
+                projectCatalog.OPPORTUNITY_STATUS = true;
 				projectCatalog.LAST_EDITED_DATE = DateTime.Now;
                 db.OPPORTUNITY_CATALOG.Add(projectCatalog);
+
+                
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -95,7 +110,18 @@ namespace StaffingPlanner.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "OPPORTUNITY_ID,CLIENT_ID,OPPORTUNITY_STATUS_ID,LOCATION,SPONSOR,OPPORTUNITY_NAME,OPPORTUNITY_PRACTICE,OPPORTUNITY_VALUE,OPPORTUNITY_STATUS,OPPORTUNITY_COMMENT,OPPORTUNITY_PRIORITY,OPPORTUNITY_TYPE,NUMBER_OF_REQUIRED_ROLES,LAST_EDITED_BY,LAST_EDITED_DATE")] OPPORTUNITY_CATALOG projectCatalog)
         {
-            if (ModelState.IsValid)
+			System.Diagnostics.Debug.WriteLine("Post ProjectEdit");
+			if (Session["UserID"] != null)
+			{
+				projectCatalog.LAST_EDITED_BY = Session["FirstName"].ToString() + " " + Session["Lastname"].ToString();
+				System.Diagnostics.Debug.WriteLine("Last Edited By:" + projectCatalog.LAST_EDITED_BY);
+			}
+			else
+			{
+				projectCatalog.LAST_EDITED_BY = "Unknown";
+				System.Diagnostics.Debug.WriteLine("Last Edited By:" + projectCatalog.LAST_EDITED_BY);
+			}
+			if (ModelState.IsValid)
             {
 				projectCatalog.LAST_EDITED_DATE = DateTime.Now;
 				projectCatalog.OPPORTUNITY_STATUS = true;
