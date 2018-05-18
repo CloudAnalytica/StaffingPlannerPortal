@@ -28,7 +28,7 @@ namespace StaffingPlanner.Controllers
         public ActionResult Index2()
         {
             var opportunity = db.OPPORTUNITY_GROUP.Include(o => o.OPPORTUNITY_CATALOG);
-            return View();
+            return View(opportunity.ToList());
         }
 
         // GET: Reports/Details/5

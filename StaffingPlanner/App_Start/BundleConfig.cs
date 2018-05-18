@@ -28,7 +28,7 @@ namespace StaffingPlanner
 			bundles.Add(new StyleBundle("~/Content/css").Include(
                      "~/Content/bootstrap.min.css",
                      "~/Content/datatables.css",
-                     "~/Content/font-awesome.min.css",
+                     "~/Content/font-awesome.css",
                       "~/Content/shared.css"));
 		}
 	}
