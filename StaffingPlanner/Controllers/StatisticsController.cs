@@ -1,14 +1,10 @@
-﻿using System;
+﻿/*
+ * Author: Zoe
+ * Purpose: This controller handles calling the stored procedures in the entity framework 
+ *			and sends the information to the view to be turned into a google chart. 
+ */
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Script.Serialization;
-using System.Web.Script.Services;
-using System.Web.Services;
 using StaffingPlanner.Models;
 
 namespace StaffingPlanner.Controllers
@@ -17,54 +13,126 @@ namespace StaffingPlanner.Controllers
     {
         private DEV_ClientOpportunitiesEntities db = new DEV_ClientOpportunitiesEntities();
 
-        // GET: Statistics
+        /* GET: Statistics */
         public ActionResult Index()
         {
             return View();
         }
 
-		//public IEnumerable<LostOpportunityCount> LostOpportunities()
-		//{
-		//	var dataset = from r in db.LOST_REASON
-		//				  select new LostOpportunityCount
-		//				  {
-		//					  Reason = r.REASON,
-		//					  //count = db.LOST_REASON.Where(temp => temp.LOST_REASON_ID == r.LOST_REASON_ID).Select(temp => temp.OPPORTUNITY_CATALOG).Count()
-		//					  Count = 5
-		//				  };
-		//	//ViewData["dataset"] = dataset;
-		//	return dataset.AsEnumerable();
-		//}
-
+		/*
+		 *Pulls the Opportunity Status Chart information using the STATS_OPPORTUNITY_STATUS storedproc 
+		 *and makes it available to be received by an AJAX call.
+		 */
 		[HttpGet]
 		public ActionResult OpportunityStatusChartData()
 		{
-			List<object> chartData = new List<object>(3)
+			var results = db.Database.SqlQuery<OpportunityStatusStats>("STATS_OPPORTUNITY_STATUS");
+			List<object> chartData = new List<object>
 			{
-				new object[] { "Status", "Count" },
-				new object[] { "Sold", 9 },
-				new object[] { "Lost Opportunity", 3 },
-				new object[] {"On-Hold", 6 },
-				new object[] {"Active", 4 }
+				new object[] { "Status", "Count" }
 			};
+			foreach (OpportunityStatusStats res in results)
+			{
+				if (res.Status_Count >= 1)
+				{
+					chartData.Add(new object[] { res.Opportunity_Status_Name, res.Status_Count });
+				}
+				else
+				{
+					chartData.Add(new object[] { res.Opportunity_Status_Name, 0 });
+				}
+			}
+
+			//Arbitraty hardcoded information for testing
+			//List<object> chartData = new List<object>(3)
+			//{
+			//	new object[] { "Status", "Count" },
+			//	new object[] { "Sold", 9 },
+			//	new object[] { "Lost Opportunity", 3 },
+			//	new object[] {"On-Hold", 6 },
+			//	new object[] {"Active", 4 }
+			//};
 			return Json(chartData, JsonRequestBehavior.AllowGet);
 		}
 
+		/*
+		*Pulls the Lost Opportunity Chart information using the STATS_LOST_OPPORTUNITY storedproc 
+		*and makes it available to be received by an AJAX call.
+		*/
+		[HttpGet]
+		public ActionResult LostOpportunityChartData()
+		{
+			var results = db.Database.SqlQuery<LostOpportunityStats>("STATS_LOST_OPPORTUNITY");
+			List<object> chartData = new List<object>
+			{
+				new object[] { "Reason", "Count" }
+			};
+			foreach (LostOpportunityStats res in results)
+			{
+				if (res.Reason_Count >= 1)
+				{
+					chartData.Add(new object[] { res.Reason, res.Reason_Count });
+				}
+				else
+				{
+					chartData.Add(new object[] { res.Reason, 0 });
+				}
+			}
+
+			//Arbitraty hardcoded information for testing
+			//List<object> chartData = new List<object>(3)
+			//{
+			//	new object[] { "Reason", "Count" },
+			//	new object[] { "High Bill Rate", 10 },
+			//	new object[] { "Deadline Miss", 3 },
+			//	new object[] {"Recruitment Delay", 7 },
+			//	new object[] {"No Candidate", 2 },
+			//	new object[] {"No Help From Practice", 5 }
+			//};
+			return Json(chartData, JsonRequestBehavior.AllowGet);
+		}
+
+		/*
+		*Pulls the Portfolio Chart information using the STATS_PORTFOLIO storedproc 
+		*and makes it available to be received by an AJAX call.
+		 */
 		[HttpGet]
 		public ActionResult PortfolioChartData()
 		{
-			List<object> chartData = new List<object>(3)
+			var results = db.Database.SqlQuery<PortfolioStats>("STATS_PORTFOLIO");
+			List<object> chartData = new List<object>
 			{
-				new object[] { "Sub-business", "Amount" },
-				new object[] { "Healthcare", 41 },
-				new object[] { "Power", 16 },
-				new object[] {"BHGE", 7 },
-				new object[] {"Lighting", 6 },
-				new object[] {"Life Sciences", 30 }
+				new object[] { "Client", "Amount" }
 			};
+			foreach (PortfolioStats res in results)
+			{
+				if (res.Value >= 1)
+				{
+					chartData.Add(new object[] { res.Client, res.Value });
+				}
+				else
+				{
+					chartData.Add(new object[] { res.Client, 0 });
+				}
+			}
+
+			//Arbitraty hardcoded information for testing
+			//List<object> chartData = new List<object>(3)
+			//{
+			//	new object[] { "Sub-business", "Amount" },
+			//	new object[] { "Healthcare", 41 },
+			//	new object[] { "Power", 16 },
+			//	new object[] {"BHGE", 7 },
+			//	new object[] {"Lighting", 6 },
+			//	new object[] {"Life Sciences", 30 }
+			//};
 			return Json(chartData, JsonRequestBehavior.AllowGet);
 		}
 
+		/*
+		*Hardcodes the data to be shown on the Profit Chart.
+		* TODO: Implement stored procedure data retrieval once the procedure is written.
+		*/
 		[HttpGet]
 		public ActionResult ProfitChartData()
 		{
@@ -79,41 +147,7 @@ namespace StaffingPlanner.Controllers
 			return Json(chartData, JsonRequestBehavior.AllowGet);
 		}
 
-		[HttpGet]
-		public ActionResult LostOpportunityChartData()
-		{
-			//System.Diagnostics.Debug.WriteLine("Inside LostOppChartData Function");
-			//var res = from r in db.LOST_REASON
-			//		  select r;
-			//IList<LOST_REASON> result = res.ToList();
-			//List<object> chartData = new List<object>();
-			//chartData.Add(new object[] { "Reason", "Count" });
-			//foreach (var i in result)
-			//{
-			//	System.Diagnostics.Debug.WriteLine(i.REASON);
-			//	chartData.Add(new object[] { i.REASON, 5 });
-			//}
-			List<object> chartData = new List<object>(3)
-			{
-				new object[] { "Reason", "Count" },
-				new object[] { "High Bill Rate", 10 },
-				new object[] { "Deadline Miss", 3 },
-				new object[] {"Recruitment Delay", 7 },
-				new object[] {"No Candidate", 2 },
-				new object[] {"No Help From Practice", 5 }
-			};
-			//string output = new JavaScriptSerializer().Serialize(chartData);
-			//System.Diagnostics.Debug.WriteLine("Moved past the serialization");
-			//List<LostReasonRow> data = new List<LostReasonRow>();
-			//data.Add(new LostReasonRow("Test", 4));
-			//data.Add(new LostReasonRow("Test Again", 5));
-			//foreach (LostReasonRow lrr in data)
-			//{
-			//	System.Diagnostics.Debug.WriteLine(lrr.Reason + " " + lrr.Count);
-			//}
-			return Json(chartData, JsonRequestBehavior.AllowGet);
-		}
-
+		/* Autogenerated Dispose Function*/
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -123,14 +157,4 @@ namespace StaffingPlanner.Controllers
             base.Dispose(disposing);
         }
     }
-
-	public class LostReasonRow {
-		public string Reason { get; set; }
-		public int Count { get; set; }
-		public LostReasonRow(string str, int count)
-		{
-			this.Reason = str;
-			this.Count = count;
-		}
-	}
 }
