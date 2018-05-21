@@ -1,5 +1,19 @@
 ﻿$(document).ready(function () {
 
+    $.ajax({
+        type: "GET",
+        url: "reports/ReportsData",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            reportsData = data;
+        },
+        error: function () {
+            console.log("Error loading data! Please try again.");
+        }
+    }).done(function () {
+        console.log("successfully loaded the data");
+        });
 
     var table = $('#example').DataTable({
         

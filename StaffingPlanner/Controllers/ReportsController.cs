@@ -31,6 +31,40 @@ namespace StaffingPlanner.Controllers
             return View(opportunity.ToList());
         }
 
+        /*
+*Builds a reports JSON object
+*and makes it available to be received by an AJAX call.
+*/
+        [HttpGet]
+        public ActionResult ReportsData()
+        {
+
+            var opportunity = db.OPPORTUNITY_GROUP.Include(o => o.OPPORTUNITY_CATALOG);
+            List<object> reportsData = new List<object> { };
+            foreach (OPPORTUNITY_GROUP opp in opportunity)
+            {
+                reportsData.Add(new object[] { "Account Name", opp.OPPORTUNITY_CATALOG.CLIENT_DETAILS.CLIENT_NAME });
+                reportsData.Add(new object[] { "Sub-business", opp.OPPORTUNITY_CATALOG.CLIENT_DETAILS.CLIENT_SUB_BUSINESS });
+                reportsData.Add(new object[] { "Opportunity Name", opp.OPPORTUNITY_CATALOG.OPPORTUNITY_NAME });
+                reportsData.Add(new object[] { "Sponsor", opp.OPPORTUNITY_CATALOG.SPONSOR });
+                reportsData.Add(new object[] { "Value", opp.OPPORTUNITY_CATALOG.OPPORTUNITY_VALUE });
+                reportsData.Add(new object[] { "Skillset", opp.SKILLSET });
+                reportsData.Add(new object[] { "Opportunity Type", opp.OPPORTUNITY_CATALOG.OPPORTUNITY_TYPE });
+                reportsData.Add(new object[] { "Status", opp.OPPORTUNITY_CATALOG.OPPORTUNITY_STATUS1.OPPORTUNITY_STATUS_NAME });
+                reportsData.Add(new object[] { "RateCard/Hr", opp.RATE_CARD_PER_HR });
+                reportsData.Add(new object[] { "Practice", opp.OPPORTUNITY_CATALOG.OPPORTUNITY_PRACTICE });
+                reportsData.Add(new object[] { "Max Target Grade", opp.MAX_TARGET_GRADE });
+                reportsData.Add(new object[] { "Targeted Consultants", opp.TARGETED_CONSULTANTS });
+                reportsData.Add(new object[] { "Location", opp.OPPORTUNITY_CATALOG.LOCATION });
+                reportsData.Add(new object[] { "Start Date", opp.ACTUAL_START_DATE });
+                reportsData.Add(new object[] { "Duration", opp.DURATION });
+                reportsData.Add(new object[] { "Priority", opp.OPPORTUNITY_CATALOG.OPPORTUNITY_PRIORITY });
+                reportsData.Add(new object[] { "Positions Available", opp.GROUP_POSITIONS_AVAILABLE });
+                reportsData.Add(new object[] { "AE", opp.OPPORTUNITY_CATALOG.LAST_EDITED_BY });
+            }
+            return Json(reportsData, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: Reports/Details/5
         public ActionResult Details(int? id)
         {
