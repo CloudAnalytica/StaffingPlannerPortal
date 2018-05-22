@@ -9,8 +9,6 @@
     }).done(function (data) {
             reportsData = JSON.stringify(data);
             console.log("successfully loaded the data");
-        console.log(data);
-        console.log(reportsData);
      }).fail(function () {
             console.log('Failed to load data.');
      }).always(function () {
@@ -61,4 +59,23 @@
         // Toggle the visibility
         column.visible(!column.visible());
     });
+
+    function myCallbackFunction(updatedCell, updatedRow, oldValue) {
+        console.log("The new value for the cell is: " + updatedCell.data());
+        console.log("The values for each cell in that row are: " + updatedRow.data());
+    }
+
+    table.MakeCellsEditable({
+        "onUpdate": myCallbackFunction,
+        "inputCss": 'my-input-class',
+        "inputTypes": [
+
+
+        ],
+        "confirmationButton": {
+            "confirmCss": 'my-confirm-class',
+            "cancelCss": 'my-cancel-class'
+        }
+    });
+
 });
