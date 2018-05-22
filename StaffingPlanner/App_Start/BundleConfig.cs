@@ -25,6 +25,7 @@ namespace StaffingPlanner
 			bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
 					  "~/Scripts/bootstrap.js",
                       "~/Scripts/datatables.min.js",
+                      "~/Scripts/celledit.js",
                       "~/Scripts/tables.js",
 					  "~/Scripts/respond.js"));
 

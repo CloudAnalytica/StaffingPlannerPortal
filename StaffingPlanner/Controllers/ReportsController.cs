@@ -31,6 +31,58 @@ namespace StaffingPlanner.Controllers
             return View(opportunity.ToList());
         }
 
+
+
+        public class temp
+        {
+            public List<ReportExportModel> data { get; set; }
+        }
+        /*
+*Builds a reports JSON object
+*and makes it available to be received by an AJAX call.
+*/
+        [HttpGet]
+        public ActionResult ReportsData()
+        {
+
+            var opportunity = db.OPPORTUNITY_GROUP.Include(o => o.OPPORTUNITY_CATALOG);
+            var reportsData = new List<ReportExportModel> { };
+            
+            foreach (OPPORTUNITY_GROUP opp in opportunity)
+            {
+
+                reportsData.Add(new ReportExportModel
+                {
+                    Account = opp.OPPORTUNITY_CATALOG.CLIENT_DETAILS.CLIENT_NAME,
+                    Subbusiness = opp.OPPORTUNITY_CATALOG.CLIENT_DETAILS.CLIENT_SUB_BUSINESS,
+                    ProjectName = opp.OPPORTUNITY_CATALOG.OPPORTUNITY_NAME,
+                    Sponsor = opp.OPPORTUNITY_CATALOG.SPONSOR,
+                    ProjectValue = opp.OPPORTUNITY_CATALOG.OPPORTUNITY_VALUE,
+                    Skillset = opp.SKILLSET,
+                    ProjectType = opp.OPPORTUNITY_CATALOG.OPPORTUNITY_TYPE,
+                    ProjectStatus = opp.OPPORTUNITY_CATALOG.OPPORTUNITY_STATUS1.OPPORTUNITY_STATUS_NAME,
+                    RateCardHr = (int) opp.RATE_CARD_PER_HR,
+                    Practice = opp.OPPORTUNITY_CATALOG.OPPORTUNITY_PRACTICE,
+                    MaxTargetGrade = opp.MAX_TARGET_GRADE,
+                    TargetConsultant = opp.TARGETED_CONSULTANTS,
+                    WorkLocation = opp.OPPORTUNITY_CATALOG.LOCATION,
+                    StartDate = opp.ACTUAL_START_DATE.ToString(),
+                    Duration = opp.DURATION,
+                    Priority = opp.OPPORTUNITY_CATALOG.OPPORTUNITY_PRIORITY,
+                    NumberOfRoles = opp.GROUP_POSITIONS_AVAILABLE,
+                    AccountExecutive = opp.LAST_EDITED_BY,
+                    LastEdited = opp.OPPORTUNITY_CATALOG.LAST_EDITED_DATE.ToString()
+
+                });
+            }
+
+            var data = new temp
+            {
+                data = reportsData
+            };
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: Reports/Details/5
         public ActionResult Details(int? id)
         {
@@ -108,6 +160,7 @@ namespace StaffingPlanner.Controllers
 		public IList<ReportExportModel> GetReportList()
 		{
 			DEV_ClientOpportunitiesEntities db = new DEV_ClientOpportunitiesEntities();
+        
 			var reportList = (from opp in db.OPPORTUNITY_GROUP
 							  join proj in db.OPPORTUNITY_CATALOG on opp.OPPORTUNITY_ID equals proj.OPPORTUNITY_ID
 							  join status in db.OPPORTUNITY_STATUS on proj.OPPORTUNITY_STATUS_ID equals status.OPPORTUNITY_STATUS_ID
@@ -119,7 +172,7 @@ namespace StaffingPlanner.Controllers
 								  Subbusiness = client.CLIENT_SUB_BUSINESS,
 								  ProjectName = proj.OPPORTUNITY_NAME,
 								  Sponsor = proj.SPONSOR,
-								  ProjectValue = (double)proj.OPPORTUNITY_VALUE,
+								  ProjectValue = (decimal)proj.OPPORTUNITY_VALUE,
 								  Skillset = opp.SKILLSET,
 								  ProjectType = proj.OPPORTUNITY_TYPE,
 								  ProjectStatus = status.OPPORTUNITY_STATUS_NAME,
@@ -133,7 +186,7 @@ namespace StaffingPlanner.Controllers
 								  Priority = proj.OPPORTUNITY_PRIORITY,
 								  NumberOfRoles = (int)proj.NUMBER_OF_REQUIRED_ROLES,
 								  AccountExecutive = opp.LAST_EDITED_BY,
-								  LastEditedBy = opp.LAST_EDITED_DATE.ToString()
+								  LastEdited = opp.LAST_EDITED_DATE.ToString()
 							  }).ToList();
 			return reportList;
 		}
