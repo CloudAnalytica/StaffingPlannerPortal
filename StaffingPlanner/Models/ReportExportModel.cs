@@ -11,7 +11,7 @@ namespace StaffingPlanner.Models
 		public string Subbusiness { get; set; }
 		public string ProjectName { get; set; }
 		public string Sponsor { get; set; }
-		public double ProjectValue { get; set; }
+		public decimal ProjectValue { get; set; }
 		public string Skillset { get; set; }
 		public string ProjectType { get; set; }
 		public string ProjectStatus { get; set; }
@@ -25,6 +25,6 @@ namespace StaffingPlanner.Models
 		public string Priority { get; set; }
 		public int NumberOfRoles { get; set; }
 		public string AccountExecutive { get; set; }
-		public string LastEditedBy { get; set; }
+		public string LastEdited { get; set; }
 	}
 }

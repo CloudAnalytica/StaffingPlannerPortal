@@ -31,6 +31,9 @@ namespace StaffingPlanner.Controllers
             return View(opportunity.ToList());
         }
 
+
+
+
         /*
 *Builds a reports JSON object
 *and makes it available to be received by an AJAX call.
@@ -40,28 +43,48 @@ namespace StaffingPlanner.Controllers
         {
 
             var opportunity = db.OPPORTUNITY_GROUP.Include(o => o.OPPORTUNITY_CATALOG);
-            List<object> reportsData = new List<object> { };
+            var reportsData = new List<ReportExportModel> { };
+            
             foreach (OPPORTUNITY_GROUP opp in opportunity)
             {
-                reportsData.Add(new object[] { "Account Name", opp.OPPORTUNITY_CATALOG.CLIENT_DETAILS.CLIENT_NAME });
-                reportsData.Add(new object[] { "Sub-business", opp.OPPORTUNITY_CATALOG.CLIENT_DETAILS.CLIENT_SUB_BUSINESS });
-                reportsData.Add(new object[] { "Opportunity Name", opp.OPPORTUNITY_CATALOG.OPPORTUNITY_NAME });
-                reportsData.Add(new object[] { "Sponsor", opp.OPPORTUNITY_CATALOG.SPONSOR });
-                reportsData.Add(new object[] { "Value", opp.OPPORTUNITY_CATALOG.OPPORTUNITY_VALUE });
-                reportsData.Add(new object[] { "Skillset", opp.SKILLSET });
-                reportsData.Add(new object[] { "Opportunity Type", opp.OPPORTUNITY_CATALOG.OPPORTUNITY_TYPE });
-                reportsData.Add(new object[] { "Status", opp.OPPORTUNITY_CATALOG.OPPORTUNITY_STATUS1.OPPORTUNITY_STATUS_NAME });
-                reportsData.Add(new object[] { "RateCard/Hr", opp.RATE_CARD_PER_HR });
-                reportsData.Add(new object[] { "Practice", opp.OPPORTUNITY_CATALOG.OPPORTUNITY_PRACTICE });
-                reportsData.Add(new object[] { "Max Target Grade", opp.MAX_TARGET_GRADE });
-                reportsData.Add(new object[] { "Targeted Consultants", opp.TARGETED_CONSULTANTS });
-                reportsData.Add(new object[] { "Location", opp.OPPORTUNITY_CATALOG.LOCATION });
-                reportsData.Add(new object[] { "Start Date", opp.ACTUAL_START_DATE });
-                reportsData.Add(new object[] { "Duration", opp.DURATION });
-                reportsData.Add(new object[] { "Priority", opp.OPPORTUNITY_CATALOG.OPPORTUNITY_PRIORITY });
-                reportsData.Add(new object[] { "Positions Available", opp.GROUP_POSITIONS_AVAILABLE });
-                reportsData.Add(new object[] { "AE", opp.OPPORTUNITY_CATALOG.LAST_EDITED_BY });
+                var temp = (decimal) 0.0;
+                if (opp.OPPORTUNITY_CATALOG.OPPORTUNITY_VALUE.IsNumber())
+                {
+                    temp = (decimal) opp.OPPORTUNITY_CATALOG.OPPORTUNITY_VALUE;
+                }
+
+                reportsData.Add(new ReportExportModel
+                {
+                    Account = opp.OPPORTUNITY_CATALOG.CLIENT_DETAILS.CLIENT_NAME,
+                    Subbusiness = opp.OPPORTUNITY_CATALOG.CLIENT_DETAILS.CLIENT_SUB_BUSINESS,
+                    ProjectName = opp.OPPORTUNITY_CATALOG.OPPORTUNITY_NAME,
+                    Sponsor = opp.OPPORTUNITY_CATALOG.SPONSOR,
+                    ProjectValue = temp,
+                    Skillset = opp.SKILLSET,
+                    ProjectType = opp.OPPORTUNITY_CATALOG.OPPORTUNITY_TYPE,
+                    ProjectStatus = opp.OPPORTUNITY_CATALOG.OPPORTUNITY_STATUS1.OPPORTUNITY_STATUS_NAME,
+                    RateCardHr = (int) opp.RATE_CARD_PER_HR,
+                    Practice = opp.OPPORTUNITY_CATALOG.OPPORTUNITY_PRACTICE,
+                    MaxTargetGrade = opp.MAX_TARGET_GRADE,
+                    TargetConsultant = opp.TARGETED_CONSULTANTS,
+                    WorkLocation = opp.OPPORTUNITY_CATALOG.LOCATION,
+                    StartDate = opp.ACTUAL_START_DATE.ToString(),
+                    Duration = opp.DURATION,
+                    Priority = opp.OPPORTUNITY_CATALOG.OPPORTUNITY_PRIORITY,
+                    NumberOfRoles = opp.GROUP_POSITIONS_AVAILABLE,
+                    AccountExecutive = opp.LAST_EDITED_BY,
+                    LastEdited = opp.OPPORTUNITY_CATALOG.LAST_EDITED_DATE.ToString()
+
+                });
             }
+
+            //    reportsData.Add(new ReportExportModel[] { "Location", opp.OPPORTUNITY_CATALOG.LOCATION });
+            //    reportsData.Add(new ReportExportModel[] { "Start Date", opp.ACTUAL_START_DATE });
+            //    reportsData.Add(new ReportExportModel[] { "Duration", opp.DURATION });
+            //    reportsData.Add(new ReportExportModel[] { "Priority", opp.OPPORTUNITY_CATALOG.OPPORTUNITY_PRIORITY });
+            //    reportsData.Add(new ReportExportModel[] { "Positions Available", opp.GROUP_POSITIONS_AVAILABLE });
+            //    reportsData.Add(new ReportExportModel[] { "AE", opp.OPPORTUNITY_CATALOG.LAST_EDITED_BY });
+            //}
             return Json(reportsData, JsonRequestBehavior.AllowGet);
         }
 
@@ -153,7 +176,7 @@ namespace StaffingPlanner.Controllers
 								  Subbusiness = client.CLIENT_SUB_BUSINESS,
 								  ProjectName = proj.OPPORTUNITY_NAME,
 								  Sponsor = proj.SPONSOR,
-								  ProjectValue = (double)proj.OPPORTUNITY_VALUE,
+								  ProjectValue = (decimal)proj.OPPORTUNITY_VALUE,
 								  Skillset = opp.SKILLSET,
 								  ProjectType = proj.OPPORTUNITY_TYPE,
 								  ProjectStatus = status.OPPORTUNITY_STATUS_NAME,
@@ -167,7 +190,7 @@ namespace StaffingPlanner.Controllers
 								  Priority = proj.OPPORTUNITY_PRIORITY,
 								  NumberOfRoles = (int)proj.NUMBER_OF_REQUIRED_ROLES,
 								  AccountExecutive = opp.LAST_EDITED_BY,
-								  LastEditedBy = opp.LAST_EDITED_DATE.ToString()
+								  LastEdited = opp.LAST_EDITED_DATE.ToString()
 							  }).ToList();
 			return reportList;
 		}

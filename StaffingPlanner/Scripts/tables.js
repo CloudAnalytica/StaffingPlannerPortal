@@ -1,23 +1,24 @@
 ﻿$(document).ready(function () {
 
+    /* Get the data and turn it into a JSON */
     $.ajax({
         type: "GET",
-        url: "reports/ReportsData",
+        url: "ReportsData",
         contentType: "application/json;charset=utf-8",
         dataType: "json",
-        success: function (data) {
-            reportsData = data;
-        },
-        error: function () {
-            console.log("Error loading data! Please try again.");
-        }
-    }).done(function () {
-        console.log("successfully loaded the data");
-        });
+    }).done(function (data) {
+            console.log("successfully loaded the data");
+            console.log(data);
+     }).fail(function () {
+            console.log('Failed to load data.');
+     }).always(function () {
+            console.log('ajax call complete');
+      });
 
+
+
+    /* Load the data table */
     var table = $('#example').DataTable({
-        
-        
         "scrollY": "55vh",
         "scrollX": true,
             "scrollCollapse": true,
@@ -25,7 +26,7 @@
 
 
 
-
+    /* toggles visibility of columns */
     $('a.toggle-vis').on('click', function (e) {
         e.preventDefault();
 
