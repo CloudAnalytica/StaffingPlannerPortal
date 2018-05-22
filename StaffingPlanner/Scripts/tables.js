@@ -7,7 +7,17 @@
         contentType: "application/json;charset=utf-8",
         dataType: "json",
     }).done(function (data) {
-            reportsData = JSON.stringify(data);
+        $.each(data, function (k, v) {
+            $.each(v, function (k2, v2) {
+                $.each(v2, function (k3, v3) {
+                    if (k3 == 'ProjectValue' && v3) {
+                        v3 = v3.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                        
+                    }
+                    
+                });
+            });
+        });
             console.log("successfully loaded the data");
      }).fail(function () {
             console.log('Failed to load data.');
@@ -15,7 +25,7 @@
             console.log('ajax call complete');
       });
 
-
+ 
 
     /* Load the data table */
     var table = $('#example').DataTable({
@@ -24,25 +34,61 @@
         "scrollCollapse": true,
         "ajax": "reportsData",
         "columns": [
-            { "data": "Account" },
-            { "data": "Subbusiness" },
-            { "data": "ProjectName" },
-            { "data": "Sponsor" },
-            { "data": "ProjectValue" },
-            { "data": "Skillset" },
-            { "data": "ProjectType" },
-            { "data": "ProjectStatus" },
-            { "data": "RateCardHr" },
-            { "data": "Practice" },
-            { "data": "MaxTargetGrade" },
-            { "data": "TargetConsultant" },
-            { "data": "WorkLocation" },
-            { "data": "StartDate" },
-            { "data": "Duration" },
-            { "data": "Priority" },
-            { "data": "NumberOfRoles" },
-            { "data": "AccountExecutive" },
-            { "data": "LastEdited" },
+            {
+                data: "Account"
+            },
+            { data: "Subbusiness" },
+            { data: "ProjectName" },
+            { data: "Sponsor" },
+            {
+                data: "ProjectValue",
+                render: function (data) {
+                    if (data !== null) { /* adds a dollar sign and converts to million or thousand */
+                        if (data >= 1000000) {
+                            var temp = data / 1000000;
+                            return '$' + temp.toString() + 'm';
+                        }
+                        else {
+                            var temp = data / 1000;
+                            return '$' + temp.toString() + 'k';
+                        }
+                       
+                    }
+                    else {
+                        return data;
+                    }
+                }
+            },
+            { data: "Skillset" },
+            { data: "ProjectType" },
+            { data: "ProjectStatus" },
+            { data: "RateCardHr" },
+            { data: "Practice" },
+            { data: "MaxTargetGrade" },
+            { data: "TargetConsultant" },
+            { data: "WorkLocation" },
+            {
+                data: "StartDate",
+                render: function (data) { /* truncates the time */
+                    if (data !== null) {
+                        var index = data.toString().indexOf(" ");
+                        return data.toString().substring(0, index);
+                    }
+                }
+            },
+            { data: "Duration" },
+            { data: "Priority" },
+            { data: "NumberOfRoles" },
+            { data: "AccountExecutive" },
+            {
+                data: "LastEdited",
+                render: function (data) { /* truncates the time */
+                    if (data !== null) {
+                        var index = data.toString().indexOf(" ");
+                        return data.toString().substring(0, index);
+                    }
+                }
+            },
 
         ]
     });
@@ -61,16 +107,37 @@
     });
 
     function myCallbackFunction(updatedCell, updatedRow, oldValue) {
-        console.log("The new value for the cell is: " + updatedCell.data());
-        console.log("The values for each cell in that row are: " + updatedRow.data());
+        console.log("The old value for the cell is:\t" + oldValue);
+        console.log("The new value for the cell is:\t" + updatedCell.data());
     }
 
     table.MakeCellsEditable({
         "onUpdate": myCallbackFunction,
         "inputCss": 'my-input-class',
         "inputTypes": [
-
-
+            {
+                "column": 0,
+                "type": "list",
+                "options": [
+                    { "value": "1", "display": "GE" },
+                    { "value": "2", "display": "P&G" },
+                    { "value": "3", "display": "Kroger" }
+                ]
+            },
+            {
+                "column": 1,
+                "type": "list",
+                "options": [
+                    { "value": "1", "display": "Power" },
+                    { "value": "2", "display": "Oil&Gas" },
+                    { "value": "3", "display": "Warehouse" }
+                ]
+            }
+            , {
+                "column": 2,
+                "type": "text",
+                "options": null
+            }
         ],
         "confirmationButton": {
             "confirmCss": 'my-confirm-class',
