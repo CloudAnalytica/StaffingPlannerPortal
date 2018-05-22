@@ -33,7 +33,10 @@ namespace StaffingPlanner.Controllers
 
 
 
-
+        public class temp
+        {
+            public List<ReportExportModel> data { get; set; }
+        }
         /*
 *Builds a reports JSON object
 *and makes it available to be received by an AJAX call.
@@ -78,14 +81,11 @@ namespace StaffingPlanner.Controllers
                 });
             }
 
-            //    reportsData.Add(new ReportExportModel[] { "Location", opp.OPPORTUNITY_CATALOG.LOCATION });
-            //    reportsData.Add(new ReportExportModel[] { "Start Date", opp.ACTUAL_START_DATE });
-            //    reportsData.Add(new ReportExportModel[] { "Duration", opp.DURATION });
-            //    reportsData.Add(new ReportExportModel[] { "Priority", opp.OPPORTUNITY_CATALOG.OPPORTUNITY_PRIORITY });
-            //    reportsData.Add(new ReportExportModel[] { "Positions Available", opp.GROUP_POSITIONS_AVAILABLE });
-            //    reportsData.Add(new ReportExportModel[] { "AE", opp.OPPORTUNITY_CATALOG.LAST_EDITED_BY });
-            //}
-            return Json(reportsData, JsonRequestBehavior.AllowGet);
+            var data = new temp
+            {
+                data = reportsData
+            };
+            return Json(data, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Reports/Details/5
@@ -165,6 +165,7 @@ namespace StaffingPlanner.Controllers
 		public IList<ReportExportModel> GetReportList()
 		{
 			DEV_ClientOpportunitiesEntities db = new DEV_ClientOpportunitiesEntities();
+        
 			var reportList = (from opp in db.OPPORTUNITY_GROUP
 							  join proj in db.OPPORTUNITY_CATALOG on opp.OPPORTUNITY_ID equals proj.OPPORTUNITY_ID
 							  join status in db.OPPORTUNITY_STATUS on proj.OPPORTUNITY_STATUS_ID equals status.OPPORTUNITY_STATUS_ID
@@ -223,6 +224,10 @@ namespace StaffingPlanner.Controllers
 
 			foreach (var report in reportList)
 			{
+                if (!report.ProjectValue.IsNumber())
+                {
+                    report.ProjectValue = 0;
+                }
 				dt.Rows.Add(report.Account, report.Subbusiness, report.ProjectName, report.Sponsor, report.ProjectValue, report.Skillset,
 					report.ProjectType, report.ProjectStatus, report.RateCardHr, report.Practice, report.MaxTargetGrade, report.TargetConsultant,
 					report.WorkLocation, report.StartDate, report.Duration, report.Priority, report.NumberOfRoles, report.AccountExecutive);
