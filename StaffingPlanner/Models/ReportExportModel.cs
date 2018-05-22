@@ -11,11 +11,11 @@ namespace StaffingPlanner.Models
 		public string Subbusiness { get; set; }
 		public string ProjectName { get; set; }
 		public string Sponsor { get; set; }
-		public decimal ProjectValue { get; set; }
+		public decimal? ProjectValue { get; set; }
 		public string Skillset { get; set; }
 		public string ProjectType { get; set; }
 		public string ProjectStatus { get; set; }
-		public int RateCardHr { get; set; }
+		public int? RateCardHr { get; set; }
 		public string Practice { get; set; }
 		public string MaxTargetGrade { get; set; }
 		public string TargetConsultant { get; set; }
@@ -23,7 +23,7 @@ namespace StaffingPlanner.Models
 		public string StartDate { get; set; }
 		public string Duration { get; set; }
 		public string Priority { get; set; }
-		public int NumberOfRoles { get; set; }
+		public int? NumberOfRoles { get; set; }
 		public string AccountExecutive { get; set; }
 		public string LastEdited { get; set; }
 	}
