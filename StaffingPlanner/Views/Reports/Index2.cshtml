@@ -34,13 +34,23 @@
         border-color: #a94442 !important;
     }
 </style>
-@{
-    ViewBag.Title = "Index2";
-}
+
 
 <div class="">
     <h2>Report</h2>
 
+        @using (Html.BeginForm("ExportToExcel", "Reports", FormMethod.Post))
+        {
+            <button type="submit" class="btn btn-info navbar-btn btn-sm">
+                <i class="fa fa-download"></i>
+                <span> Export to Excel</span>
+            </button>
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+                <i class="fa fa-search"></i> Column Visibility
+            </button>
+        }
+
+    
     <table id="example" class=" table nowrap table-hover  table-condensed table-bordered small">
         <thead>
             <tr class=" small">
@@ -67,62 +77,75 @@
             </tr>
         </thead>
 
-    <tfoot>
-        <tr class="small">
-            <th>Details</th>
-            <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.CLIENT_DETAILS.CLIENT_NAME)</th>
-            <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.CLIENT_DETAILS.CLIENT_SUB_BUSINESS)</th>
-            <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_NAME)</th>
+        <tfoot>
+            <tr class="small">
+                <th>Details</th>
+                <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.CLIENT_DETAILS.CLIENT_NAME)</th>
+                <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.CLIENT_DETAILS.CLIENT_SUB_BUSINESS)</th>
+                <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_NAME)</th>
 
-            <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.SPONSOR)</th>
-            <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_VALUE)</th>
-            <th>@Html.DisplayNameFor(model => model.SKILLSET)</th>
-            <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_TYPE)</th>
-            <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_STATUS)</th>
-            <th>@Html.DisplayNameFor(model => model.RATE_CARD_PER_HR)</th>
-            <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_PRACTICE)</th>
-            <th>@Html.DisplayNameFor(model => model.MAX_TARGET_GRADE)</th>
-            <th>@Html.DisplayNameFor(model => model.TARGETED_CONSULTANTS)</th>
-            <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.LOCATION)</th>
-            <th>@Html.DisplayNameFor(model => model.ACTUAL_START_DATE)</th>
-            <th>@Html.DisplayNameFor(model => model.DURATION)</th>
-            <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_PRIORITY)</th>
-            <th>@Html.DisplayNameFor(model => model.GROUP_POSITIONS_AVAILABLE)</th>
-            <th>@Html.DisplayNameFor(model => model.LAST_EDITED_BY)</th>
-        </tr>
-    </tfoot>
+                <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.SPONSOR)</th>
+                <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_VALUE)</th>
+                <th>@Html.DisplayNameFor(model => model.SKILLSET)</th>
+                <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_TYPE)</th>
+                <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_STATUS)</th>
+                <th>@Html.DisplayNameFor(model => model.RATE_CARD_PER_HR)</th>
+                <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_PRACTICE)</th>
+                <th>@Html.DisplayNameFor(model => model.MAX_TARGET_GRADE)</th>
+                <th>@Html.DisplayNameFor(model => model.TARGETED_CONSULTANTS)</th>
+                <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.LOCATION)</th>
+                <th>@Html.DisplayNameFor(model => model.ACTUAL_START_DATE)</th>
+                <th>@Html.DisplayNameFor(model => model.DURATION)</th>
+                <th>@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_PRIORITY)</th>
+                <th>@Html.DisplayNameFor(model => model.GROUP_POSITIONS_AVAILABLE)</th>
+                <th>@Html.DisplayNameFor(model => model.LAST_EDITED_BY)</th>
+            </tr>
+        </tfoot>
     </table>
 
 
-    <div class="text-danger small">
-        Toggle column:
-        <a class="toggle-vis" data-column="1">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.CLIENT_DETAILS.CLIENT_NAME)</a> -
-        <a class="toggle-vis" data-column="2">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.CLIENT_DETAILS.CLIENT_SUB_BUSINESS)</a> -
-        <a class="toggle-vis" data-column="3">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_NAME)</a> -
-        <a class="toggle-vis" data-column="4">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.SPONSOR)</a> -
-        <a class="toggle-vis" data-column="5">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_VALUE)</a> -
-        <a class="toggle-vis" data-column="6">@Html.DisplayNameFor(model => model.SKILLSET)</a> -
-        <a class="toggle-vis" data-column="7">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_TYPE)</a> -
-        <a class="toggle-vis" data-column="8">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_STATUS)</a> -
-        <a class="toggle-vis" data-column="9">@Html.DisplayNameFor(model => model.RATE_CARD_PER_HR)</a> -
-        <a class="toggle-vis" data-column="10">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_PRACTICE)</a> -
-        <a class="toggle-vis" data-column="11">@Html.DisplayNameFor(model => model.MAX_TARGET_GRADE)</a> -
-        <a class="toggle-vis" data-column="12">@Html.DisplayNameFor(model => model.TARGETED_CONSULTANTS)</a> -
-        <a class="toggle-vis" data-column="13">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.LOCATION)</a> -
-        <a class="toggle-vis" data-column="14">@Html.DisplayNameFor(model => model.ACTUAL_START_DATE)</a> -
-        <a class="toggle-vis" data-column="15">@Html.DisplayNameFor(model => model.DURATION)</a> -
-        <a class="toggle-vis" data-column="16">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_PRIORITY)</a> -
-        <a class="toggle-vis" data-column="17">@Html.DisplayNameFor(model => model.GROUP_POSITIONS_AVAILABLE)</a> -
-        <a class="toggle-vis" data-column="18">@Html.DisplayNameFor(model => model.LAST_EDITED_BY)</a>
 
 
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title text-center" id="myModalLabel">Column Visibility</h2>
+                    <p class="text-muted text-center"> Click to hide columns</p>
+                </div>
+                <div class="modal-body">
+
+                    <a class="toggle-vis" data-column="0" id="columntoggle">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.CLIENT_DETAILS.CLIENT_NAME)</a>
+                    <a class="toggle-vis" data-column="1" id="columntoggle">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.CLIENT_DETAILS.CLIENT_SUB_BUSINESS)</a>
+                    <a class="toggle-vis" data-column="2" id="columntoggle">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_NAME)</a>
+                    <a class="toggle-vis" data-column="3" id="columntoggle">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.SPONSOR)</a>
+                    <a class="toggle-vis" data-column="4" id="columntoggle">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_VALUE)</a>
+                    <a class="toggle-vis" data-column="5" id="columntoggle">@Html.DisplayNameFor(model => model.SKILLSET)</a>
+                    <br /><br />
+                    <a class="toggle-vis" data-column="6" id="columntoggle">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_TYPE)</a>
+                    <a class="toggle-vis" data-column="7" id="columntoggle">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_STATUS)</a>
+                    <a class="toggle-vis" data-column="8" id="columntoggle">@Html.DisplayNameFor(model => model.RATE_CARD_PER_HR)</a>
+                    <a class="toggle-vis" data-column="9" id="columntoggle">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_PRACTICE)</a>
+                    <a class="toggle-vis" data-column="10" id="columntoggle">@Html.DisplayNameFor(model => model.MAX_TARGET_GRADE)</a>
+                    <br /><br />
+                    <a class="toggle-vis" data-column="11" id="columntoggle">@Html.DisplayNameFor(model => model.TARGETED_CONSULTANTS)</a>
+                    <a class="toggle-vis" data-column="12" id="columntoggle">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.LOCATION)</a>
+                    <a class="toggle-vis" data-column="13" id="columntoggle">@Html.DisplayNameFor(model => model.ACTUAL_START_DATE)</a>
+                    <a class="toggle-vis" data-column="14" id="columntoggle">@Html.DisplayNameFor(model => model.DURATION)</a>
+                    <a class="toggle-vis" data-column="15" id="columntoggle">@Html.DisplayNameFor(model => model.OPPORTUNITY_CATALOG.OPPORTUNITY_PRIORITY)</a>
+                    <a class="toggle-vis" data-column="16" id="columntoggle">@Html.DisplayNameFor(model => model.GROUP_POSITIONS_AVAILABLE)</a>
+                    <br /><br />
+                    <a class="toggle-vis" data-column="17" id="columntoggle">@Html.DisplayNameFor(model => model.LAST_EDITED_BY)</a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
 
-    @using (Html.BeginForm("ExportToExcel", "Reports", FormMethod.Post))
-    {
-        <button type="submit" class="btn btn-info navbar-btn btn-sm">
-            <i class="fa fa-download"></i>
-            <span> Export to Excel</span>
-        </button>
-    }
+
+
+
 </div>
