@@ -24,6 +24,7 @@ namespace StaffingPlanner
 
 			bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
 					  "~/Scripts/bootstrap.js",
+                      "~/Scripts/datepicker.js",
                       "~/Scripts/datatables.min.js",
                       "~/Scripts/celledit.js",
                       "~/Scripts/tables.js",
@@ -31,6 +32,7 @@ namespace StaffingPlanner
 
 			bundles.Add(new StyleBundle("~/Content/css").Include(
                      "~/Content/bootstrap.min.css",
+                     "~/Content/datepicker.min.css",
                      "~/Content/datatables.css",
                      "~/Content/font-awesome.css",
                       "~/Content/shared.css"));

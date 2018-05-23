@@ -56,7 +56,8 @@ jQuery.fn.dataTable.Api.register('MakeCellsEditable()', function (settings) {
             function _addValidationCss() {
                 // Show validation error
                 if (settings.allowNulls.errorClass) {
-                    $(inputField).addClass(settings.allowNulls.errorClass)
+                    $(inputField).addClass(settings.allowNulls.errorClass);
+                    alert('Null not allowed');
                 } else {
                     $(inputField).css({ "border": "red solid 1px" });
                 }

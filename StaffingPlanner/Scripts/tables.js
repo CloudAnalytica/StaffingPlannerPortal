@@ -12,20 +12,20 @@
                 $.each(v2, function (k3, v3) {
                     if (k3 == 'ProjectValue' && v3) {
                         v3 = v3.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                        
+
                     }
-                    
+
                 });
             });
         });
-            console.log("successfully loaded the data");
-     }).fail(function () {
-            console.log('Failed to load data.');
-     }).always(function () {
-            console.log('ajax call complete');
-      });
+        console.log("successfully loaded the data");
+    }).fail(function () {
+        console.log('Failed to load data.');
+    }).always(function () {
+        console.log('ajax call complete');
+    });
 
- 
+
 
     /* Load the data table */
     var table = $('#example').DataTable({
@@ -52,10 +52,10 @@
                             var temp = data / 1000;
                             return '$' + temp.toString() + 'k';
                         }
-                       
+
                     }
                     else {
-                        return data;
+                        return 'null';
                     }
                 }
             },
@@ -90,10 +90,21 @@
                 }
             },
 
-        ]
+
+        ],
+        "createdRow": function (row, data, dataIndex) {
+            console.log(data.Account);
+            if (data.Account == "GE") {
+                console.log('account name');
+                $(data).addClass('popover');
+                $(data).popover('show');
+            }
+            $(row).addClass('table-warning');
+        },
     });
 
-
+ 
+   
 
     /* toggles visibility of columns */
     $('a.toggle-vis').on('click', function (e) {
@@ -109,11 +120,16 @@
     function myCallbackFunction(updatedCell, updatedRow, oldValue) {
         console.log("The old value for the cell is:\t" + oldValue);
         console.log("The new value for the cell is:\t" + updatedCell.data());
+        
     }
 
     table.MakeCellsEditable({
         "onUpdate": myCallbackFunction,
         "inputCss": 'my-input-class',
+        "allowNulls": {
+            "columns": [],
+            "errorClass": 'error'
+        },
         "inputTypes": [
             {
                 "column": 0,
@@ -134,9 +150,9 @@
                 ]
             }
             , {
-                "column": 2,
-                "type": "text",
-                "options": null
+                "column": 18,
+                "type": "datepicker",
+                
             }
         ],
         "confirmationButton": {
