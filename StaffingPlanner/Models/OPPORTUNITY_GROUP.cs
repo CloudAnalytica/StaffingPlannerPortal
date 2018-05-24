@@ -33,6 +33,7 @@ namespace StaffingPlanner.Models
         public System.DateTime LAST_EDITED_DATE { get; set; }
         public Nullable<decimal> OPPORTUNITY_VALUE { get; set; }
         public string OPPORTUNITY_PRIORITY { get; set; }
+        public Nullable<System.DateTime> EXPECTED_END_DATE { get; set; }
     
         public virtual OPPORTUNITY_CATALOG OPPORTUNITY_CATALOG { get; set; }
     }

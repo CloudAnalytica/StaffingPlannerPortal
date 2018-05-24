@@ -237,6 +237,9 @@
     <Compile Include="Models\STATS_PORTFOLIO_Result.cs">
       <DependentUpon>Opportunities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\STATS_PROJECTED_PROFIT_Result.cs">
+      <DependentUpon>Opportunities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Opportunities.tt</DependentUpon>
     </Compile>
