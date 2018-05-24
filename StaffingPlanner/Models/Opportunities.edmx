@@ -29,7 +29,7 @@
           <Property Name="LAST_EDITED_DATE" Type="date" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'DEV_ClientOpportunities.dbo.LOST_OPPORTUNITY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Test_ClientOpportunities.dbo.LOST_OPPORTUNITY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="LOST_OPPORTUNITY">
           <Key>
             <PropertyRef Name="OPPORTUNITY_ID" />
@@ -88,7 +88,6 @@ warning 6002: The table/view 'DEV_ClientOpportunities.dbo.LOST_OPPORTUNITY' does
           <Property Name="LAST_EDITED_DATE" Type="date" Nullable="false" />
           <Property Name="OPPORTUNITY_VALUE" Type="decimal" Precision="18" Scale="0" />
           <Property Name="OPPORTUNITY_PRIORITY" Type="varchar" MaxLength="50" />
-          <Property Name="EXPECTED_END_DATE" Type="date" />
         </EntityType>
         <EntityType Name="OPPORTUNITY_STATUS">
           <Key>
@@ -361,7 +360,6 @@ warning 6002: The table/view 'DEV_ClientOpportunities.dbo.LOST_OPPORTUNITY' does
           <NavigationProperty Name="OPPORTUNITY_CATALOG" Relationship="Self.FK_OPPORTUNITY_GROUP_OPPORTUNITY_CATALOG" FromRole="OPPORTUNITY_GROUP" ToRole="OPPORTUNITY_CATALOG" />
           <Property Name="OPPORTUNITY_VALUE" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="OPPORTUNITY_PRIORITY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="EXPECTED_END_DATE" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="OPPORTUNITY_STATUS">
           <Key>
@@ -614,7 +612,6 @@ warning 6002: The table/view 'DEV_ClientOpportunities.dbo.LOST_OPPORTUNITY' does
           <EntitySetMapping Name="OPPORTUNITY_GROUP">
             <EntityTypeMapping TypeName="OpportunitiesModel.OPPORTUNITY_GROUP">
               <MappingFragment StoreEntitySet="OPPORTUNITY_GROUP">
-                <ScalarProperty Name="EXPECTED_END_DATE" ColumnName="EXPECTED_END_DATE" />
                 <ScalarProperty Name="OPPORTUNITY_PRIORITY" ColumnName="OPPORTUNITY_PRIORITY" />
                 <ScalarProperty Name="OPPORTUNITY_VALUE" ColumnName="OPPORTUNITY_VALUE" />
                 <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />

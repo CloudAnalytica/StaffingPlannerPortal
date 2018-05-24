@@ -73,7 +73,7 @@
                     "columns": [],
                     "errorClass": 'error'
                 },
-                "inputTypes": [
+                "inputTypes": [ /* build JSON to put here */
                     {
                         "column": 0,
                         "type": "list",
@@ -101,7 +101,6 @@
                             { "value": 0, "display": subbusinessData[4] },
                             { "value": 0, "display": subbusinessData[5] },
                             { "value": 0, "display": subbusinessData[6] },
-
                         ]
                     }
                     , {
