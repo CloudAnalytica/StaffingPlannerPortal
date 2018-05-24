@@ -169,5 +169,10 @@ namespace StaffingPlanner.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<STATS_PORTFOLIO_Result>("STATS_PORTFOLIO");
         }
+    
+        public virtual ObjectResult<STATS_PROJECTED_PROFIT_Result> STATS_PROJECTED_PROFIT()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<STATS_PROJECTED_PROFIT_Result>("STATS_PROJECTED_PROFIT");
+        }
     }
 }
