@@ -34,10 +34,11 @@ namespace StaffingPlanner.Models
 	}
 
 	/*
-	 * TODO: Create Class when stored procedure gets created.
+	 * Used with stored procedure: STATS_PROJECTED_PROFIT
 	 */
-	public class ProfitStats
+	public class ProjectedProfitStats
 	{
-
+		public int Quarter { get; set; }
+		public decimal Value { get; set; }
 	}
 }

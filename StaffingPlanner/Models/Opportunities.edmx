@@ -88,6 +88,7 @@ warning 6002: The table/view 'DEV_ClientOpportunities.dbo.LOST_OPPORTUNITY' does
           <Property Name="LAST_EDITED_DATE" Type="date" Nullable="false" />
           <Property Name="OPPORTUNITY_VALUE" Type="decimal" Precision="18" Scale="0" />
           <Property Name="OPPORTUNITY_PRIORITY" Type="varchar" MaxLength="50" />
+          <Property Name="EXPECTED_END_DATE" Type="date" />
         </EntityType>
         <EntityType Name="OPPORTUNITY_STATUS">
           <Key>
@@ -234,6 +235,7 @@ warning 6002: The table/view 'DEV_ClientOpportunities.dbo.LOST_OPPORTUNITY' does
         <Function Name="STATS_LOST_OPPORTUNITY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="STATS_OPPORTUNITY_STATUS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="STATS_PORTFOLIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="STATS_PROJECTED_PROFIT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="OpportunitiesModelStoreContainer">
           <EntitySet Name="CLIENT_DETAILS" EntityType="Self.CLIENT_DETAILS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CONSULTANT" EntityType="Self.CONSULTANT" Schema="dbo" store:Type="Tables" />
@@ -359,6 +361,7 @@ warning 6002: The table/view 'DEV_ClientOpportunities.dbo.LOST_OPPORTUNITY' does
           <NavigationProperty Name="OPPORTUNITY_CATALOG" Relationship="Self.FK_OPPORTUNITY_GROUP_OPPORTUNITY_CATALOG" FromRole="OPPORTUNITY_GROUP" ToRole="OPPORTUNITY_CATALOG" />
           <Property Name="OPPORTUNITY_VALUE" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="OPPORTUNITY_PRIORITY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EXPECTED_END_DATE" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="OPPORTUNITY_STATUS">
           <Key>
@@ -519,6 +522,7 @@ warning 6002: The table/view 'DEV_ClientOpportunities.dbo.LOST_OPPORTUNITY' does
           <FunctionImport Name="STATS_LOST_OPPORTUNITY" ReturnType="Collection(OpportunitiesModel.STATS_LOST_OPPORTUNITY_Result)" />
           <FunctionImport Name="STATS_OPPORTUNITY_STATUS" ReturnType="Collection(OpportunitiesModel.STATS_OPPORTUNITY_STATUS_Result)" />
           <FunctionImport Name="STATS_PORTFOLIO" ReturnType="Collection(OpportunitiesModel.STATS_PORTFOLIO_Result)" />
+          <FunctionImport Name="STATS_PROJECTED_PROFIT" ReturnType="Collection(OpportunitiesModel.STATS_PROJECTED_PROFIT_Result)" />
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -542,6 +546,10 @@ warning 6002: The table/view 'DEV_ClientOpportunities.dbo.LOST_OPPORTUNITY' does
         <ComplexType Name="STATS_PORTFOLIO_Result">
           <Property Type="String" Name="CLIENT" Nullable="false" MaxLength="101" />
           <Property Type="Decimal" Name="VALUE" Nullable="true" Precision="38" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="STATS_PROJECTED_PROFIT_Result">
+          <Property Type="Int32" Name="Quarter" Nullable="true" />
+          <Property Type="Decimal" Name="Value" Nullable="true" Precision="38" Scale="0" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -606,6 +614,7 @@ warning 6002: The table/view 'DEV_ClientOpportunities.dbo.LOST_OPPORTUNITY' does
           <EntitySetMapping Name="OPPORTUNITY_GROUP">
             <EntityTypeMapping TypeName="OpportunitiesModel.OPPORTUNITY_GROUP">
               <MappingFragment StoreEntitySet="OPPORTUNITY_GROUP">
+                <ScalarProperty Name="EXPECTED_END_DATE" ColumnName="EXPECTED_END_DATE" />
                 <ScalarProperty Name="OPPORTUNITY_PRIORITY" ColumnName="OPPORTUNITY_PRIORITY" />
                 <ScalarProperty Name="OPPORTUNITY_VALUE" ColumnName="OPPORTUNITY_VALUE" />
                 <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
@@ -724,6 +733,14 @@ warning 6002: The table/view 'DEV_ClientOpportunities.dbo.LOST_OPPORTUNITY' does
               <ComplexTypeMapping TypeName="OpportunitiesModel.STATS_PORTFOLIO_Result">
                 <ScalarProperty Name="CLIENT" ColumnName="CLIENT" />
                 <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="STATS_PROJECTED_PROFIT" FunctionName="OpportunitiesModel.Store.STATS_PROJECTED_PROFIT">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OpportunitiesModel.STATS_PROJECTED_PROFIT_Result">
+                <ScalarProperty Name="Quarter" ColumnName="Quarter" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

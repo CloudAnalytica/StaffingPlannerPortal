@@ -42,16 +42,6 @@ namespace StaffingPlanner.Controllers
 					chartData.Add(new object[] { res.Opportunity_Status_Name, 0 });
 				}
 			}
-
-			//Arbitraty hardcoded information for testing
-			//List<object> chartData = new List<object>(3)
-			//{
-			//	new object[] { "Status", "Count" },
-			//	new object[] { "Sold", 9 },
-			//	new object[] { "Lost Opportunity", 3 },
-			//	new object[] {"On-Hold", 6 },
-			//	new object[] {"Active", 4 }
-			//};
 			return Json(chartData, JsonRequestBehavior.AllowGet);
 		}
 
@@ -78,17 +68,6 @@ namespace StaffingPlanner.Controllers
 					chartData.Add(new object[] { res.Reason, 0 });
 				}
 			}
-
-			//Arbitraty hardcoded information for testing
-			//List<object> chartData = new List<object>(3)
-			//{
-			//	new object[] { "Reason", "Count" },
-			//	new object[] { "High Bill Rate", 10 },
-			//	new object[] { "Deadline Miss", 3 },
-			//	new object[] {"Recruitment Delay", 7 },
-			//	new object[] {"No Candidate", 2 },
-			//	new object[] {"No Help From Practice", 5 }
-			//};
 			return Json(chartData, JsonRequestBehavior.AllowGet);
 		}
 
@@ -115,34 +94,51 @@ namespace StaffingPlanner.Controllers
 					chartData.Add(new object[] { res.Client, 0 });
 				}
 			}
-
-			//Arbitraty hardcoded information for testing
-			//List<object> chartData = new List<object>(3)
-			//{
-			//	new object[] { "Sub-business", "Amount" },
-			//	new object[] { "Healthcare", 41 },
-			//	new object[] { "Power", 16 },
-			//	new object[] {"BHGE", 7 },
-			//	new object[] {"Lighting", 6 },
-			//	new object[] {"Life Sciences", 30 }
-			//};
 			return Json(chartData, JsonRequestBehavior.AllowGet);
 		}
 
 		/*
-		*Hardcodes the data to be shown on the Profit Chart.
-		* TODO: Implement stored procedure data retrieval once the procedure is written.
+		*Pulls the Quarterly Projected Profit Chart information using the STATS_PROJECTED_PROFITS storedproc 
+		*and makes it available to be received by an AJAX call. Also converts the number to be displayed in the millions.
 		*/
 		[HttpGet]
 		public ActionResult ProfitChartData()
 		{
-			List<object> chartData = new List<object>(3)
+			var results = db.Database.SqlQuery<ProjectedProfitStats>("STATS_PROJECTED_PROFIT");
+			decimal[] quarterValues = new decimal[4];
+
+			foreach (ProjectedProfitStats res in results)
 			{
-				new object[] { "Quarter", "Amount" },
-				new object[] { "Q1", 1 },
-				new object[] { "Q2", 2.8 },
-				new object[] {"Q3", 4.1 },
-				new object[] {"Q4", 5.2 }
+				if (res.Quarter == 1)
+				{
+					quarterValues[0] = res.Value;
+				}
+				else if (res.Quarter == 2)
+				{
+					quarterValues[1] = res.Value;
+				}
+				else if (res.Quarter == 3)
+				{
+					quarterValues[2] = res.Value;
+				}
+				else
+				{
+					quarterValues[3] = res.Value;
+				}
+			}
+
+			for(int i = 0; i < 4; i++)
+			{
+				quarterValues[i] = quarterValues[i] / 1000000;
+			}
+
+			List<object> chartData = new List<object>
+			{
+				new object[] { "Quarter", "Value" },
+				new object[] { "Q1", quarterValues[0] },
+				new object[] { "Q2", quarterValues[1] },
+				new object[] { "Q3", quarterValues[2] },
+				new object[] { "Q4", quarterValues[3] }
 			};
 			return Json(chartData, JsonRequestBehavior.AllowGet);
 		}
