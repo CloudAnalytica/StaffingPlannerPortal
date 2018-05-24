@@ -187,6 +187,7 @@
     <Compile Include="Models\CONSULTANT.cs">
       <DependentUpon>Opportunities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DropDownModel.cs" />
     <Compile Include="Models\LOST_REASON.cs">
       <DependentUpon>Opportunities.tt</DependentUpon>
     </Compile>

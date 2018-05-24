@@ -37,6 +37,25 @@ namespace StaffingPlanner.Controllers
         {
             public List<ReportExportModel> data { get; set; }
         }
+
+        [HttpGet]
+        public ActionResult ClientData()
+        {
+            var clients = db.CLIENT_DETAILS;
+            var clientData = new List<DropDownModel> { };
+
+            foreach (CLIENT_DETAILS client in clients)
+            {
+                clientData.Add(new DropDownModel
+                {
+                    Id = client.CLIENT_ID,
+                    Name = client.CLIENT_NAME,
+                    SubBusiness = client.CLIENT_SUB_BUSINESS,
+                });
+            }
+            return Json(clientData, JsonRequestBehavior.AllowGet);
+        }
+
         /*
 *Builds a reports JSON object
 *and makes it available to be received by an AJAX call.
