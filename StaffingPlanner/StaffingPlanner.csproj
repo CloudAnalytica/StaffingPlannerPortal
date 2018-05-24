@@ -236,6 +236,9 @@
     <Compile Include="Models\STATS_PORTFOLIO_Result.cs">
       <DependentUpon>Opportunities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\STATS_PROJECTED_PROFIT_Result.cs">
+      <DependentUpon>Opportunities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Opportunities.tt</DependentUpon>
     </Compile>
@@ -250,6 +253,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\datepicker.min.css" />
+    <Content Include="Scripts\celledit.js" />
     <Content Include="Scripts\datatables.min.js" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
@@ -297,6 +302,7 @@
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\datepicker.js" />
     <Content Include="Scripts\statisticsview.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

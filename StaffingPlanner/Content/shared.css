@@ -1,12 +1,20 @@
 ﻿
 .navbar-brand>img {
-    height: 220%;
+    height: 200%;
     width: auto;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
+
+}
+
+#columntoggle{
+    color: white;
+    font-family: Calibri; 
+    background-color: steelblue;
+    padding: 0.5em 0.5em;
 }
 
 body { /* cdn font */
-    padding-top: 35px;
+    padding-top: 20px;
     background: #fafafa;
 }
 
@@ -24,13 +32,11 @@ a, a:hover, a:focus {  /* un-hyperlinks*/
 }
 
 .navbar { /* top horizontal nav bar*/
-    padding-bottom: 5px;
     background: black;
     color:  white;
     border: none;
     border-radius: 0;
     margin-bottom: 0px;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 

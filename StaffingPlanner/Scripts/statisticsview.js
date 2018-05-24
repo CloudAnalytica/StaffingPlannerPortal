@@ -124,7 +124,7 @@
 			profitData.addRow([profitChartData[i][0], profitChartData[i][1]]);
 		}
 		var options = {
-			'title': 'Earnings in Millions',
+			'title': 'Projected Earnings in Millions',
 			'width': 400,
 			'height': 300
 		};

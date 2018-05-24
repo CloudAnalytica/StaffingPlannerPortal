@@ -50,11 +50,6 @@ namespace StaffingPlanner.Controllers
             
             foreach (OPPORTUNITY_GROUP opp in opportunity)
             {
-                var temp = (decimal) 0.0;
-                if (opp.OPPORTUNITY_CATALOG.OPPORTUNITY_VALUE.IsNumber())
-                {
-                    temp = (decimal) opp.OPPORTUNITY_CATALOG.OPPORTUNITY_VALUE;
-                }
 
                 reportsData.Add(new ReportExportModel
                 {
@@ -62,7 +57,7 @@ namespace StaffingPlanner.Controllers
                     Subbusiness = opp.OPPORTUNITY_CATALOG.CLIENT_DETAILS.CLIENT_SUB_BUSINESS,
                     ProjectName = opp.OPPORTUNITY_CATALOG.OPPORTUNITY_NAME,
                     Sponsor = opp.OPPORTUNITY_CATALOG.SPONSOR,
-                    ProjectValue = temp,
+                    ProjectValue = opp.OPPORTUNITY_CATALOG.OPPORTUNITY_VALUE,
                     Skillset = opp.SKILLSET,
                     ProjectType = opp.OPPORTUNITY_CATALOG.OPPORTUNITY_TYPE,
                     ProjectStatus = opp.OPPORTUNITY_CATALOG.OPPORTUNITY_STATUS1.OPPORTUNITY_STATUS_NAME,
@@ -224,10 +219,6 @@ namespace StaffingPlanner.Controllers
 
 			foreach (var report in reportList)
 			{
-                if (!report.ProjectValue.IsNumber())
-                {
-                    report.ProjectValue = 0;
-                }
 				dt.Rows.Add(report.Account, report.Subbusiness, report.ProjectName, report.Sponsor, report.ProjectValue, report.Skillset,
 					report.ProjectType, report.ProjectStatus, report.RateCardHr, report.Practice, report.MaxTargetGrade, report.TargetConsultant,
 					report.WorkLocation, report.StartDate, report.Duration, report.Priority, report.NumberOfRoles, report.AccountExecutive);

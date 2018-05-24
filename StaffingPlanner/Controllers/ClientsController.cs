@@ -139,32 +139,6 @@ namespace StaffingPlanner.Controllers
 			return RedirectToAction("Index");
 		}
 
-		//// GET: Clients/Delete/5
-		//public ActionResult Delete(int? id)
-  //      {
-  //          if (id == null)
-  //          {
-  //              return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-  //          }
-  //          CLIENT_DETAILS client = db.CLIENT_DETAILS.Find(id);
-  //          if (client == null)
-  //          {
-  //              return HttpNotFound();
-  //          }
-  //          return View(client);
-  //      }
-
-  //      // POST: Clients/Delete/5
-  //      [HttpPost, ActionName("Delete")]
-  //      [ValidateAntiForgeryToken]
-  //      public ActionResult DeleteConfirmed(int id)
-  //      {
-  //          CLIENT_DETAILS client = db.CLIENT_DETAILS.Find(id);
-  //          db.CLIENT_DETAILS.Remove(client);
-  //          db.SaveChanges();
-  //          return RedirectToAction("Index");
-  //      }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
