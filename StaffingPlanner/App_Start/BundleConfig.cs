@@ -9,7 +9,8 @@ namespace StaffingPlanner
 		public static void RegisterBundles(BundleCollection bundles)
 		{
 			bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-						"~/Scripts/jquery-{version}.js"));
+						"~/Scripts/jquery-{version}.js",
+                        "~/Scripts/bootstrap.js"));
 
 			bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
 						"~/Scripts/jquery.validate*"));
@@ -23,7 +24,7 @@ namespace StaffingPlanner
 						"~/Scripts/modernizr-*"));
 
 			bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-					  "~/Scripts/bootstrap.js",
+					  
                       "~/Scripts/datepicker.js",
                       "~/Scripts/datatables.min.js",
                       "~/Scripts/celledit.js",
@@ -32,10 +33,13 @@ namespace StaffingPlanner
 
 			bundles.Add(new StyleBundle("~/Content/css").Include(
                      "~/Content/bootstrap.min.css",
-                     "~/Content/datepicker.min.css",
-                     "~/Content/datatables.css",
                      "~/Content/font-awesome.css",
                       "~/Content/shared.css"));
+
+            bundles.Add(new StyleBundle("~/Content/cssAddOn").Include(
+                     "~/Content/datepicker.min.css",
+                     "~/Content/datatables.css"
+                ));
 		}
 	}
 }

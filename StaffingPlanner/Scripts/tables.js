@@ -1,31 +1,10 @@
 ﻿$(document).ready(function () {
+    console.log("Time until DOMready: ", (Date.now() - timerStart)/1000 + ' seconds.');
     var clientData = [];
     var subbusinessData = [];
     var id, name, subbusiness;
     var nameflag, subBusinessflag = 0;
-    ///* Get the reports data and turn it into a JSON */
-    //$.ajax({
-    //    type: "GET",
-    //    url: "ReportsData",
-    //    contentType: "application/json;charset=utf-8",
-    //    dataType: "json",
-    //}).done(function (data) {
-    //    $.each(data, function (k, v) {
-    //        $.each(v, function (k2, v2) {
-    //            $.each(v2, function (k3, v3) {
-    //                if (k3 == 'ProjectValue' && v3) {
-    //                    v3 = v3.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    //                }
 
-    //            });
-    //        });
-    //    });
-    //    console.log("successfully loaded the reports data");
-    //}).fail(function () {
-    //    console.log('Failed to load data.');
-    //}).always(function () {
-    //    console.log('ajax call complete');
-    //});
 
     /* Get the data and turn it into a JSON */
     $.ajax({

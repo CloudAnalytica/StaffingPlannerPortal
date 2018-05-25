@@ -1,12 +1,17 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <script type="text/javascript">
+        var timerStart = Date.now();
+    </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Staffing Planner</title>
+    <title>Staffing Planner</title>
+
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/cssAddOn")
     @Scripts.Render("~/bundles/modernizr")
-    </head>
+</head>
 <body>
     <div class="wrapper">
         <!-- Sidebar Holder -->
@@ -98,8 +103,8 @@
 
         </div>
     </div>
-
-    <!-- LOGIN MODAL -->
+    
+    @*<!-- LOGIN MODAL -->
     <div class="modal fade " id="login-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
@@ -167,11 +172,11 @@
                 </div> <!-- Modal Body-->
             </div> <!--Modal Content-->
         </div><!--Modal Dialog-->
-    </div> <!--Modal-->
+    </div> <!--Modal-->*@
 
 
 
-    <!-- User MODAL -->
+    @*<!-- User MODAL -->
     <div class="modal fade " id="loggedin-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm" role="document">
             <div class="modal-header">
@@ -183,7 +188,7 @@
 
             </div>
         </div>
-    </div> <!--Modal-->
+    </div> <!--Modal-->*@
 
     <div class="container body-content">
         <div class="line"></div>
@@ -194,7 +199,12 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script type="text/javascript">
+        $(window).load(function () {
+            console.log("time until everything has loaded: ", (Date.now() - timerStart)/1000 + ' seconds.');
+        });
+    </script>
 
-    @RenderSection("scripts", required: false)
+    <!--@RenderSection("scripts", required: false)-->
 </body>
 </html>
