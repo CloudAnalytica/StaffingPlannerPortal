@@ -23,7 +23,7 @@ namespace StaffingPlanner
 			bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
 						"~/Scripts/modernizr-*"));
 
-			bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+			bundles.Add(new ScriptBundle("~/bundles/scriptAddOns").Include(
 					  
                       "~/Scripts/datepicker.js",
                       "~/Scripts/datatables.min.js",

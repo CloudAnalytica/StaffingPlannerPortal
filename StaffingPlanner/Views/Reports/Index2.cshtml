@@ -1,10 +1,14 @@
-﻿@model IEnumerable<StaffingPlanner.Models.OPPORTUNITY_GROUP>
+﻿
+@section csslib{
+    @Styles.Render("~/Content/cssAddOn")
+}
+
+@model IEnumerable<StaffingPlanner.Models.OPPORTUNITY_GROUP>
 <style>
     .my-input-class {
         padding: 3px 6px;
         border: 1px solid #ccc;
         border-radius: 4px;
-        
     }
 
     .my-confirm-class {
@@ -39,18 +43,18 @@
 <div class="">
     <h2>Report</h2>
 
-        @using (Html.BeginForm("ExportToExcel", "Reports", FormMethod.Post))
-        {
-            <button type="submit" class="btn btn-info navbar-btn btn-sm">
-                <i class="fa fa-download"></i>
-                <span> Export to Excel</span>
-            </button>
-            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
-                <i class="fa fa-search"></i> Column Visibility
-            </button>
-        }
+    @using (Html.BeginForm("ExportToExcel", "Reports", FormMethod.Post))
+    {
+        <button type="submit" class="btn btn-info navbar-btn btn-sm">
+            <i class="fa fa-download"></i>
+            <span> Export to Excel</span>
+        </button>
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+            <i class="fa fa-search"></i> Column Visibility
+        </button>
+    }
 
-    
+
     <table id="example" class=" table nowrap table-hover  table-condensed table-bordered small">
         <thead>
             <tr class=" small">
@@ -149,3 +153,7 @@
 
 
 </div>
+
+@section scriptslib{
+    @Scripts.Render("~/bundles/scriptAddOns")
+}

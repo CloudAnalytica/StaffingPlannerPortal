@@ -9,14 +9,15 @@
     <title>Staffing Planner</title>
 
     @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/cssAddOn")
+    @RenderSection("csslib", required: false)
+
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     <div class="wrapper">
         <!-- Sidebar Holder -->
         <nav id="sidebar">
- 
+
 
             <ul class="list-unstyled components">
                 <li class="active">
@@ -72,7 +73,7 @@
                     <a id="logo" href="/" class=" navbar-brand navbar-left"><img src="~/Images/logo.png" /></a>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
-                       
+
                             @{
                                 if (Session["UserID"] != null)
                                 {
@@ -93,7 +94,7 @@
                                 }
                             }
 
-                                </ul>
+                        </ul>
                     </div>
                 </div>
             </nav>
@@ -103,92 +104,92 @@
 
         </div>
     </div>
-    
+
     @*<!-- LOGIN MODAL -->
-    <div class="modal fade " id="login-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-            <br />
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#signin" data-toggle="tab">Signin</a></li>
-                    <li class=""><a href="#register" data-toggle="tab">Register</a></li>
-                </ul>
+        <div class="modal fade " id="login-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
                 <br />
-            
-                <div class="modal-body">
-                    <!-- Login Tab-->
-                    <div class="tab-content">
-                        <div class="tab-pane fade active in" id="signin">
-                            @using (Html.BeginForm())
-                            {
-                                @Html.AntiForgeryToken()
-                                <div class="form-group">
-                                    <label for="email" class="control-label">Email:</label>
-                                    <input type="email" class="form-control" id="email" name="email" title="Please enter your email" placeholder="example@gmail.com" />
-                                </div>
-                                <div class="form-group">
-                                    <label for="user_password" class="control-label">Password:</label>
-                                    <input type="password" class="form-control" id="user_password" name="user_password" />
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-primary" value="Index">Login</button>
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                </div>
-                            }
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#signin" data-toggle="tab">Signin</a></li>
+                        <li class=""><a href="#register" data-toggle="tab">Register</a></li>
+                    </ul>
+                    <br />
+
+                    <div class="modal-body">
+                        <!-- Login Tab-->
+                        <div class="tab-content">
+                            <div class="tab-pane fade active in" id="signin">
+                                @using (Html.BeginForm())
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="form-group">
+                                        <label for="email" class="control-label">Email:</label>
+                                        <input type="email" class="form-control" id="email" name="email" title="Please enter your email" placeholder="example@gmail.com" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user_password" class="control-label">Password:</label>
+                                        <input type="password" class="form-control" id="user_password" name="user_password" />
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary" value="Index">Login</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                }
+                            </div>
+
+                            <!-- Register Tab-->
+                            <div class="tab-pane fade" id="register">
+                                @using (Html.BeginForm())
+                                {
+                                    @Html.AntiForgeryToken()
+
+
+
+                                    <div class="form-group">
+                                        <label for="email" class="control-label">Email:</label>
+                                        <input type="email" class="form-control" id="email" name="email" title="Please enter your email" placeholder="example@gmail.com" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary" value="Create">Register</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user_password" class="control-label">Password:</label>
+                                        <input type="password" class="form-control" id="user_password" name="user_password" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user_password" class="control-label">Confirm Password:</label>
+                                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" />
+                                    </div>
+                                    <div class="form-group">
+                                        <i class="fa fa-asterisk" style="color: red"></i> = required
+                                    </div>
+
+                                }
+                            </div>
                         </div>
-
-                        <!-- Register Tab-->
-                        <div class="tab-pane fade" id="register">
-                            @using (Html.BeginForm())
-                            {
-                                @Html.AntiForgeryToken()
-
-
-
-                                <div class="form-group">
-                                    <label for="email" class="control-label">Email:</label>
-                                    <input type="email" class="form-control" id="email" name="email" title="Please enter your email" placeholder="example@gmail.com" />
-                                </div>
-
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-primary" value="Create">Register</button>
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                </div>
-                                <div class="form-group">
-                                    <label for="user_password" class="control-label">Password:</label>
-                                    <input type="password" class="form-control" id="user_password" name="user_password" />
-                                </div>
-                                <div class="form-group">
-                                    <label for="user_password" class="control-label">Confirm Password:</label>
-                                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" />
-                                </div>
-                                <div class="form-group">
-                                    <i class="fa fa-asterisk" style="color: red"></i> = required
-                                </div>
-
-                            }
-                        </div>
-                    </div>
-                </div> <!-- Modal Body-->
-            </div> <!--Modal Content-->
-        </div><!--Modal Dialog-->
-    </div> <!--Modal-->*@
+                    </div> <!-- Modal Body-->
+                </div> <!--Modal Content-->
+            </div><!--Modal Dialog-->
+        </div> <!--Modal-->*@
 
 
 
     @*<!-- User MODAL -->
-    <div class="modal fade " id="loggedin-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm" role="document">
-            <div class="modal-header">
-                <h3 class="modal-title text-center" id="exampleModalLabel">Hello @{ if (Session["UserID"] != null) { Session["FirstName"].ToString(); } }</h3>
-            </div>
-            <div class="modal-body">
-            </div>
-            <div class="modal-footer">
+        <div class="modal fade " id="loggedin-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-header">
+                    <h3 class="modal-title text-center" id="exampleModalLabel">Hello @{ if (Session["UserID"] != null) { Session["FirstName"].ToString(); } }</h3>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
 
+                </div>
             </div>
-        </div>
-    </div> <!--Modal-->*@
+        </div> <!--Modal-->*@
 
     <div class="container body-content">
         <div class="line"></div>
@@ -198,13 +199,13 @@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+
+
+    @RenderSection("scriptslib", required: false)
     <script type="text/javascript">
         $(window).load(function () {
-            console.log("time until everything has loaded: ", (Date.now() - timerStart)/1000 + ' seconds.');
+            console.log("time until everything has loaded: ", (Date.now() - timerStart) / 1000 + ' seconds.');
         });
     </script>
-
-    <!--@RenderSection("scripts", required: false)-->
 </body>
 </html>
