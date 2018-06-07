@@ -29,7 +29,7 @@
           <Property Name="LAST_EDITED_DATE" Type="date" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'Test_ClientOpportunities.dbo.LOST_OPPORTUNITY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'DEV_ClientOpportunities.dbo.LOST_OPPORTUNITY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="LOST_OPPORTUNITY">
           <Key>
             <PropertyRef Name="OPPORTUNITY_ID" />
@@ -88,6 +88,7 @@ warning 6002: The table/view 'Test_ClientOpportunities.dbo.LOST_OPPORTUNITY' doe
           <Property Name="LAST_EDITED_DATE" Type="date" Nullable="false" />
           <Property Name="OPPORTUNITY_VALUE" Type="decimal" Precision="18" Scale="0" />
           <Property Name="OPPORTUNITY_PRIORITY" Type="varchar" MaxLength="50" />
+          <Property Name="EXPECTED_END_DATE" Type="date" />
         </EntityType>
         <EntityType Name="OPPORTUNITY_STATUS">
           <Key>
@@ -280,210 +281,7 @@ warning 6002: The table/view 'Test_ClientOpportunities.dbo.LOST_OPPORTUNITY' doe
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OpportunitiesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="CLIENT_DETAILS">
-          <Key>
-            <PropertyRef Name="CLIENT_ID" />
-          </Key>
-          <Property Name="CLIENT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CLIENT_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CLIENT_SUB_BUSINESS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CLIENT_STATUS" Type="Boolean" Nullable="false" />
-          <Property Name="LAST_EDITED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LAST_EDITED_DATE" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="OPPORTUNITY_CATALOG" Relationship="Self.FK_OPPORTUNITY_CATALOG_CLIENT_DETAILS" FromRole="CLIENT_DETAILS" ToRole="OPPORTUNITY_CATALOG" />
-        </EntityType>
-        <EntityType Name="CONSULTANT">
-          <Key>
-            <PropertyRef Name="CONSULTANT_ID" />
-          </Key>
-          <Property Name="CONSULTANT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CONSULTANT_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CONSULTANT_PRACTICE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="SOGETI_START_DATE" Type="DateTime" Precision="0" />
-          <Property Name="CONSULTANT_EMPLOYMENT_STATUS" Type="Boolean" Nullable="false" />
-          <Property Name="LAST_EDITED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LAST_EDITED_DATE" Type="DateTime" Nullable="false" Precision="0" />
-        </EntityType>
-        <EntityType Name="LOST_REASON">
-          <Key>
-            <PropertyRef Name="LOST_REASON_ID" />
-          </Key>
-          <Property Name="LOST_REASON_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="REASON" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="OPPORTUNITY_CATALOG" Relationship="Self.LOST_OPPORTUNITY" FromRole="LOST_REASON" ToRole="OPPORTUNITY_CATALOG" />
-        </EntityType>
-        <EntityType Name="OPPORTUNITY_CATALOG">
-          <Key>
-            <PropertyRef Name="OPPORTUNITY_ID" />
-          </Key>
-          <Property Name="OPPORTUNITY_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CLIENT_ID" Type="Int32" Nullable="false" />
-          <Property Name="OPPORTUNITY_STATUS_ID" Type="Int32" Nullable="false" />
-          <Property Name="LOCATION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="SPONSOR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="OPPORTUNITY_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="OPPORTUNITY_PRACTICE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="OPPORTUNITY_VALUE" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="OPPORTUNITY_STATUS" Type="Boolean" Nullable="false" />
-          <Property Name="OPPORTUNITY_COMMENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="OPPORTUNITY_PRIORITY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OPPORTUNITY_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="NUMBER_OF_REQUIRED_ROLES" Type="Int32" />
-          <Property Name="LAST_EDITED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LAST_EDITED_DATE" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="CLIENT_DETAILS" Relationship="Self.FK_OPPORTUNITY_CATALOG_CLIENT_DETAILS" FromRole="OPPORTUNITY_CATALOG" ToRole="CLIENT_DETAILS" />
-          <NavigationProperty Name="OPPORTUNITY_STATUS1" Relationship="Self.FK_OPPORTUNITY_CATALOG_OPPORTUNITY_STATUS" FromRole="OPPORTUNITY_CATALOG" ToRole="OPPORTUNITY_STATUS" />
-          <NavigationProperty Name="OPPORTUNITY_GROUP" Relationship="Self.FK_OPPORTUNITY_GROUP_OPPORTUNITY_CATALOG" FromRole="OPPORTUNITY_CATALOG" ToRole="OPPORTUNITY_GROUP" />
-          <NavigationProperty Name="LOST_REASON" Relationship="Self.LOST_OPPORTUNITY" FromRole="OPPORTUNITY_CATALOG" ToRole="LOST_REASON" />
-        </EntityType>
-        <EntityType Name="OPPORTUNITY_GROUP">
-          <Key>
-            <PropertyRef Name="GROUP_ID" />
-          </Key>
-          <Property Name="GROUP_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="OPPORTUNITY_ID" Type="Int32" Nullable="false" />
-          <Property Name="SKILLSET" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="OPPORTUNITY_GROUP_STATUS" Type="Boolean" Nullable="false" />
-          <Property Name="GROUP_POSITIONS_AVAILABLE" Type="Int32" Nullable="false" />
-          <Property Name="MAX_TARGET_GRADE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TARGET_NEW_HIRE_GRADE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="SITE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="DURATION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TARGETED_CONSULTANTS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="CANDIDATE_CONFIRMED" Type="Boolean" />
-          <Property Name="RATE_CARD_PER_HR" Type="Int32" />
-          <Property Name="EXPECTED_START_DATE" Type="DateTime" Precision="0" />
-          <Property Name="ACTUAL_START_DATE" Type="DateTime" Precision="0" />
-          <Property Name="ACTUAL_END_DATE" Type="DateTime" Precision="0" />
-          <Property Name="LAST_EDITED_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LAST_EDITED_DATE" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="OPPORTUNITY_CATALOG" Relationship="Self.FK_OPPORTUNITY_GROUP_OPPORTUNITY_CATALOG" FromRole="OPPORTUNITY_GROUP" ToRole="OPPORTUNITY_CATALOG" />
-          <Property Name="OPPORTUNITY_VALUE" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="OPPORTUNITY_PRIORITY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="OPPORTUNITY_STATUS">
-          <Key>
-            <PropertyRef Name="OPPORTUNITY_STATUS_ID" />
-          </Key>
-          <Property Name="OPPORTUNITY_STATUS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="OPPORTUNITY_STATUS_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="OPPORTUNITY_CATALOG" Relationship="Self.FK_OPPORTUNITY_CATALOG_OPPORTUNITY_STATUS" FromRole="OPPORTUNITY_STATUS" ToRole="OPPORTUNITY_CATALOG" />
-        </EntityType>
-        <EntityType Name="SIGNUP_INFO">
-          <Key>
-            <PropertyRef Name="USER_ID" />
-          </Key>
-          <Property Name="USER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="USER_PRIVILEGE_ID" Type="Int32" Nullable="false" />
-          <Property Name="USERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="USER_PASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="FIRSTNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LASTNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="USER_STATUS" Type="Boolean" />
-          <Property Name="LAST_LOGON" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="USER_PRIVILEGE" Relationship="Self.FK_SIGNUP_INFO_USER_PRIVILEGE" FromRole="SIGNUP_INFO" ToRole="USER_PRIVILEGE" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="USER_PRIVILEGE">
-          <Key>
-            <PropertyRef Name="USER_PRIVILEGE_ID" />
-          </Key>
-          <Property Name="USER_PRIVILEGE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="USER_PRIVILEGE_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="SIGNUP_INFO" Relationship="Self.FK_SIGNUP_INFO_USER_PRIVILEGE" FromRole="USER_PRIVILEGE" ToRole="SIGNUP_INFO" />
-        </EntityType>
-        <Association Name="FK_OPPORTUNITY_CATALOG_CLIENT_DETAILS">
-          <End Role="CLIENT_DETAILS" Type="Self.CLIENT_DETAILS" Multiplicity="1" />
-          <End Role="OPPORTUNITY_CATALOG" Type="Self.OPPORTUNITY_CATALOG" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CLIENT_DETAILS">
-              <PropertyRef Name="CLIENT_ID" />
-            </Principal>
-            <Dependent Role="OPPORTUNITY_CATALOG">
-              <PropertyRef Name="CLIENT_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_OPPORTUNITY_CATALOG_OPPORTUNITY_STATUS">
-          <End Role="OPPORTUNITY_STATUS" Type="Self.OPPORTUNITY_STATUS" Multiplicity="1" />
-          <End Role="OPPORTUNITY_CATALOG" Type="Self.OPPORTUNITY_CATALOG" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="OPPORTUNITY_STATUS">
-              <PropertyRef Name="OPPORTUNITY_STATUS_ID" />
-            </Principal>
-            <Dependent Role="OPPORTUNITY_CATALOG">
-              <PropertyRef Name="OPPORTUNITY_STATUS_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_OPPORTUNITY_GROUP_OPPORTUNITY_CATALOG">
-          <End Role="OPPORTUNITY_CATALOG" Type="Self.OPPORTUNITY_CATALOG" Multiplicity="1" />
-          <End Role="OPPORTUNITY_GROUP" Type="Self.OPPORTUNITY_GROUP" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="OPPORTUNITY_CATALOG">
-              <PropertyRef Name="OPPORTUNITY_ID" />
-            </Principal>
-            <Dependent Role="OPPORTUNITY_GROUP">
-              <PropertyRef Name="OPPORTUNITY_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SIGNUP_INFO_USER_PRIVILEGE">
-          <End Role="USER_PRIVILEGE" Type="Self.USER_PRIVILEGE" Multiplicity="1" />
-          <End Role="SIGNUP_INFO" Type="Self.SIGNUP_INFO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="USER_PRIVILEGE">
-              <PropertyRef Name="USER_PRIVILEGE_ID" />
-            </Principal>
-            <Dependent Role="SIGNUP_INFO">
-              <PropertyRef Name="USER_PRIVILEGE_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="LOST_OPPORTUNITY">
-          <End Role="LOST_REASON" Type="Self.LOST_REASON" Multiplicity="*" />
-          <End Role="OPPORTUNITY_CATALOG" Type="Self.OPPORTUNITY_CATALOG" Multiplicity="*" />
-        </Association>
         <EntityContainer Name="DEV_ClientOpportunitiesEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="CLIENT_DETAILS" EntityType="Self.CLIENT_DETAILS" />
-          <EntitySet Name="CONSULTANTs" EntityType="Self.CONSULTANT" />
-          <EntitySet Name="LOST_REASON" EntityType="Self.LOST_REASON" />
-          <EntitySet Name="OPPORTUNITY_CATALOG" EntityType="Self.OPPORTUNITY_CATALOG" />
-          <EntitySet Name="OPPORTUNITY_GROUP" EntityType="Self.OPPORTUNITY_GROUP" />
-          <EntitySet Name="OPPORTUNITY_STATUS" EntityType="Self.OPPORTUNITY_STATUS" />
-          <EntitySet Name="SIGNUP_INFO" EntityType="Self.SIGNUP_INFO" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="USER_PRIVILEGE" EntityType="Self.USER_PRIVILEGE" />
-          <AssociationSet Name="FK_OPPORTUNITY_CATALOG_CLIENT_DETAILS" Association="Self.FK_OPPORTUNITY_CATALOG_CLIENT_DETAILS">
-            <End Role="CLIENT_DETAILS" EntitySet="CLIENT_DETAILS" />
-            <End Role="OPPORTUNITY_CATALOG" EntitySet="OPPORTUNITY_CATALOG" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OPPORTUNITY_CATALOG_OPPORTUNITY_STATUS" Association="Self.FK_OPPORTUNITY_CATALOG_OPPORTUNITY_STATUS">
-            <End Role="OPPORTUNITY_STATUS" EntitySet="OPPORTUNITY_STATUS" />
-            <End Role="OPPORTUNITY_CATALOG" EntitySet="OPPORTUNITY_CATALOG" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OPPORTUNITY_GROUP_OPPORTUNITY_CATALOG" Association="Self.FK_OPPORTUNITY_GROUP_OPPORTUNITY_CATALOG">
-            <End Role="OPPORTUNITY_CATALOG" EntitySet="OPPORTUNITY_CATALOG" />
-            <End Role="OPPORTUNITY_GROUP" EntitySet="OPPORTUNITY_GROUP" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SIGNUP_INFO_USER_PRIVILEGE" Association="Self.FK_SIGNUP_INFO_USER_PRIVILEGE">
-            <End Role="USER_PRIVILEGE" EntitySet="USER_PRIVILEGE" />
-            <End Role="SIGNUP_INFO" EntitySet="SIGNUP_INFO" />
-          </AssociationSet>
-          <AssociationSet Name="LOST_OPPORTUNITY" Association="Self.LOST_OPPORTUNITY">
-            <End Role="LOST_REASON" EntitySet="LOST_REASON" />
-            <End Role="OPPORTUNITY_CATALOG" EntitySet="OPPORTUNITY_CATALOG" />
-          </AssociationSet>
           <FunctionImport Name="practiceManager_viewProjectsWithOpportunityStatus" />
           <FunctionImport Name="salesPersons_viewProjectsWithOpportunityStatus" />
           <FunctionImport Name="sp_alterdiagram">
@@ -521,6 +319,70 @@ warning 6002: The table/view 'Test_ClientOpportunities.dbo.LOST_OPPORTUNITY' doe
           <FunctionImport Name="STATS_OPPORTUNITY_STATUS" ReturnType="Collection(OpportunitiesModel.STATS_OPPORTUNITY_STATUS_Result)" />
           <FunctionImport Name="STATS_PORTFOLIO" ReturnType="Collection(OpportunitiesModel.STATS_PORTFOLIO_Result)" />
           <FunctionImport Name="STATS_PROJECTED_PROFIT" ReturnType="Collection(OpportunitiesModel.STATS_PROJECTED_PROFIT_Result)" />
+          <FunctionImport Name="createDevBackup1" />
+          <FunctionImport Name="sp_alterdiagram1">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram1">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram1">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition1" ReturnType="Collection(OpportunitiesModel.sp_helpdiagramdefinition1_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams1" ReturnType="Collection(OpportunitiesModel.sp_helpdiagrams1_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram1">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams1" />
+          <FunctionImport Name="STATS_LOST_OPPORTUNITY1" ReturnType="Collection(OpportunitiesModel.STATS_LOST_OPPORTUNITY1_Result)" />
+          <FunctionImport Name="STATS_OPPORTUNITY_STATUS1" ReturnType="Collection(OpportunitiesModel.STATS_OPPORTUNITY_STATUS1_Result)" />
+          <FunctionImport Name="STATS_PORTFOLIO1" ReturnType="Collection(OpportunitiesModel.STATS_PORTFOLIO1_Result)" />
+          <FunctionImport Name="STATS_PROJECTED_PROFIT1" ReturnType="Collection(OpportunitiesModel.STATS_PROJECTED_PROFIT1_Result)" />
+          <EntitySet Name="CLIENT_DETAILS" EntityType="OpportunitiesModel.CLIENT_DETAILS" />
+          <EntitySet Name="CONSULTANTs" EntityType="OpportunitiesModel.CONSULTANT" />
+          <EntitySet Name="LOST_REASON" EntityType="OpportunitiesModel.LOST_REASON" />
+          <EntitySet Name="OPPORTUNITY_CATALOG" EntityType="OpportunitiesModel.OPPORTUNITY_CATALOG" />
+          <EntitySet Name="OPPORTUNITY_GROUP" EntityType="OpportunitiesModel.OPPORTUNITY_GROUP" />
+          <EntitySet Name="OPPORTUNITY_STATUS" EntityType="OpportunitiesModel.OPPORTUNITY_STATUS" />
+          <EntitySet Name="SIGNUP_INFO" EntityType="OpportunitiesModel.SIGNUP_INFO" />
+          <EntitySet Name="sysdiagrams" EntityType="OpportunitiesModel.sysdiagram" />
+          <EntitySet Name="USER_PRIVILEGE" EntityType="OpportunitiesModel.USER_PRIVILEGE" />
+          <AssociationSet Name="FK_OPPORTUNITY_CATALOG_CLIENT_DETAILS" Association="OpportunitiesModel.FK_OPPORTUNITY_CATALOG_CLIENT_DETAILS">
+            <End Role="CLIENT_DETAILS" EntitySet="CLIENT_DETAILS" />
+            <End Role="OPPORTUNITY_CATALOG" EntitySet="OPPORTUNITY_CATALOG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OPPORTUNITY_CATALOG_OPPORTUNITY_STATUS" Association="OpportunitiesModel.FK_OPPORTUNITY_CATALOG_OPPORTUNITY_STATUS">
+            <End Role="OPPORTUNITY_STATUS" EntitySet="OPPORTUNITY_STATUS" />
+            <End Role="OPPORTUNITY_CATALOG" EntitySet="OPPORTUNITY_CATALOG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OPPORTUNITY_GROUP_OPPORTUNITY_CATALOG" Association="OpportunitiesModel.FK_OPPORTUNITY_GROUP_OPPORTUNITY_CATALOG">
+            <End Role="OPPORTUNITY_CATALOG" EntitySet="OPPORTUNITY_CATALOG" />
+            <End Role="OPPORTUNITY_GROUP" EntitySet="OPPORTUNITY_GROUP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SIGNUP_INFO_USER_PRIVILEGE" Association="OpportunitiesModel.FK_SIGNUP_INFO_USER_PRIVILEGE">
+            <End Role="USER_PRIVILEGE" EntitySet="USER_PRIVILEGE" />
+            <End Role="SIGNUP_INFO" EntitySet="SIGNUP_INFO" />
+          </AssociationSet>
+          <AssociationSet Name="LOST_OPPORTUNITY" Association="OpportunitiesModel.LOST_OPPORTUNITY">
+            <End Role="LOST_REASON" EntitySet="LOST_REASON" />
+            <End Role="OPPORTUNITY_CATALOG" EntitySet="OPPORTUNITY_CATALOG" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -549,155 +411,229 @@ warning 6002: The table/view 'Test_ClientOpportunities.dbo.LOST_OPPORTUNITY' doe
           <Property Type="Int32" Name="Quarter" Nullable="true" />
           <Property Type="Decimal" Name="Value" Nullable="true" Precision="38" Scale="0" />
         </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition1_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams1_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="STATS_LOST_OPPORTUNITY1_Result">
+          <Property Type="String" Name="reason" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="reason_count" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="STATS_OPPORTUNITY_STATUS1_Result">
+          <Property Type="String" Name="OPPORTUNITY_STATUS_NAME" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="STATUS_COUNT" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="STATS_PORTFOLIO1_Result">
+          <Property Type="String" Name="CLIENT" Nullable="false" MaxLength="101" />
+          <Property Type="Decimal" Name="VALUE" Nullable="true" Precision="38" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="STATS_PROJECTED_PROFIT1_Result">
+          <Property Type="Int32" Name="Quarter" Nullable="true" />
+          <Property Type="Decimal" Name="Value" Nullable="true" Precision="38" Scale="0" />
+        </ComplexType>
+        <EntityType Name="CLIENT_DETAILS">
+          <Key>
+            <PropertyRef Name="CLIENT_ID" />
+          </Key>
+          <Property Name="CLIENT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CLIENT_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CLIENT_SUB_BUSINESS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CLIENT_STATUS" Type="Boolean" Nullable="false" />
+          <Property Name="LAST_EDITED_BY" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LAST_EDITED_DATE" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="OPPORTUNITY_CATALOG" Relationship="OpportunitiesModel.FK_OPPORTUNITY_CATALOG_CLIENT_DETAILS" FromRole="CLIENT_DETAILS" ToRole="OPPORTUNITY_CATALOG" />
+        </EntityType>
+        <EntityType Name="CONSULTANT">
+          <Key>
+            <PropertyRef Name="CONSULTANT_ID" />
+          </Key>
+          <Property Name="CONSULTANT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CONSULTANT_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CONSULTANT_PRACTICE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SOGETI_START_DATE" Type="DateTime" Precision="0" />
+          <Property Name="CONSULTANT_EMPLOYMENT_STATUS" Type="Boolean" Nullable="false" />
+          <Property Name="LAST_EDITED_BY" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LAST_EDITED_DATE" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="LOST_REASON">
+          <Key>
+            <PropertyRef Name="LOST_REASON_ID" />
+          </Key>
+          <Property Name="LOST_REASON_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="REASON" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="OPPORTUNITY_CATALOG" Relationship="OpportunitiesModel.LOST_OPPORTUNITY" FromRole="LOST_REASON" ToRole="OPPORTUNITY_CATALOG" />
+        </EntityType>
+        <EntityType Name="OPPORTUNITY_CATALOG">
+          <Key>
+            <PropertyRef Name="OPPORTUNITY_ID" />
+          </Key>
+          <Property Name="OPPORTUNITY_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CLIENT_ID" Type="Int32" Nullable="false" />
+          <Property Name="OPPORTUNITY_STATUS_ID" Type="Int32" Nullable="false" />
+          <Property Name="LOCATION" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SPONSOR" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OPPORTUNITY_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OPPORTUNITY_PRACTICE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OPPORTUNITY_VALUE" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="OPPORTUNITY_STATUS" Type="Boolean" Nullable="false" />
+          <Property Name="OPPORTUNITY_COMMENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="OPPORTUNITY_PRIORITY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OPPORTUNITY_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NUMBER_OF_REQUIRED_ROLES" Type="Int32" />
+          <Property Name="LAST_EDITED_BY" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LAST_EDITED_DATE" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="CLIENT_DETAILS" Relationship="OpportunitiesModel.FK_OPPORTUNITY_CATALOG_CLIENT_DETAILS" FromRole="OPPORTUNITY_CATALOG" ToRole="CLIENT_DETAILS" />
+          <NavigationProperty Name="OPPORTUNITY_STATUS1" Relationship="OpportunitiesModel.FK_OPPORTUNITY_CATALOG_OPPORTUNITY_STATUS" FromRole="OPPORTUNITY_CATALOG" ToRole="OPPORTUNITY_STATUS" />
+          <NavigationProperty Name="OPPORTUNITY_GROUP" Relationship="OpportunitiesModel.FK_OPPORTUNITY_GROUP_OPPORTUNITY_CATALOG" FromRole="OPPORTUNITY_CATALOG" ToRole="OPPORTUNITY_GROUP" />
+          <NavigationProperty Name="LOST_REASON" Relationship="OpportunitiesModel.LOST_OPPORTUNITY" FromRole="OPPORTUNITY_CATALOG" ToRole="LOST_REASON" />
+        </EntityType>
+        <EntityType Name="OPPORTUNITY_GROUP">
+          <Key>
+            <PropertyRef Name="GROUP_ID" />
+          </Key>
+          <Property Name="GROUP_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OPPORTUNITY_ID" Type="Int32" Nullable="false" />
+          <Property Name="SKILLSET" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OPPORTUNITY_GROUP_STATUS" Type="Boolean" Nullable="false" />
+          <Property Name="GROUP_POSITIONS_AVAILABLE" Type="Int32" Nullable="false" />
+          <Property Name="MAX_TARGET_GRADE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TARGET_NEW_HIRE_GRADE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SITE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DURATION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TARGETED_CONSULTANTS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CANDIDATE_CONFIRMED" Type="Boolean" />
+          <Property Name="RATE_CARD_PER_HR" Type="Int32" />
+          <Property Name="EXPECTED_START_DATE" Type="DateTime" Precision="0" />
+          <Property Name="ACTUAL_START_DATE" Type="DateTime" Precision="0" />
+          <Property Name="ACTUAL_END_DATE" Type="DateTime" Precision="0" />
+          <Property Name="LAST_EDITED_BY" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LAST_EDITED_DATE" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="OPPORTUNITY_VALUE" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="OPPORTUNITY_PRIORITY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EXPECTED_END_DATE" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="OPPORTUNITY_CATALOG" Relationship="OpportunitiesModel.FK_OPPORTUNITY_GROUP_OPPORTUNITY_CATALOG" FromRole="OPPORTUNITY_GROUP" ToRole="OPPORTUNITY_CATALOG" />
+        </EntityType>
+        <EntityType Name="OPPORTUNITY_STATUS">
+          <Key>
+            <PropertyRef Name="OPPORTUNITY_STATUS_ID" />
+          </Key>
+          <Property Name="OPPORTUNITY_STATUS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OPPORTUNITY_STATUS_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="OPPORTUNITY_CATALOG" Relationship="OpportunitiesModel.FK_OPPORTUNITY_CATALOG_OPPORTUNITY_STATUS" FromRole="OPPORTUNITY_STATUS" ToRole="OPPORTUNITY_CATALOG" />
+        </EntityType>
+        <EntityType Name="SIGNUP_INFO">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USER_PRIVILEGE_ID" Type="Int32" Nullable="false" />
+          <Property Name="USERNAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="USER_PASSWORD" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FIRSTNAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LASTNAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="USER_STATUS" Type="Boolean" />
+          <Property Name="LAST_LOGON" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="USER_PRIVILEGE" Relationship="OpportunitiesModel.FK_SIGNUP_INFO_USER_PRIVILEGE" FromRole="SIGNUP_INFO" ToRole="USER_PRIVILEGE" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="USER_PRIVILEGE">
+          <Key>
+            <PropertyRef Name="USER_PRIVILEGE_ID" />
+          </Key>
+          <Property Name="USER_PRIVILEGE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USER_PRIVILEGE_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SIGNUP_INFO" Relationship="OpportunitiesModel.FK_SIGNUP_INFO_USER_PRIVILEGE" FromRole="USER_PRIVILEGE" ToRole="SIGNUP_INFO" />
+        </EntityType>
+        <Association Name="FK_OPPORTUNITY_CATALOG_CLIENT_DETAILS">
+          <End Type="OpportunitiesModel.CLIENT_DETAILS" Role="CLIENT_DETAILS" Multiplicity="1" />
+          <End Type="OpportunitiesModel.OPPORTUNITY_CATALOG" Role="OPPORTUNITY_CATALOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENT_DETAILS">
+              <PropertyRef Name="CLIENT_ID" />
+            </Principal>
+            <Dependent Role="OPPORTUNITY_CATALOG">
+              <PropertyRef Name="CLIENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OPPORTUNITY_CATALOG_OPPORTUNITY_STATUS">
+          <End Type="OpportunitiesModel.OPPORTUNITY_STATUS" Role="OPPORTUNITY_STATUS" Multiplicity="1" />
+          <End Type="OpportunitiesModel.OPPORTUNITY_CATALOG" Role="OPPORTUNITY_CATALOG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OPPORTUNITY_STATUS">
+              <PropertyRef Name="OPPORTUNITY_STATUS_ID" />
+            </Principal>
+            <Dependent Role="OPPORTUNITY_CATALOG">
+              <PropertyRef Name="OPPORTUNITY_STATUS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OPPORTUNITY_GROUP_OPPORTUNITY_CATALOG">
+          <End Type="OpportunitiesModel.OPPORTUNITY_CATALOG" Role="OPPORTUNITY_CATALOG" Multiplicity="1" />
+          <End Type="OpportunitiesModel.OPPORTUNITY_GROUP" Role="OPPORTUNITY_GROUP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OPPORTUNITY_CATALOG">
+              <PropertyRef Name="OPPORTUNITY_ID" />
+            </Principal>
+            <Dependent Role="OPPORTUNITY_GROUP">
+              <PropertyRef Name="OPPORTUNITY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIGNUP_INFO_USER_PRIVILEGE">
+          <End Type="OpportunitiesModel.USER_PRIVILEGE" Role="USER_PRIVILEGE" Multiplicity="1" />
+          <End Type="OpportunitiesModel.SIGNUP_INFO" Role="SIGNUP_INFO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER_PRIVILEGE">
+              <PropertyRef Name="USER_PRIVILEGE_ID" />
+            </Principal>
+            <Dependent Role="SIGNUP_INFO">
+              <PropertyRef Name="USER_PRIVILEGE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LOST_OPPORTUNITY">
+          <End Type="OpportunitiesModel.LOST_REASON" Role="LOST_REASON" Multiplicity="*" />
+          <End Type="OpportunitiesModel.OPPORTUNITY_CATALOG" Role="OPPORTUNITY_CATALOG" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="OpportunitiesModelStoreContainer" CdmEntityContainer="DEV_ClientOpportunitiesEntities">
-          <EntitySetMapping Name="CLIENT_DETAILS">
-            <EntityTypeMapping TypeName="OpportunitiesModel.CLIENT_DETAILS">
-              <MappingFragment StoreEntitySet="CLIENT_DETAILS">
-                <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
-                <ScalarProperty Name="CLIENT_NAME" ColumnName="CLIENT_NAME" />
-                <ScalarProperty Name="CLIENT_SUB_BUSINESS" ColumnName="CLIENT_SUB_BUSINESS" />
-                <ScalarProperty Name="CLIENT_STATUS" ColumnName="CLIENT_STATUS" />
-                <ScalarProperty Name="LAST_EDITED_BY" ColumnName="LAST_EDITED_BY" />
-                <ScalarProperty Name="LAST_EDITED_DATE" ColumnName="LAST_EDITED_DATE" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CONSULTANTs">
-            <EntityTypeMapping TypeName="OpportunitiesModel.CONSULTANT">
-              <MappingFragment StoreEntitySet="CONSULTANT">
-                <ScalarProperty Name="CONSULTANT_ID" ColumnName="CONSULTANT_ID" />
-                <ScalarProperty Name="CONSULTANT_NAME" ColumnName="CONSULTANT_NAME" />
-                <ScalarProperty Name="CONSULTANT_PRACTICE" ColumnName="CONSULTANT_PRACTICE" />
-                <ScalarProperty Name="SOGETI_START_DATE" ColumnName="SOGETI_START_DATE" />
-                <ScalarProperty Name="CONSULTANT_EMPLOYMENT_STATUS" ColumnName="CONSULTANT_EMPLOYMENT_STATUS" />
-                <ScalarProperty Name="LAST_EDITED_BY" ColumnName="LAST_EDITED_BY" />
-                <ScalarProperty Name="LAST_EDITED_DATE" ColumnName="LAST_EDITED_DATE" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="LOST_REASON">
-            <EntityTypeMapping TypeName="OpportunitiesModel.LOST_REASON">
-              <MappingFragment StoreEntitySet="LOST_REASON">
-                <ScalarProperty Name="LOST_REASON_ID" ColumnName="LOST_REASON_ID" />
-                <ScalarProperty Name="REASON" ColumnName="REASON" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="OPPORTUNITY_CATALOG">
-            <EntityTypeMapping TypeName="OpportunitiesModel.OPPORTUNITY_CATALOG">
-              <MappingFragment StoreEntitySet="OPPORTUNITY_CATALOG">
-                <ScalarProperty Name="OPPORTUNITY_ID" ColumnName="OPPORTUNITY_ID" />
-                <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
-                <ScalarProperty Name="OPPORTUNITY_STATUS_ID" ColumnName="OPPORTUNITY_STATUS_ID" />
-                <ScalarProperty Name="LOCATION" ColumnName="LOCATION" />
-                <ScalarProperty Name="SPONSOR" ColumnName="SPONSOR" />
-                <ScalarProperty Name="OPPORTUNITY_NAME" ColumnName="OPPORTUNITY_NAME" />
-                <ScalarProperty Name="OPPORTUNITY_PRACTICE" ColumnName="OPPORTUNITY_PRACTICE" />
-                <ScalarProperty Name="OPPORTUNITY_VALUE" ColumnName="OPPORTUNITY_VALUE" />
-                <ScalarProperty Name="OPPORTUNITY_STATUS" ColumnName="OPPORTUNITY_STATUS" />
-                <ScalarProperty Name="OPPORTUNITY_COMMENT" ColumnName="OPPORTUNITY_COMMENT" />
-                <ScalarProperty Name="OPPORTUNITY_PRIORITY" ColumnName="OPPORTUNITY_PRIORITY" />
-                <ScalarProperty Name="OPPORTUNITY_TYPE" ColumnName="OPPORTUNITY_TYPE" />
-                <ScalarProperty Name="NUMBER_OF_REQUIRED_ROLES" ColumnName="NUMBER_OF_REQUIRED_ROLES" />
-                <ScalarProperty Name="LAST_EDITED_BY" ColumnName="LAST_EDITED_BY" />
-                <ScalarProperty Name="LAST_EDITED_DATE" ColumnName="LAST_EDITED_DATE" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="OPPORTUNITY_GROUP">
-            <EntityTypeMapping TypeName="OpportunitiesModel.OPPORTUNITY_GROUP">
-              <MappingFragment StoreEntitySet="OPPORTUNITY_GROUP">
-                <ScalarProperty Name="OPPORTUNITY_PRIORITY" ColumnName="OPPORTUNITY_PRIORITY" />
-                <ScalarProperty Name="OPPORTUNITY_VALUE" ColumnName="OPPORTUNITY_VALUE" />
-                <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
-                <ScalarProperty Name="OPPORTUNITY_ID" ColumnName="OPPORTUNITY_ID" />
-                <ScalarProperty Name="SKILLSET" ColumnName="SKILLSET" />
-                <ScalarProperty Name="OPPORTUNITY_GROUP_STATUS" ColumnName="OPPORTUNITY_GROUP_STATUS" />
-                <ScalarProperty Name="GROUP_POSITIONS_AVAILABLE" ColumnName="GROUP_POSITIONS_AVAILABLE" />
-                <ScalarProperty Name="MAX_TARGET_GRADE" ColumnName="MAX_TARGET_GRADE" />
-                <ScalarProperty Name="TARGET_NEW_HIRE_GRADE" ColumnName="TARGET_NEW_HIRE_GRADE" />
-                <ScalarProperty Name="SITE" ColumnName="SITE" />
-                <ScalarProperty Name="DURATION" ColumnName="DURATION" />
-                <ScalarProperty Name="TARGETED_CONSULTANTS" ColumnName="TARGETED_CONSULTANTS" />
-                <ScalarProperty Name="CANDIDATE_CONFIRMED" ColumnName="CANDIDATE_CONFIRMED" />
-                <ScalarProperty Name="RATE_CARD_PER_HR" ColumnName="RATE_CARD_PER_HR" />
-                <ScalarProperty Name="EXPECTED_START_DATE" ColumnName="EXPECTED_START_DATE" />
-                <ScalarProperty Name="ACTUAL_START_DATE" ColumnName="ACTUAL_START_DATE" />
-                <ScalarProperty Name="ACTUAL_END_DATE" ColumnName="ACTUAL_END_DATE" />
-                <ScalarProperty Name="LAST_EDITED_BY" ColumnName="LAST_EDITED_BY" />
-                <ScalarProperty Name="LAST_EDITED_DATE" ColumnName="LAST_EDITED_DATE" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="OPPORTUNITY_STATUS">
-            <EntityTypeMapping TypeName="OpportunitiesModel.OPPORTUNITY_STATUS">
-              <MappingFragment StoreEntitySet="OPPORTUNITY_STATUS">
-                <ScalarProperty Name="OPPORTUNITY_STATUS_ID" ColumnName="OPPORTUNITY_STATUS_ID" />
-                <ScalarProperty Name="OPPORTUNITY_STATUS_NAME" ColumnName="OPPORTUNITY_STATUS_NAME" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SIGNUP_INFO">
-            <EntityTypeMapping TypeName="OpportunitiesModel.SIGNUP_INFO">
-              <MappingFragment StoreEntitySet="SIGNUP_INFO">
-                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
-                <ScalarProperty Name="USER_PRIVILEGE_ID" ColumnName="USER_PRIVILEGE_ID" />
-                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
-                <ScalarProperty Name="USER_PASSWORD" ColumnName="USER_PASSWORD" />
-                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
-                <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
-                <ScalarProperty Name="LASTNAME" ColumnName="LASTNAME" />
-                <ScalarProperty Name="USER_STATUS" ColumnName="USER_STATUS" />
-                <ScalarProperty Name="LAST_LOGON" ColumnName="LAST_LOGON" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="OpportunitiesModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="USER_PRIVILEGE">
-            <EntityTypeMapping TypeName="OpportunitiesModel.USER_PRIVILEGE">
-              <MappingFragment StoreEntitySet="USER_PRIVILEGE">
-                <ScalarProperty Name="USER_PRIVILEGE_ID" ColumnName="USER_PRIVILEGE_ID" />
-                <ScalarProperty Name="USER_PRIVILEGE_NAME" ColumnName="USER_PRIVILEGE_NAME" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="LOST_OPPORTUNITY" TypeName="OpportunitiesModel.LOST_OPPORTUNITY" StoreEntitySet="LOST_OPPORTUNITY">
-            <EndProperty Name="LOST_REASON">
-              <ScalarProperty Name="LOST_REASON_ID" ColumnName="LOST_REASON_ID" />
-            </EndProperty>
-            <EndProperty Name="OPPORTUNITY_CATALOG">
-              <ScalarProperty Name="OPPORTUNITY_ID" ColumnName="OPPORTUNITY_ID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="OpportunitiesModel.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="OpportunitiesModel.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="OpportunitiesModel.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="OpportunitiesModel.Store.sp_helpdiagramdefinition">
+          <FunctionImportMapping FunctionImportName="createDevBackup1" FunctionName="OpportunitiesModel.Store.createDevBackup" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram1" FunctionName="OpportunitiesModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram1" FunctionName="OpportunitiesModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram1" FunctionName="OpportunitiesModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition1" FunctionName="OpportunitiesModel.Store.sp_helpdiagramdefinition">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="OpportunitiesModel.sp_helpdiagramdefinition_Result">
+              <ComplexTypeMapping TypeName="OpportunitiesModel.sp_helpdiagramdefinition1_Result">
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="OpportunitiesModel.Store.sp_helpdiagrams">
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams1" FunctionName="OpportunitiesModel.Store.sp_helpdiagrams">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="OpportunitiesModel.sp_helpdiagrams_Result">
+              <ComplexTypeMapping TypeName="OpportunitiesModel.sp_helpdiagrams1_Result">
                 <ScalarProperty Name="Database" ColumnName="Database" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -706,41 +642,170 @@ warning 6002: The table/view 'Test_ClientOpportunities.dbo.LOST_OPPORTUNITY' doe
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="OpportunitiesModel.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="OpportunitiesModel.Store.sp_upgraddiagrams" />
-          <FunctionImportMapping FunctionImportName="createDevBackup" FunctionName="OpportunitiesModel.Store.createDevBackup" />
-          <FunctionImportMapping FunctionImportName="STATS_LOST_OPPORTUNITY" FunctionName="OpportunitiesModel.Store.STATS_LOST_OPPORTUNITY">
+          <FunctionImportMapping FunctionImportName="sp_renamediagram1" FunctionName="OpportunitiesModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams1" FunctionName="OpportunitiesModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="STATS_LOST_OPPORTUNITY1" FunctionName="OpportunitiesModel.Store.STATS_LOST_OPPORTUNITY">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="OpportunitiesModel.STATS_LOST_OPPORTUNITY_Result">
+              <ComplexTypeMapping TypeName="OpportunitiesModel.STATS_LOST_OPPORTUNITY1_Result">
                 <ScalarProperty Name="reason" ColumnName="reason" />
                 <ScalarProperty Name="reason_count" ColumnName="reason_count" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="STATS_OPPORTUNITY_STATUS" FunctionName="OpportunitiesModel.Store.STATS_OPPORTUNITY_STATUS">
+          <FunctionImportMapping FunctionImportName="STATS_OPPORTUNITY_STATUS1" FunctionName="OpportunitiesModel.Store.STATS_OPPORTUNITY_STATUS">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="OpportunitiesModel.STATS_OPPORTUNITY_STATUS_Result">
+              <ComplexTypeMapping TypeName="OpportunitiesModel.STATS_OPPORTUNITY_STATUS1_Result">
                 <ScalarProperty Name="OPPORTUNITY_STATUS_NAME" ColumnName="OPPORTUNITY_STATUS_NAME" />
                 <ScalarProperty Name="STATUS_COUNT" ColumnName="STATUS_COUNT" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="STATS_PORTFOLIO" FunctionName="OpportunitiesModel.Store.STATS_PORTFOLIO">
+          <FunctionImportMapping FunctionImportName="STATS_PORTFOLIO1" FunctionName="OpportunitiesModel.Store.STATS_PORTFOLIO">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="OpportunitiesModel.STATS_PORTFOLIO_Result">
+              <ComplexTypeMapping TypeName="OpportunitiesModel.STATS_PORTFOLIO1_Result">
                 <ScalarProperty Name="CLIENT" ColumnName="CLIENT" />
                 <ScalarProperty Name="VALUE" ColumnName="VALUE" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="STATS_PROJECTED_PROFIT" FunctionName="OpportunitiesModel.Store.STATS_PROJECTED_PROFIT">
+          <FunctionImportMapping FunctionImportName="STATS_PROJECTED_PROFIT1" FunctionName="OpportunitiesModel.Store.STATS_PROJECTED_PROFIT">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="OpportunitiesModel.STATS_PROJECTED_PROFIT_Result">
+              <ComplexTypeMapping TypeName="OpportunitiesModel.STATS_PROJECTED_PROFIT1_Result">
                 <ScalarProperty Name="Quarter" ColumnName="Quarter" />
                 <ScalarProperty Name="Value" ColumnName="Value" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="CLIENT_DETAILS">
+            <EntityTypeMapping TypeName="OpportunitiesModel.CLIENT_DETAILS">
+              <MappingFragment StoreEntitySet="CLIENT_DETAILS">
+                <ScalarProperty Name="LAST_EDITED_DATE" ColumnName="LAST_EDITED_DATE" />
+                <ScalarProperty Name="LAST_EDITED_BY" ColumnName="LAST_EDITED_BY" />
+                <ScalarProperty Name="CLIENT_STATUS" ColumnName="CLIENT_STATUS" />
+                <ScalarProperty Name="CLIENT_SUB_BUSINESS" ColumnName="CLIENT_SUB_BUSINESS" />
+                <ScalarProperty Name="CLIENT_NAME" ColumnName="CLIENT_NAME" />
+                <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CONSULTANTs">
+            <EntityTypeMapping TypeName="OpportunitiesModel.CONSULTANT">
+              <MappingFragment StoreEntitySet="CONSULTANT">
+                <ScalarProperty Name="LAST_EDITED_DATE" ColumnName="LAST_EDITED_DATE" />
+                <ScalarProperty Name="LAST_EDITED_BY" ColumnName="LAST_EDITED_BY" />
+                <ScalarProperty Name="CONSULTANT_EMPLOYMENT_STATUS" ColumnName="CONSULTANT_EMPLOYMENT_STATUS" />
+                <ScalarProperty Name="SOGETI_START_DATE" ColumnName="SOGETI_START_DATE" />
+                <ScalarProperty Name="CONSULTANT_PRACTICE" ColumnName="CONSULTANT_PRACTICE" />
+                <ScalarProperty Name="CONSULTANT_NAME" ColumnName="CONSULTANT_NAME" />
+                <ScalarProperty Name="CONSULTANT_ID" ColumnName="CONSULTANT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOST_REASON">
+            <EntityTypeMapping TypeName="OpportunitiesModel.LOST_REASON">
+              <MappingFragment StoreEntitySet="LOST_REASON">
+                <ScalarProperty Name="REASON" ColumnName="REASON" />
+                <ScalarProperty Name="LOST_REASON_ID" ColumnName="LOST_REASON_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OPPORTUNITY_CATALOG">
+            <EntityTypeMapping TypeName="OpportunitiesModel.OPPORTUNITY_CATALOG">
+              <MappingFragment StoreEntitySet="OPPORTUNITY_CATALOG">
+                <ScalarProperty Name="LAST_EDITED_DATE" ColumnName="LAST_EDITED_DATE" />
+                <ScalarProperty Name="LAST_EDITED_BY" ColumnName="LAST_EDITED_BY" />
+                <ScalarProperty Name="NUMBER_OF_REQUIRED_ROLES" ColumnName="NUMBER_OF_REQUIRED_ROLES" />
+                <ScalarProperty Name="OPPORTUNITY_TYPE" ColumnName="OPPORTUNITY_TYPE" />
+                <ScalarProperty Name="OPPORTUNITY_PRIORITY" ColumnName="OPPORTUNITY_PRIORITY" />
+                <ScalarProperty Name="OPPORTUNITY_COMMENT" ColumnName="OPPORTUNITY_COMMENT" />
+                <ScalarProperty Name="OPPORTUNITY_STATUS" ColumnName="OPPORTUNITY_STATUS" />
+                <ScalarProperty Name="OPPORTUNITY_VALUE" ColumnName="OPPORTUNITY_VALUE" />
+                <ScalarProperty Name="OPPORTUNITY_PRACTICE" ColumnName="OPPORTUNITY_PRACTICE" />
+                <ScalarProperty Name="OPPORTUNITY_NAME" ColumnName="OPPORTUNITY_NAME" />
+                <ScalarProperty Name="SPONSOR" ColumnName="SPONSOR" />
+                <ScalarProperty Name="LOCATION" ColumnName="LOCATION" />
+                <ScalarProperty Name="OPPORTUNITY_STATUS_ID" ColumnName="OPPORTUNITY_STATUS_ID" />
+                <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
+                <ScalarProperty Name="OPPORTUNITY_ID" ColumnName="OPPORTUNITY_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OPPORTUNITY_GROUP">
+            <EntityTypeMapping TypeName="OpportunitiesModel.OPPORTUNITY_GROUP">
+              <MappingFragment StoreEntitySet="OPPORTUNITY_GROUP">
+                <ScalarProperty Name="EXPECTED_END_DATE" ColumnName="EXPECTED_END_DATE" />
+                <ScalarProperty Name="OPPORTUNITY_PRIORITY" ColumnName="OPPORTUNITY_PRIORITY" />
+                <ScalarProperty Name="OPPORTUNITY_VALUE" ColumnName="OPPORTUNITY_VALUE" />
+                <ScalarProperty Name="LAST_EDITED_DATE" ColumnName="LAST_EDITED_DATE" />
+                <ScalarProperty Name="LAST_EDITED_BY" ColumnName="LAST_EDITED_BY" />
+                <ScalarProperty Name="ACTUAL_END_DATE" ColumnName="ACTUAL_END_DATE" />
+                <ScalarProperty Name="ACTUAL_START_DATE" ColumnName="ACTUAL_START_DATE" />
+                <ScalarProperty Name="EXPECTED_START_DATE" ColumnName="EXPECTED_START_DATE" />
+                <ScalarProperty Name="RATE_CARD_PER_HR" ColumnName="RATE_CARD_PER_HR" />
+                <ScalarProperty Name="CANDIDATE_CONFIRMED" ColumnName="CANDIDATE_CONFIRMED" />
+                <ScalarProperty Name="TARGETED_CONSULTANTS" ColumnName="TARGETED_CONSULTANTS" />
+                <ScalarProperty Name="DURATION" ColumnName="DURATION" />
+                <ScalarProperty Name="SITE" ColumnName="SITE" />
+                <ScalarProperty Name="TARGET_NEW_HIRE_GRADE" ColumnName="TARGET_NEW_HIRE_GRADE" />
+                <ScalarProperty Name="MAX_TARGET_GRADE" ColumnName="MAX_TARGET_GRADE" />
+                <ScalarProperty Name="GROUP_POSITIONS_AVAILABLE" ColumnName="GROUP_POSITIONS_AVAILABLE" />
+                <ScalarProperty Name="OPPORTUNITY_GROUP_STATUS" ColumnName="OPPORTUNITY_GROUP_STATUS" />
+                <ScalarProperty Name="SKILLSET" ColumnName="SKILLSET" />
+                <ScalarProperty Name="OPPORTUNITY_ID" ColumnName="OPPORTUNITY_ID" />
+                <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OPPORTUNITY_STATUS">
+            <EntityTypeMapping TypeName="OpportunitiesModel.OPPORTUNITY_STATUS">
+              <MappingFragment StoreEntitySet="OPPORTUNITY_STATUS">
+                <ScalarProperty Name="OPPORTUNITY_STATUS_NAME" ColumnName="OPPORTUNITY_STATUS_NAME" />
+                <ScalarProperty Name="OPPORTUNITY_STATUS_ID" ColumnName="OPPORTUNITY_STATUS_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SIGNUP_INFO">
+            <EntityTypeMapping TypeName="OpportunitiesModel.SIGNUP_INFO">
+              <MappingFragment StoreEntitySet="SIGNUP_INFO">
+                <ScalarProperty Name="LAST_LOGON" ColumnName="LAST_LOGON" />
+                <ScalarProperty Name="USER_STATUS" ColumnName="USER_STATUS" />
+                <ScalarProperty Name="LASTNAME" ColumnName="LASTNAME" />
+                <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="USER_PASSWORD" ColumnName="USER_PASSWORD" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="USER_PRIVILEGE_ID" ColumnName="USER_PRIVILEGE_ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="OpportunitiesModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER_PRIVILEGE">
+            <EntityTypeMapping TypeName="OpportunitiesModel.USER_PRIVILEGE">
+              <MappingFragment StoreEntitySet="USER_PRIVILEGE">
+                <ScalarProperty Name="USER_PRIVILEGE_NAME" ColumnName="USER_PRIVILEGE_NAME" />
+                <ScalarProperty Name="USER_PRIVILEGE_ID" ColumnName="USER_PRIVILEGE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="LOST_OPPORTUNITY" TypeName="OpportunitiesModel.LOST_OPPORTUNITY" StoreEntitySet="LOST_OPPORTUNITY">
+            <EndProperty Name="OPPORTUNITY_CATALOG">
+              <ScalarProperty Name="OPPORTUNITY_ID" ColumnName="OPPORTUNITY_ID" />
+            </EndProperty>
+            <EndProperty Name="LOST_REASON">
+              <ScalarProperty Name="LOST_REASON_ID" ColumnName="LOST_REASON_ID" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

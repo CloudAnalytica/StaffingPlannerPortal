@@ -221,20 +221,38 @@
     <Compile Include="Models\SIGNUP_INFO.cs">
       <DependentUpon>Opportunities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition1_Result.cs">
+      <DependentUpon>Opportunities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>Opportunities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams1_Result.cs">
       <DependentUpon>Opportunities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_helpdiagrams_Result.cs">
       <DependentUpon>Opportunities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\StatisticsDataModels.cs" />
+    <Compile Include="Models\STATS_LOST_OPPORTUNITY1_Result.cs">
+      <DependentUpon>Opportunities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\STATS_LOST_OPPORTUNITY_Result.cs">
+      <DependentUpon>Opportunities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\STATS_OPPORTUNITY_STATUS1_Result.cs">
       <DependentUpon>Opportunities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\STATS_OPPORTUNITY_STATUS_Result.cs">
       <DependentUpon>Opportunities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\STATS_PORTFOLIO1_Result.cs">
+      <DependentUpon>Opportunities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\STATS_PORTFOLIO_Result.cs">
+      <DependentUpon>Opportunities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\STATS_PROJECTED_PROFIT1_Result.cs">
       <DependentUpon>Opportunities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\STATS_PROJECTED_PROFIT_Result.cs">
@@ -282,6 +300,15 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
     <EntityDeploy Include="Models\Opportunities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Opportunities.Designer.cs</LastGenOutput>
@@ -317,13 +344,6 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\tables.js" />
-    <Content Include="Web.config" />
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
