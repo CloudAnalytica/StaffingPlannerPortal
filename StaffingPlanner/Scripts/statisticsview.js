@@ -36,7 +36,7 @@
 		var pieChart = new google.visualization.ColumnChart(document.getElementById('oppStatus_div'));
 		pieChart.draw(oppStatusData, options);
 	}
-
+	//test
 	$.ajax({
 		type: "GET",
 		url: "Statistics/LostOpportunityChartData",
