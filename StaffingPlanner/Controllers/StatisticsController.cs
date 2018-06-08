@@ -1,5 +1,4 @@
 ﻿/*
- * Author: Zoe
  * Purpose: This controller handles calling the stored procedures in the entity framework 
  *			and sends the information to the view to be turned into a google chart. 
  */

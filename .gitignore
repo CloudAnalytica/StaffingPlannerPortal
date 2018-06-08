@@ -260,5 +260,5 @@ paket-files/
 __pycache__/
 *.pyc
 
-#Web.config
-StaffingPlanner/Web.config
+#Ignore ConnectionStrings File
+connectionStrings.config
